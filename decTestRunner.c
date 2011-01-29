@@ -519,6 +519,11 @@ static s_or_f parse_hex(int bytes, uint8_t buf[], const char *s)
     uint8_t hi;
     uint8_t lo;
 
+    if (strlen(s) != bytes * 2) {
+        print_error("%s[%d] error in parse_hex expected length is %d, but was %d [%s]\n", __FILE__, __LINE__, bytes * 2, strlen(s), s);
+        return FAILURE;
+    }
+
     j = 0;
     for (i = 0; i < bytes; ++i, j += 2) {
         if (!convert_hex_char_to_int(s[j], &hi)) {
@@ -612,6 +617,92 @@ static s_or_f parse_hex_notation(const char *s, decNumber **number)
     return SUCCESS;
 }
 
+static s_or_f parse_decimal32_hex_canonical(const char *s, decNumber **number)
+{
+    decimal32 dec32;
+    decimal32 dec32canonical;
+
+    if (!parse_hex(DECIMAL32_Bytes, dec32.bytes, s)) {
+        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        return FAILURE;
+    }
+    decimal32Canonical(&dec32canonical, &dec32);
+
+    *number = alloc_number(DECIMAL32_Pmax);
+    if (!*number) {
+        return FAILURE;
+    }
+    decimal32ToNumber(&dec32canonical, *number);
+    return SUCCESS;
+}
+
+static s_or_f parse_decimal64_hex_canonical(const char *s, decNumber **number)
+{
+    decimal64 dec64;
+    decimal64 dec64canonical;
+
+    if (!parse_hex(DECIMAL64_Bytes, dec64.bytes, s)) {
+        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        return FAILURE;
+    }
+    decimal64Canonical(&dec64canonical, &dec64);
+
+    *number = alloc_number(DECIMAL64_Pmax);
+    if (!*number) {
+        return FAILURE;
+    }
+    decimal64ToNumber(&dec64canonical, *number);
+    return SUCCESS;
+}
+
+static s_or_f parse_decimal128_hex_canonical(const char *s, decNumber **number)
+{
+    decimal128 dec128;
+    decimal128 dec128canonical;
+
+    if (!parse_hex(DECIMAL128_Bytes, dec128.bytes, s)) {
+        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        return FAILURE;
+    }
+    decimal128Canonical(&dec128canonical, &dec128);
+
+    *number = alloc_number(DECIMAL128_Pmax);
+    if (!*number) {
+        return FAILURE;
+    }
+    decimal128ToNumber(&dec128canonical, *number);
+    return SUCCESS;
+}
+
+static s_or_f parse_hex_notation_canonical(const char *s, decNumber **number)
+{
+    int len;
+
+    len = strlen(s) - 1;
+    if (len == 0) {
+        *number = NULL;
+    } else if (len == 8) {
+        if (!parse_decimal32_hex_canonical(s + 1, number)) {
+            print_error("%s[%d] parse_decimal32_hex_canonical failed [%s]\n", __FILE__, __LINE__, s);
+            return FAILURE;
+        }
+    } else if (len == 16) {
+        if (!parse_decimal64_hex_canonical(s + 1, number)) {
+            print_error("%s[%d] parse_decimal32_hex_canonical failed [%s]\n", __FILE__, __LINE__, s);
+            return FAILURE;
+        }
+    } else if (len == 32) {
+        if (!parse_decimal128_hex_canonical(s + 1, number)) {
+            print_error("%s[%d] parse_decimal32_hex_canonical failed [%s]\n", __FILE__, __LINE__, s);
+            return FAILURE;
+        }
+    } else {
+        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        return FAILURE;
+    }
+    return SUCCESS;
+}
+
 static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase,
     decNumber ***numbers)
 {
@@ -641,9 +732,16 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase,
     for (i = 0; i < testcase->operand_count; ++i) {
         s = testcase->operands[i];
         if (strncmp(s, "#", 1) == 0) {
-            if (!parse_hex_notation(s, &nums[i])) {
-                print_error("%s[%d] parse_hex_notation failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
-                return FAILURE;
+            if (strcmp(op, "canonical") == 0) {
+                if (!parse_hex_notation_canonical(s, &nums[i])) {
+                    print_error("%s[%d] parse_decimal64_hex_canonical failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
+                    return FAILURE;
+                }
+            } else {
+                if (!parse_hex_notation(s, &nums[i])) {
+                    print_error("%s[%d] parse_hex_notation failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
+                    return FAILURE;
+                }
             }
         } else {
             if (!is_using_directive_precision) {
@@ -777,7 +875,9 @@ static s_or_f testcase_run(testcase_t *testcase)
         }
         break;
     case 'c':
-        if (strcasecmp(testcase->operator, "class") == 0) {
+        if (strcasecmp(testcase->operator, "canonical") == 0) {
+            testcase->actual = convert_number_to_string(operands[0]);
+        } else if (strcasecmp(testcase->operator, "class") == 0) {
             enum decClass num_class;
             num_class = decNumberClass(operands[0], testcase->context);
             testcase->actual = strdup(decNumberClassToString(num_class));
