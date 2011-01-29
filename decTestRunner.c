@@ -939,10 +939,10 @@ static s_or_f testcase_run(testcase_t *testcase)
         } else if (strcasecmp(testcase->operator, "tosci") == 0) {
             testcase->actual = convert_number_to_string(testcase->operands[0]);
         } else if (strcasecmp(testcase->operator, "trim") == 0) {
-            if (result->digits <= testcase->operands[0]->digits) {
+            if (result->digits < testcase->operands[0]->digits) {
                 free(result);
                 result = alloc_number(testcase->operands[0]->digits);
-                if (result) {
+                if (!result) {
                     return FAILURE;
                 }
             }
