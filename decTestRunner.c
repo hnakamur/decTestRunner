@@ -713,6 +713,7 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase,
     char *s;
     int i;
     int needbytes;
+    decContext ctx;
 
     op = testcase->operator;
     is_using_directive_precision = (strcasecmp(op, "apply") == 0
@@ -728,7 +729,7 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase,
     }
     memset(nums, 0, needbytes);
 
-    digits = testcase->context->digits;
+    ctx = *testcase->context;
     for (i = 0; i < testcase->operand_count; ++i) {
         s = testcase->operands[i];
         if (strncmp(s, "#", 1) == 0) {
@@ -745,23 +746,19 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase,
             }
         } else {
             if (!is_using_directive_precision) {
-                testcase->context->digits = count_coefficient_digit(s);
+                ctx.digits = count_coefficient_digit(s);
+                ctx.emax = DEC_MAX_EMAX;
+                ctx.emin = DEC_MIN_EMIN;
             }
-            nums[i] = alloc_number(testcase->context->digits);
+            nums[i] = alloc_number(ctx.digits);
             if (!nums[i]) {
                 return FAILURE;
             }
-            decNumberFromString(nums[i], s, testcase->context);
-            if (testcase->context->status) {
-//                printf("convert operand #%d, status=%x, erros=%x\n", i,
-//                    testcase->context->status,
-//                    testcase->context->status & DEC_Errors);
-            }
+            decNumberFromString(nums[i], s, &ctx);
         }
     }
-    testcase->context->digits = digits;
-    if (!is_using_directive_precision) {
-        testcase->context->status = 0;
+    if (is_using_directive_precision) {
+        testcase->context->status = ctx.status;
     }
 
     *numbers = nums;
