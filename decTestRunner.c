@@ -18,6 +18,9 @@
 #include "decNumber/decContext.h"
 #include "decNumber/decNumber.h"
 #include "decNumber/decNumberLocal.h"
+#include "decNumber/decimal32.h"
+#include "decNumber/decimal64.h"
+#include "decNumber/decimal128.h"
 
 #define LINE_MAX_LEN  4000
 
@@ -434,8 +437,175 @@ static decNumber *alloc_number(long numdigits)
 
     needbytes = sizeof(decNumber) + (D2U(numdigits) - 1) * sizeof(Unit);
     number = (decNumber *)malloc(needbytes);
+    if (!number) {
+        print_error("%s[%d] no more memory in alloc_number.\n", __FILE__, __LINE__);
+        return NULL;
+    }
     memset(number, 0, needbytes);
     return number;
+}
+
+static s_or_f convert_hex_char_to_int(char ch, uint8_t *hex)
+{
+    switch (ch) {
+    case '0':
+        *hex = 0;
+        break;
+    case '1':
+        *hex = 1;
+        break;
+    case '2':
+        *hex = 2;
+        break;
+    case '3':
+        *hex = 3;
+        break;
+    case '4':
+        *hex = 4;
+        break;
+    case '5':
+        *hex = 5;
+        break;
+    case '6':
+        *hex = 6;
+        break;
+    case '7':
+        *hex = 7;
+        break;
+    case '8':
+        *hex = 8;
+        break;
+    case '9':
+        *hex = 9;
+        break;
+    case 'A':
+    case 'a':
+        *hex = 10;
+        break;
+    case 'B':
+    case 'b':
+        *hex = 11;
+        break;
+    case 'C':
+    case 'c':
+        *hex = 12;
+        break;
+    case 'D':
+    case 'd':
+        *hex = 13;
+        break;
+    case 'E':
+    case 'e':
+        *hex = 14;
+        break;
+    case 'F':
+    case 'f':
+        *hex = 15;
+        break;
+    default:
+        return FAILURE;
+    }
+    return SUCCESS;
+}
+
+static s_or_f parse_hex(int bytes, uint8_t buf[], const char *s)
+{
+    int i;
+    int j;
+    uint8_t hi;
+    uint8_t lo;
+
+    j = 0;
+    for (i = 0; i < bytes; ++i, j += 2) {
+        if (!convert_hex_char_to_int(s[j], &hi)) {
+            return FAILURE;
+        }
+        if (!convert_hex_char_to_int(s[j + 1], &lo)) {
+            return FAILURE;
+        }
+        buf[i] = hi << 4 | lo;
+    }
+    return SUCCESS;
+}
+
+static s_or_f parse_decimal32_hex(const char *s, decNumber **number)
+{
+    decimal32 dec32;
+
+    if (!parse_hex(DECIMAL32_Bytes, dec32.bytes, s)) {
+        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        return FAILURE;
+    }
+
+    *number = alloc_number(DECIMAL32_Pmax);
+    if (!*number) {
+        return FAILURE;
+    }
+    decimal32ToNumber(&dec32, *number);
+    return SUCCESS;
+}
+
+static s_or_f parse_decimal64_hex(const char *s, decNumber **number)
+{
+    decimal64 dec64;
+
+    if (!parse_hex(DECIMAL64_Bytes, dec64.bytes, s)) {
+        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        return FAILURE;
+    }
+
+    *number = alloc_number(DECIMAL64_Pmax);
+    if (!*number) {
+        return FAILURE;
+    }
+    decimal64ToNumber(&dec64, *number);
+    return SUCCESS;
+}
+
+static s_or_f parse_decimal128_hex(const char *s, decNumber **number)
+{
+    decimal128 dec128;
+
+    if (!parse_hex(DECIMAL128_Bytes, dec128.bytes, s)) {
+        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        return FAILURE;
+    }
+
+    *number = alloc_number(DECIMAL128_Pmax);
+    if (!*number) {
+        return FAILURE;
+    }
+    decimal128ToNumber(&dec128, *number);
+    return SUCCESS;
+}
+
+static s_or_f parse_hex_notation(const char *s, decNumber **number)
+{
+    int len;
+
+    len = strlen(s) - 1;
+    if (len == 0) {
+        *number = NULL;
+    } else if (len == 8) {
+        if (!parse_decimal32_hex(s + 1, number)) {
+            print_error("%s[%d] parse_decimal32_hex failed [%s]\n", __FILE__, __LINE__, s);
+            return FAILURE;
+        }
+    } else if (len == 16) {
+        if (!parse_decimal64_hex(s + 1, number)) {
+            print_error("%s[%d] parse_decimal32_hex failed [%s]\n", __FILE__, __LINE__, s);
+            return FAILURE;
+        }
+    } else if (len == 32) {
+        if (!parse_decimal128_hex(s + 1, number)) {
+            print_error("%s[%d] parse_decimal32_hex failed [%s]\n", __FILE__, __LINE__, s);
+            return FAILURE;
+        }
+    } else {
+        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        return FAILURE;
+    }
+    return SUCCESS;
 }
 
 static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
@@ -457,6 +627,7 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     if (!tokens_get_conditions(tokens, 2 + testcase->operand_count + 2,
         &testcase->expected_status)
     ) {
+        print_error("%s[%d] tokens_get_conditions failed.\n", __FILE__, __LINE__);
         return FAILURE;
     }
 
@@ -469,13 +640,19 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     digits = testcase->context->digits;
     for (i = 0; i < testcase->operand_count; ++i) {
         s = tokens->tokens[i + 2];
-        if (strcmp(s, "#") == 0) {
-            testcase->operands[i] = NULL;
+        if (strncmp(s, "#", 1) == 0) {
+            if (!parse_hex_notation(s, &testcase->operands[i])) {
+                print_error("%s[%d] parse_hex_notation failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
+                return FAILURE;
+            }
         } else {
             if (!is_using_directive_precision) {
                 testcase->context->digits = count_coefficient_digit(s);
             }
             testcase->operands[i] = n = alloc_number(testcase->context->digits);
+            if (!n) {
+                return FAILURE;
+            }
             decNumberFromString(n, s, testcase->context);
             if (testcase->context->status) {
 //                printf("convert operand #%d, status=%x, erros=%x\n", i,
@@ -489,7 +666,17 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
         testcase->context->status = 0;
     }
 
-    testcase->expected = tokens->tokens[2 + testcase->operand_count + 1];
+    s = tokens->tokens[2 + testcase->operand_count + 1];
+    if (strncmp(s, "#", 1) == 0) {
+        if (!parse_hex_notation(s, &n)) {
+            print_error("%s[%d] parse_hex_notation failed for result. [%s]\n", __FILE__, __LINE__, s);
+            return FAILURE;
+        }
+        testcase->expected = convert_number_to_string(n);
+        free(n);
+    } else {
+        testcase->expected = strdup(s);
+    }
 
     return SUCCESS;
 }
@@ -516,6 +703,9 @@ static s_or_f testcase_run(testcase_t *testcase)
     }
 
     result = alloc_number(testcase->context->digits);
+    if (!result) {
+        return FAILURE;
+    }
 
     switch (tolower(testcase->operator[0])) {
     case 'a':
@@ -748,6 +938,9 @@ static s_or_f testcase_run(testcase_t *testcase)
             if (result->digits <= testcase->operands[0]->digits) {
                 free(result);
                 result = alloc_number(testcase->operands[0]->digits);
+                if (result) {
+                    return FAILURE;
+                }
             }
             decNumberCopy(result, testcase->operands[0]);
             decNumberTrim(result);
@@ -835,6 +1028,9 @@ static int testcase_dtor(testcase_t *testcase)
     }
     if (testcase->actual) {
         free(testcase->actual);
+    }
+    if (testcase->expected) {
+        free(testcase->expected);
     }
 }
 

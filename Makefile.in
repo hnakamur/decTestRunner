@@ -52,7 +52,8 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_decTestRunner_OBJECTS = decTestRunner.$(OBJEXT) \
-	decContext.$(OBJEXT) decNumber.$(OBJEXT)
+	decContext.$(OBJEXT) decNumber.$(OBJEXT) decimal32.$(OBJEXT) \
+	decimal64.$(OBJEXT) decimal128.$(OBJEXT)
 decTestRunner_OBJECTS = $(am_decTestRunner_OBJECTS)
 decTestRunner_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I.
@@ -150,7 +151,10 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 decTestRunner_SOURCES = decTestRunner.c \
   decNumber/decContext.h decNumber/decNumber.h decNumber/decNumberLocal.h \
-  decNumber/decContext.c decNumber/decNumber.c
+  decNumber/decContext.c decNumber/decNumber.c \
+  decNumber/decimal32.h decNumber/decimal64.h decNumber/decimal128.h \
+  decNumber/decimal32.c decNumber/decimal64.c decNumber/decimal128.c \
+  decDPD.h
 
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -243,6 +247,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/decContext.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/decNumber.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/decTestRunner.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/decimal128.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/decimal32.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/decimal64.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
@@ -285,6 +292,48 @@ decNumber.obj: decNumber/decNumber.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='decNumber/decNumber.c' object='decNumber.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o decNumber.obj `if test -f 'decNumber/decNumber.c'; then $(CYGPATH_W) 'decNumber/decNumber.c'; else $(CYGPATH_W) '$(srcdir)/decNumber/decNumber.c'; fi`
+
+decimal32.o: decNumber/decimal32.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT decimal32.o -MD -MP -MF "$(DEPDIR)/decimal32.Tpo" -c -o decimal32.o `test -f 'decNumber/decimal32.c' || echo '$(srcdir)/'`decNumber/decimal32.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/decimal32.Tpo" "$(DEPDIR)/decimal32.Po"; else rm -f "$(DEPDIR)/decimal32.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='decNumber/decimal32.c' object='decimal32.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o decimal32.o `test -f 'decNumber/decimal32.c' || echo '$(srcdir)/'`decNumber/decimal32.c
+
+decimal32.obj: decNumber/decimal32.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT decimal32.obj -MD -MP -MF "$(DEPDIR)/decimal32.Tpo" -c -o decimal32.obj `if test -f 'decNumber/decimal32.c'; then $(CYGPATH_W) 'decNumber/decimal32.c'; else $(CYGPATH_W) '$(srcdir)/decNumber/decimal32.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/decimal32.Tpo" "$(DEPDIR)/decimal32.Po"; else rm -f "$(DEPDIR)/decimal32.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='decNumber/decimal32.c' object='decimal32.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o decimal32.obj `if test -f 'decNumber/decimal32.c'; then $(CYGPATH_W) 'decNumber/decimal32.c'; else $(CYGPATH_W) '$(srcdir)/decNumber/decimal32.c'; fi`
+
+decimal64.o: decNumber/decimal64.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT decimal64.o -MD -MP -MF "$(DEPDIR)/decimal64.Tpo" -c -o decimal64.o `test -f 'decNumber/decimal64.c' || echo '$(srcdir)/'`decNumber/decimal64.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/decimal64.Tpo" "$(DEPDIR)/decimal64.Po"; else rm -f "$(DEPDIR)/decimal64.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='decNumber/decimal64.c' object='decimal64.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o decimal64.o `test -f 'decNumber/decimal64.c' || echo '$(srcdir)/'`decNumber/decimal64.c
+
+decimal64.obj: decNumber/decimal64.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT decimal64.obj -MD -MP -MF "$(DEPDIR)/decimal64.Tpo" -c -o decimal64.obj `if test -f 'decNumber/decimal64.c'; then $(CYGPATH_W) 'decNumber/decimal64.c'; else $(CYGPATH_W) '$(srcdir)/decNumber/decimal64.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/decimal64.Tpo" "$(DEPDIR)/decimal64.Po"; else rm -f "$(DEPDIR)/decimal64.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='decNumber/decimal64.c' object='decimal64.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o decimal64.obj `if test -f 'decNumber/decimal64.c'; then $(CYGPATH_W) 'decNumber/decimal64.c'; else $(CYGPATH_W) '$(srcdir)/decNumber/decimal64.c'; fi`
+
+decimal128.o: decNumber/decimal128.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT decimal128.o -MD -MP -MF "$(DEPDIR)/decimal128.Tpo" -c -o decimal128.o `test -f 'decNumber/decimal128.c' || echo '$(srcdir)/'`decNumber/decimal128.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/decimal128.Tpo" "$(DEPDIR)/decimal128.Po"; else rm -f "$(DEPDIR)/decimal128.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='decNumber/decimal128.c' object='decimal128.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o decimal128.o `test -f 'decNumber/decimal128.c' || echo '$(srcdir)/'`decNumber/decimal128.c
+
+decimal128.obj: decNumber/decimal128.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT decimal128.obj -MD -MP -MF "$(DEPDIR)/decimal128.Tpo" -c -o decimal128.obj `if test -f 'decNumber/decimal128.c'; then $(CYGPATH_W) 'decNumber/decimal128.c'; else $(CYGPATH_W) '$(srcdir)/decNumber/decimal128.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/decimal128.Tpo" "$(DEPDIR)/decimal128.Po"; else rm -f "$(DEPDIR)/decimal128.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='decNumber/decimal128.c' object='decimal128.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o decimal128.obj `if test -f 'decNumber/decimal128.c'; then $(CYGPATH_W) 'decNumber/decimal128.c'; else $(CYGPATH_W) '$(srcdir)/decNumber/decimal128.c'; fi`
 uninstall-info-am:
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
