@@ -1,0 +1,8 @@
+decTestRunner - a test runner for Genral Decimal Arithmetic test cases.
+                http://speleotrove.com/decimal/
+
+see LICENSE for license.
+
+./configure
+make
+./decTestRunner testcases/dectest/testall.decTest
