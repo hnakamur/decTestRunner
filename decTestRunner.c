@@ -214,8 +214,12 @@ static void tokens_print(tokens_t *tokens)
     int i;
 
     for (i = 0; i < tokens->count; ++i) {
-        printf("%d: [%s]\n", i, tokens->tokens[i]);
+        if (i > 0) {
+            printf(" ");
+        }
+        printf("%s", tokens->tokens[i]);
     }
+    printf("\n");
 }
 
 static bool get_next_token_pos(char *line, int offset, int *start, int *end)
@@ -1049,6 +1053,7 @@ static s_or_f testfile_process_test(testfile_t *testfile, tokens_t *tokens)
     } else {
 //        testcase_print(&testcase);
         if (!testcase_run(&testcase)) {
+            tokens_print(tokens);
             print_error("%s[%d] testcase_run failed.\n", __FILE__, __LINE__);
             return FAILURE;
         }
