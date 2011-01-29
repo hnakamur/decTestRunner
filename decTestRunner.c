@@ -65,7 +65,7 @@ typedef struct _testcase_t {
     char *id;
     char *operator;
     int operand_count;
-    decNumber **operands;
+    char **operands;
     uint32_t expected_status;
     char *expected;
     decContext *context;
@@ -130,7 +130,7 @@ static char *my_strndup(const char *s, size_t n)
 {
     char *dup;
 
-    dup = malloc(sizeof(char) * (n + 1));
+    dup = (char *)malloc(sizeof(char) * (n + 1));
     if (dup) {
         strncpy(dup, s, n);
         dup[n] = '\0';
@@ -161,7 +161,7 @@ static char *unquote_token_helper(const char *s, size_t n, char quote)
 
     quote_count = count_char(s + 1, n - 2, quote);
     len = n - 2 - quote_count / 2;
-    dup = malloc(sizeof(char) * (len + 1));
+    dup = (char *)malloc(sizeof(char) * (len + 1));
     for (i = 0; i < len; ++i) {
         dup[i] = s[i + 1];
         if (dup[i] == quote) {
@@ -612,40 +612,36 @@ static s_or_f parse_hex_notation(const char *s, decNumber **number)
     return SUCCESS;
 }
 
-static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
-    tokens_t *tokens)
+static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase,
+    decNumber ***numbers)
 {
-    int status;
     char *op;
+    bool is_using_directive_precision;
+    decNumber **nums;
+    int32_t digits;
     char *s;
     int i;
-    bool is_using_directive_precision;
-    int32_t digits;
-    decNumber *n;
+    int needbytes;
 
-    testcase->id = tokens->tokens[0];
-    testcase->operator = op = tokens->tokens[1];
-    testcase->operand_count = tokens_count_operands(tokens);
-    testcase->actual_status = 0;
-    testcase->actual = NULL;
-    if (!tokens_get_conditions(tokens, 2 + testcase->operand_count + 2,
-        &testcase->expected_status)
-    ) {
-        print_error("%s[%d] tokens_get_conditions failed.\n", __FILE__, __LINE__);
-        return FAILURE;
-    }
-
+    op = testcase->operator;
     is_using_directive_precision = (strcasecmp(op, "apply") == 0
         || strcasecmp(op, "tosci") == 0 || strcasecmp(op, "toeng") == 0);
-    testcase->context = &testfile->context;
     testcase->context->traps = 0;
     testcase->context->status = 0;
-    testcase->operands = malloc(sizeof(decNumber *) * testcase->operand_count);
+
+    needbytes = sizeof(decNumber *) * testcase->operand_count;
+    nums = (decNumber **)malloc(needbytes);
+    if (!nums) {
+        print_error("%s[%d] out of memory in testcase_convert_operands_to_numbers\n", __FILE__, __LINE__);
+        return FAILURE;
+    }
+    memset(nums, 0, needbytes);
+
     digits = testcase->context->digits;
     for (i = 0; i < testcase->operand_count; ++i) {
-        s = tokens->tokens[i + 2];
+        s = testcase->operands[i];
         if (strncmp(s, "#", 1) == 0) {
-            if (!parse_hex_notation(s, &testcase->operands[i])) {
+            if (!parse_hex_notation(s, &nums[i])) {
                 print_error("%s[%d] parse_hex_notation failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
                 return FAILURE;
             }
@@ -653,11 +649,11 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
             if (!is_using_directive_precision) {
                 testcase->context->digits = count_coefficient_digit(s);
             }
-            testcase->operands[i] = n = alloc_number(testcase->context->digits);
-            if (!n) {
+            nums[i] = alloc_number(testcase->context->digits);
+            if (!nums[i]) {
                 return FAILURE;
             }
-            decNumberFromString(n, s, testcase->context);
+            decNumberFromString(nums[i], s, testcase->context);
             if (testcase->context->status) {
 //                printf("convert operand #%d, status=%x, erros=%x\n", i,
 //                    testcase->context->status,
@@ -668,6 +664,39 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     testcase->context->digits = digits;
     if (!is_using_directive_precision) {
         testcase->context->status = 0;
+    }
+
+    *numbers = nums;
+    return SUCCESS;
+}
+
+static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
+    tokens_t *tokens)
+{
+    char *s;
+    int i;
+    decNumber *n;
+
+    testcase->id = tokens->tokens[0];
+    testcase->operator = tokens->tokens[1];
+    testcase->operand_count = tokens_count_operands(tokens);
+    testcase->context = &testfile->context;
+    testcase->actual_status = 0;
+    testcase->actual = NULL;
+    if (!tokens_get_conditions(tokens, 2 + testcase->operand_count + 2,
+        &testcase->expected_status)
+    ) {
+        print_error("%s[%d] tokens_get_conditions failed.\n", __FILE__, __LINE__);
+        return FAILURE;
+    }
+
+    testcase->operands = (char **)malloc(sizeof(char *) * testcase->operand_count);
+    if (!testcase->operands) {
+        print_error("%s[%d] out of memory in testcase_init\n", __FILE__, __LINE__);
+        return FAILURE;
+    }
+    for (i = 0; i < testcase->operand_count; ++i) {
+        testcase->operands[i] = tokens->tokens[i + 2];
     }
 
     s = tokens->tokens[2 + testcase->operand_count + 1];
@@ -690,306 +719,305 @@ static bool testcase_has_null_operand(testcase_t *testcase)
     int i;
 
     for (i = 0; i < testcase->operand_count; ++i) {
-        if (!testcase->operands[i]) {
+        if (strcmp(testcase->operands[i], "#") == 0) {
             return TRUE;
         }
     }
     return FALSE;
 }
 
+static void free_operands(int operand_count, decNumber **operands)
+{
+    int i;
+
+    for (i = 0; i < operand_count; ++i) {
+        if (operands[i]) {
+            free(operands[i]);
+        }
+    }
+    free(operands);
+}
+
 static s_or_f testcase_run(testcase_t *testcase)
 {
+    decNumber **operands;
     decNumber *result;
+    s_or_f retval;
 
     if (strlen(testcase->operator) == 0) {
         print_error("%s[%d] error in testcase_run. operator is empty.\n", __FILE__, __LINE__);
         return FAILURE;
     }
 
-    result = alloc_number(testcase->context->digits);
-    if (!result) {
+    if (!testcase_convert_operands_to_numbers(testcase, &operands)) {
         return FAILURE;
     }
+
+    result = alloc_number(testcase->context->digits);
+    if (!result) {
+        free_operands(testcase->operand_count, operands);
+        return FAILURE;
+    }
+
+    retval = SUCCESS;
 
     switch (tolower(testcase->operator[0])) {
     case 'a':
         if (strcasecmp(testcase->operator, "abs") == 0) {
-            decNumberAbs(result, testcase->operands[0],
-                testcase->context);
+            decNumberAbs(result, operands[0], testcase->context);
         } else if (strcasecmp(testcase->operator, "add") == 0) {
-            decNumberAdd(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberAdd(result, operands[0], operands[1], testcase->context);
         } else if (strcasecmp(testcase->operator, "and") == 0) {
-            decNumberAnd(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberAnd(result, operands[0], operands[1], testcase->context);
         } else if (strcasecmp(testcase->operator, "apply") == 0) {
-            testcase->actual = convert_number_to_string(testcase->operands[0]);
+            testcase->actual = convert_number_to_string(operands[0]);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 'c':
         if (strcasecmp(testcase->operator, "class") == 0) {
             enum decClass num_class;
-            num_class = decNumberClass(testcase->operands[0],
-                testcase->context);
+            num_class = decNumberClass(operands[0], testcase->context);
             testcase->actual = strdup(decNumberClassToString(num_class));
         } else if (strcasecmp(testcase->operator, "compare") == 0) {
-            decNumberCompare(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberCompare(result, operands[0], operands[1],
+                testcase->context);
         } else if (strcasecmp(testcase->operator, "comparesig") == 0) {
-            decNumberCompareSignal(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberCompareSignal(result, operands[0], operands[1],
+                testcase->context);
         } else if (strcasecmp(testcase->operator, "comparetotmag") == 0) {
-            decNumberCompareTotalMag(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberCompareTotalMag(result, operands[0], operands[1],
+                testcase->context);
         } else if (strcasecmp(testcase->operator, "comparetotal") == 0) {
-            decNumberCompareTotal(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberCompareTotal(result, operands[0], operands[1],
+                testcase->context);
         } else if (strcasecmp(testcase->operator, "copy") == 0) {
-            decNumberCopy(result, testcase->operands[0]);
+            decNumberCopy(result, operands[0]);
         } else if (strcasecmp(testcase->operator, "copyabs") == 0) {
-            decNumberCopyAbs(result, testcase->operands[0]);
+            decNumberCopyAbs(result, operands[0]);
         } else if (strcasecmp(testcase->operator, "copynegate") == 0) {
-            decNumberCopyNegate(result, testcase->operands[0]);
+            decNumberCopyNegate(result, operands[0]);
         } else if (strcasecmp(testcase->operator, "copysign") == 0) {
-            decNumberCopySign(result, testcase->operands[0],
-                testcase->operands[1]);
+            decNumberCopySign(result, operands[0], operands[1]);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 'd':
         if (strcasecmp(testcase->operator, "divide") == 0) {
-            decNumberDivide(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberDivide(result, operands[0], operands[1],
+                testcase->context);
         } else if (strcasecmp(testcase->operator, "divideint") == 0) {
-            decNumberDivideInteger(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberDivideInteger(result, operands[0], operands[1],
+                testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 'e':
         if (strcasecmp(testcase->operator, "exp") == 0) {
-            decNumberExp(result, testcase->operands[0],
-                testcase->context);
+            decNumberExp(result, operands[0], testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 'f':
         if (strcasecmp(testcase->operator, "fma") == 0) {
-            decNumberFMA(result, testcase->operands[0],
-                testcase->operands[1], testcase->operands[2],
+            decNumberFMA(result, operands[0], operands[1], operands[2],
                 testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 'i':
         if (strcasecmp(testcase->operator, "invert") == 0) {
-            decNumberInvert(result, testcase->operands[0],
-                testcase->context);
+            decNumberInvert(result, operands[0], testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 'l':
         if (strcasecmp(testcase->operator, "ln") == 0) {
-            decNumberLn(result, testcase->operands[0],
-                testcase->context);
+            decNumberLn(result, operands[0], testcase->context);
         } else if (strcasecmp(testcase->operator, "log10") == 0) {
-            decNumberLog10(result, testcase->operands[0],
-                testcase->context);
+            decNumberLog10(result, operands[0], testcase->context);
         } else if (strcasecmp(testcase->operator, "logb") == 0) {
-            decNumberLogB(result, testcase->operands[0],
-                testcase->context);
+            decNumberLogB(result, operands[0], testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 'm':
         if (strcasecmp(testcase->operator, "max") == 0) {
-            decNumberMax(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberMax(result, operands[0], operands[1], testcase->context);
         } else if (strcasecmp(testcase->operator, "maxmag") == 0) {
-            decNumberMaxMag(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
-        } else if (strcasecmp(testcase->operator, "min") == 0) {
-            decNumberMin(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
-        } else if (strcasecmp(testcase->operator, "minmag") == 0) {
-            decNumberMinMag(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
-        } else if (strcasecmp(testcase->operator, "minus") == 0) {
-            decNumberMinus(result, testcase->operands[0],
+            decNumberMaxMag(result, operands[0], operands[1],
                 testcase->context);
+        } else if (strcasecmp(testcase->operator, "min") == 0) {
+            decNumberMin(result, operands[0], operands[1],
+                testcase->context);
+        } else if (strcasecmp(testcase->operator, "minmag") == 0) {
+            decNumberMinMag(result, operands[0], operands[1],
+                testcase->context);
+        } else if (strcasecmp(testcase->operator, "minus") == 0) {
+            decNumberMinus(result, operands[0], testcase->context);
         } else if (strcasecmp(testcase->operator, "multiply") == 0) {
-            decNumberMultiply(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberMultiply(result, operands[0], operands[1],
+                testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 'n':
         if (strcasecmp(testcase->operator, "nextminus") == 0) {
-            decNumberNextMinus(result, testcase->operands[0],
-                testcase->context);
+            decNumberNextMinus(result, operands[0], testcase->context);
         } else if (strcasecmp(testcase->operator, "nextplus") == 0) {
-            decNumberNextPlus(result, testcase->operands[0],
-                testcase->context);
+            decNumberNextPlus(result, operands[0], testcase->context);
         } else if (strcasecmp(testcase->operator, "nexttoward") == 0) {
-            decNumberNextToward(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberNextToward(result, operands[0], operands[1],
+                testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 'o':
         if (strcasecmp(testcase->operator, "or") == 0) {
-            decNumberOr(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberOr(result, operands[0], operands[1], testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 'p':
         if (strcasecmp(testcase->operator, "plus") == 0) {
-            decNumberPlus(result, testcase->operands[0],
-                testcase->context);
+            decNumberPlus(result, operands[0], testcase->context);
         } else if (strcasecmp(testcase->operator, "power") == 0) {
-            decNumberPower(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberPower(result, operands[0], operands[1],
+                testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 'q':
         if (strcasecmp(testcase->operator, "quantize") == 0) {
-            decNumberQuantize(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberQuantize(result, operands[0], operands[1],
+                testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 'r':
         if (strcasecmp(testcase->operator, "reduce") == 0) {
-            decNumberReduce(result, testcase->operands[0],
-                testcase->context);
+            decNumberReduce(result, operands[0], testcase->context);
         } else if (strcasecmp(testcase->operator, "remainder") == 0) {
-            decNumberRemainder(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberRemainder(result, operands[0], operands[1],
+                testcase->context);
         } else if (strcasecmp(testcase->operator, "remaindernear") == 0) {
-            decNumberRemainderNear(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberRemainderNear(result, operands[0], operands[1],
+                testcase->context);
         } else if (strcasecmp(testcase->operator, "rescale") == 0) {
-            decNumberRescale(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberRescale(result, operands[0], operands[1],
+                testcase->context);
         } else if (strcasecmp(testcase->operator, "rotate") == 0) {
-            decNumberRotate(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberRotate(result, operands[0], operands[1],
+                testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 's':
         if (strcasecmp(testcase->operator, "samequantum") == 0) {
-            decNumberSameQuantum(result, testcase->operands[0],
-                testcase->operands[1]);
+            decNumberSameQuantum(result, operands[0], operands[1]);
         } else if (strcasecmp(testcase->operator, "scaleb") == 0) {
-            decNumberScaleB(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
-        } else if (strcasecmp(testcase->operator, "shift") == 0) {
-            decNumberShift(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
-        } else if (strcasecmp(testcase->operator, "squareroot") == 0) {
-            decNumberSquareRoot(result, testcase->operands[0],
+            decNumberScaleB(result, operands[0], operands[1],
                 testcase->context);
+        } else if (strcasecmp(testcase->operator, "shift") == 0) {
+            decNumberShift(result, operands[0], operands[1], testcase->context);
+        } else if (strcasecmp(testcase->operator, "squareroot") == 0) {
+            decNumberSquareRoot(result, operands[0], testcase->context);
         } else if (strcasecmp(testcase->operator, "subtract") == 0) {
-            decNumberSubtract(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberSubtract(result, operands[0], operands[1],
+                testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 't':
         if (strcasecmp(testcase->operator, "toeng") == 0) {
-            testcase->actual = convert_number_to_eng_string(testcase->operands[0]);
+            testcase->actual = convert_number_to_eng_string(operands[0]);
         } else if (strcasecmp(testcase->operator, "tointegral") == 0) {
-            decNumberToIntegralValue(result, testcase->operands[0],
-                testcase->context);
+            decNumberToIntegralValue(result, operands[0], testcase->context);
         } else if (strcasecmp(testcase->operator, "tointegralx") == 0) {
-            decNumberToIntegralExact(result, testcase->operands[0],
-                testcase->context);
+            decNumberToIntegralExact(result, operands[0], testcase->context);
         } else if (strcasecmp(testcase->operator, "tosci") == 0) {
-            testcase->actual = convert_number_to_string(testcase->operands[0]);
+            testcase->actual = convert_number_to_string(operands[0]);
         } else if (strcasecmp(testcase->operator, "trim") == 0) {
-            if (result->digits < testcase->operands[0]->digits) {
+            if (result->digits < operands[0]->digits) {
                 free(result);
-                result = alloc_number(testcase->operands[0]->digits);
+                result = alloc_number(operands[0]->digits);
                 if (!result) {
-                    return FAILURE;
+                    retval = FAILURE;
                 }
             }
-            decNumberCopy(result, testcase->operands[0]);
-            decNumberTrim(result);
+            if (retval) {
+                decNumberCopy(result, operands[0]);
+                decNumberTrim(result);
+            }
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     case 'x':
         if (strcasecmp(testcase->operator, "xor") == 0) {
-            decNumberXor(result, testcase->operands[0],
-                testcase->operands[1], testcase->context);
+            decNumberXor(result, operands[0], operands[1], testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            return FAILURE;
+            retval = FAILURE;
         }
         break;
     default:
         print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-        return FAILURE;
+        retval = FAILURE;
     }
 
-    if (!testcase->actual) {
-        testcase->actual = convert_number_to_string(result);
+    if (retval) {
+        if (!testcase->actual) {
+            testcase->actual = convert_number_to_string(result);
+        }
+        testcase->actual_status = testcase->context->status;
     }
 
+    free_operands(testcase->operand_count, operands);
     free(result);
 
-    testcase->actual_status = testcase->context->status;
-    return SUCCESS;
+    return retval;
 }
 
 static void testcase_print(testcase_t *testcase)
 {
     int i;
-    char *s;
 
     printf("id=%s, op=%s, opeprands=[", testcase->id, testcase->operator);
     for (i = 0; i < testcase->operand_count; ++i) {
         if (i > 0) {
             printf(", ");
         }
-        s = convert_number_to_string(testcase->operands[i]);
-        printf("%s", s);
-        free(s);
+        printf("%s", testcase->operands[i]);
     }
     printf("] -> ");
     printf("%s", testcase->expected);
@@ -1023,11 +1051,6 @@ static int testcase_dtor(testcase_t *testcase)
     int i;
 
     if (testcase->operands) {
-        for (i = 0; i < testcase->operand_count; ++i) {
-            if (testcase->operands[i]) {
-                free(testcase->operands[i]);
-            }
-        }
         free(testcase->operands);
     }
     if (testcase->actual) {
@@ -1177,7 +1200,7 @@ static s_or_f handle_dectest(testfile_t *testfile, tokens_t *tokens)
     base_len = strlen(tokens->tokens[2]);
     path_len = dir_len + base_len + sizeof(TEST_SUFFIX);
 
-    path = malloc(sizeof(char) * path_len);
+    path = (char *)malloc(sizeof(char) * path_len);
     if (dir_len) {
         strncpy(path, testfile->filename, dir_len);
     }
