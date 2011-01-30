@@ -69,6 +69,8 @@ typedef struct _testcase_t {
     decNumber **operand_numbers;
     uint32_t expected_status;
     char *expected;
+    decNumber *expected_number;
+    char *converted_expected;
     decContext *context;
     uint32_t actual_status;
     char *actual;
@@ -527,7 +529,8 @@ static s_or_f parse_hex(int bytes, uint8_t buf[], const char *s)
     }
 
     j = 0;
-    for (i = 0; i < bytes; ++i, j += 2) {
+//    printf("parse_hex");
+    for (i = bytes - 1; i >= 0; --i, j += 2) {
         if (!convert_hex_char_to_int(s[j], &hi)) {
             return FAILURE;
         }
@@ -535,7 +538,9 @@ static s_or_f parse_hex(int bytes, uint8_t buf[], const char *s)
             return FAILURE;
         }
         buf[i] = hi << 4 | lo;
+//        printf(" %02x", buf[i]);
     }
+//    printf("\n");
     return SUCCESS;
 }
 
@@ -798,15 +803,16 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     }
 
     s = tokens->tokens[2 + testcase->operand_count + 1];
+    testcase->expected = s;
+    testcase->expected_number = NULL;
+    testcase->converted_expected = NULL;
     if (strncmp(s, "#", 1) == 0) {
-        if (!parse_hex_notation(s, &n)) {
+        if (!parse_hex_notation(s, &testcase->expected_number)) {
             print_error("%s[%d] parse_hex_notation failed for result. [%s]\n", __FILE__, __LINE__, s);
             return FAILURE;
         }
-        testcase->expected = convert_number_to_string(n);
-        free(n);
-    } else {
-        testcase->expected = strdup(s);
+        testcase->converted_expected
+            = convert_number_to_string(testcase->expected_number);
     }
 
     return SUCCESS;
@@ -1091,36 +1097,68 @@ static s_or_f testcase_run(testcase_t *testcase)
 static void testcase_print(testcase_t *testcase)
 {
     int i;
+    int j;
+    char *s;
+    decNumber *n;
+    int unit_count;
 
-    printf("id=%s, op=%s, opeprands=[", testcase->id, testcase->operator);
+    printf("id=%s  %s ", testcase->id, testcase->operator);
     for (i = 0; i < testcase->operand_count; ++i) {
         if (i > 0) {
-            printf(", ");
+            printf(" ");
         }
         printf("%s", testcase->operands[i]);
     }
-    printf("] -> ");
+    printf(" -> ");
     printf("%s", testcase->expected);
-    printf(" expected_status=%x\n", testcase->expected_status);
+    printf(" expected_status=0x%x\n", testcase->expected_status);
+
+    if (testcase->operand_numbers) {
+        printf("operand_numbers:\n");
+        for (i = 0; i < testcase->operand_count; ++i) {
+            n = testcase->operand_numbers[i];
+            s = convert_number_to_string(n);
+            printf("[%d] %s digits=%d, exp=%d, bits=0x%x", i, s, n->digits,
+                n->exponent, n->bits);
+            free(s);
+
+            unit_count = D2U(n->digits);
+            printf(", lsu=");
+            for (j = 0; j < unit_count; ++j) {
+                if (j > 0) {
+                    printf(" ");
+                }
+                printf("%x", n->lsu[j]);
+            }
+            printf("\n");
+        }
+    }
+
     fflush(stdout);
 }
 
 static bool testcase_check(testcase_t *testcase)
 {
-    if (strcmp(testcase->actual, testcase->expected) == 0) {
+    char *expected;
+
+    expected = testcase->converted_expected
+            ? testcase->converted_expected : testcase->expected;
+    if (strcmp(testcase->actual, expected) == 0) {
         if (testcase->actual_status == testcase->expected_status) {
             return TRUE;
         } else {
             testcase_print(testcase);
             printf("status unmatch: actual=%x, expected=%x\n",
                 testcase->actual_status, testcase->expected_status);
+            printf("number        : actual=%s,\n", testcase->actual);
+            printf("              expected=%s\n", expected);
             context_print(testcase->context);
             return FALSE;
         }
     } else {
         testcase_print(testcase);
         printf("number unmatch: actual=%s,\n", testcase->actual);
-        printf("              expected=%s\n", testcase->expected);
+        printf("              expected=%s\n", expected);
         context_print(testcase->context);
         return FALSE;
     }
@@ -1149,8 +1187,11 @@ static int testcase_dtor(testcase_t *testcase)
         free(testcase->actual_number);
     }
 
-    if (testcase->expected) {
-        free(testcase->expected);
+    if (testcase->expected_number) {
+        free(testcase->expected_number);
+    }
+    if (testcase->converted_expected) {
+        free(testcase->converted_expected);
     }
 }
 
