@@ -66,6 +66,7 @@ typedef struct _testcase_t {
     char *operator;
     int operand_count;
     char **operands;
+    decNumber **operand_numbers;
     uint32_t expected_status;
     char *expected;
     decContext *context;
@@ -703,12 +704,10 @@ static s_or_f parse_hex_notation_canonical(const char *s, decNumber **number)
     return SUCCESS;
 }
 
-static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase,
-    decNumber ***numbers)
+static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
 {
     char *op;
     bool is_using_directive_precision;
-    decNumber **nums;
     int32_t digits;
     char *s;
     int i;
@@ -722,24 +721,26 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase,
     testcase->context->status = 0;
 
     needbytes = sizeof(decNumber *) * testcase->operand_count;
-    nums = (decNumber **)malloc(needbytes);
-    if (!nums) {
+    testcase->operand_numbers = (decNumber **)malloc(needbytes);
+    if (!testcase->operand_numbers) {
         print_error("%s[%d] out of memory in testcase_convert_operands_to_numbers\n", __FILE__, __LINE__);
         return FAILURE;
     }
-    memset(nums, 0, needbytes);
+    memset(testcase->operand_numbers, 0, needbytes);
 
     ctx = *testcase->context;
     for (i = 0; i < testcase->operand_count; ++i) {
         s = testcase->operands[i];
         if (strncmp(s, "#", 1) == 0) {
             if (strcmp(op, "canonical") == 0) {
-                if (!parse_hex_notation_canonical(s, &nums[i])) {
+                if (!parse_hex_notation_canonical(s,
+                    &testcase->operand_numbers[i])
+                ) {
                     print_error("%s[%d] parse_decimal64_hex_canonical failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
                     return FAILURE;
                 }
             } else {
-                if (!parse_hex_notation(s, &nums[i])) {
+                if (!parse_hex_notation(s, &testcase->operand_numbers[i])) {
                     print_error("%s[%d] parse_hex_notation failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
                     return FAILURE;
                 }
@@ -750,18 +751,17 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase,
                 ctx.emax = DEC_MAX_EMAX;
                 ctx.emin = DEC_MIN_EMIN;
             }
-            nums[i] = alloc_number(ctx.digits);
-            if (!nums[i]) {
+            testcase->operand_numbers[i] = alloc_number(ctx.digits);
+            if (!testcase->operand_numbers[i]) {
                 return FAILURE;
             }
-            decNumberFromString(nums[i], s, &ctx);
+            decNumberFromString(testcase->operand_numbers[i], s, &ctx);
         }
     }
     if (is_using_directive_precision) {
         testcase->context->status = ctx.status;
     }
 
-    *numbers = nums;
     return SUCCESS;
 }
 
@@ -785,6 +785,7 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
         return FAILURE;
     }
 
+    testcase->operand_numbers = NULL;
     testcase->operands = (char **)malloc(sizeof(char *) * testcase->operand_count);
     if (!testcase->operands) {
         print_error("%s[%d] out of memory in testcase_init\n", __FILE__, __LINE__);
@@ -821,18 +822,6 @@ static bool testcase_has_null_operand(testcase_t *testcase)
     return FALSE;
 }
 
-static void free_operands(int operand_count, decNumber **operands)
-{
-    int i;
-
-    for (i = 0; i < operand_count; ++i) {
-        if (operands[i]) {
-            free(operands[i]);
-        }
-    }
-    free(operands);
-}
-
 static s_or_f testcase_run(testcase_t *testcase)
 {
     decNumber **operands;
@@ -844,13 +833,14 @@ static s_or_f testcase_run(testcase_t *testcase)
         return FAILURE;
     }
 
-    if (!testcase_convert_operands_to_numbers(testcase, &operands)) {
+    if (!testcase_convert_operands_to_numbers(testcase)) {
         return FAILURE;
     }
 
+    operands = testcase->operand_numbers;
+
     result = alloc_number(testcase->context->digits);
     if (!result) {
-        free_operands(testcase->operand_count, operands);
         return FAILURE;
     }
 
@@ -1099,7 +1089,6 @@ static s_or_f testcase_run(testcase_t *testcase)
         testcase->actual_status = testcase->context->status;
     }
 
-    free_operands(testcase->operand_count, operands);
     free(result);
 
     return retval;
@@ -1150,6 +1139,15 @@ static int testcase_dtor(testcase_t *testcase)
     if (testcase->operands) {
         free(testcase->operands);
     }
+    if (testcase->operand_numbers) {
+        for (i = 0; i < testcase->operand_count; ++i) {
+            if (testcase->operand_numbers[i]) {
+                free(testcase->operand_numbers[i]);
+            }
+        }
+        free(testcase->operand_numbers);
+    }
+
     if (testcase->actual) {
         free(testcase->actual);
     }
