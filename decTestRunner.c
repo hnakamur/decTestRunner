@@ -72,6 +72,7 @@ typedef struct _testcase_t {
     decContext *context;
     uint32_t actual_status;
     char *actual;
+    decNumber *actual_number;
 } testcase_t;
 
 static s_or_f process_file(char *filename, testfile_t *parent);
@@ -778,6 +779,7 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     testcase->context = &testfile->context;
     testcase->actual_status = 0;
     testcase->actual = NULL;
+    testcase->actual_number = NULL;
     if (!tokens_get_conditions(tokens, 2 + testcase->operand_count + 2,
         &testcase->expected_status)
     ) {
@@ -826,7 +828,6 @@ static s_or_f testcase_run(testcase_t *testcase)
 {
     decNumber **operands;
     decNumber *result;
-    s_or_f retval;
 
     if (strlen(testcase->operator) == 0) {
         print_error("%s[%d] error in testcase_run. operator is empty.\n", __FILE__, __LINE__);
@@ -836,15 +837,13 @@ static s_or_f testcase_run(testcase_t *testcase)
     if (!testcase_convert_operands_to_numbers(testcase)) {
         return FAILURE;
     }
-
     operands = testcase->operand_numbers;
 
-    result = alloc_number(testcase->context->digits);
-    if (!result) {
+    testcase->actual_number = alloc_number(testcase->context->digits);
+    if (!testcase->actual_number) {
         return FAILURE;
     }
-
-    retval = SUCCESS;
+    result = testcase->actual_number;
 
     switch (tolower(testcase->operator[0])) {
     case 'a':
@@ -858,7 +857,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             testcase->actual = convert_number_to_string(operands[0]);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 'c':
@@ -890,7 +889,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberCopySign(result, operands[0], operands[1]);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 'd':
@@ -902,7 +901,7 @@ static s_or_f testcase_run(testcase_t *testcase)
                 testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 'e':
@@ -910,7 +909,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberExp(result, operands[0], testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 'f':
@@ -919,7 +918,7 @@ static s_or_f testcase_run(testcase_t *testcase)
                 testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 'i':
@@ -927,7 +926,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberInvert(result, operands[0], testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 'l':
@@ -939,7 +938,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberLogB(result, operands[0], testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 'm':
@@ -961,7 +960,7 @@ static s_or_f testcase_run(testcase_t *testcase)
                 testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 'n':
@@ -974,7 +973,7 @@ static s_or_f testcase_run(testcase_t *testcase)
                 testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 'o':
@@ -982,7 +981,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberOr(result, operands[0], operands[1], testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 'p':
@@ -993,7 +992,7 @@ static s_or_f testcase_run(testcase_t *testcase)
                 testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 'q':
@@ -1002,7 +1001,7 @@ static s_or_f testcase_run(testcase_t *testcase)
                 testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 'r':
@@ -1022,7 +1021,7 @@ static s_or_f testcase_run(testcase_t *testcase)
                 testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 's':
@@ -1040,7 +1039,7 @@ static s_or_f testcase_run(testcase_t *testcase)
                 testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 't':
@@ -1053,20 +1052,19 @@ static s_or_f testcase_run(testcase_t *testcase)
         } else if (strcasecmp(testcase->operator, "tosci") == 0) {
             testcase->actual = convert_number_to_string(operands[0]);
         } else if (strcasecmp(testcase->operator, "trim") == 0) {
-            if (result->digits < operands[0]->digits) {
-                free(result);
-                result = alloc_number(operands[0]->digits);
-                if (!result) {
-                    retval = FAILURE;
+            if (testcase->actual_number->digits < operands[0]->digits) {
+                free(testcase->actual_number);
+                testcase->actual_number = alloc_number(operands[0]->digits);
+                if (!testcase->actual_number) {
+                    return FAILURE;
                 }
+                result = testcase->actual_number;
             }
-            if (retval) {
-                decNumberCopy(result, operands[0]);
-                decNumberTrim(result);
-            }
+            decNumberCopy(result, operands[0]);
+            decNumberTrim(result);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     case 'x':
@@ -1074,24 +1072,20 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberXor(result, operands[0], operands[1], testcase->context);
         } else {
             print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-            retval = FAILURE;
+            return FAILURE;
         }
         break;
     default:
         print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
-        retval = FAILURE;
+        return FAILURE;
     }
 
-    if (retval) {
-        if (!testcase->actual) {
-            testcase->actual = convert_number_to_string(result);
-        }
-        testcase->actual_status = testcase->context->status;
+    if (!testcase->actual) {
+        testcase->actual = convert_number_to_string(result);
     }
+    testcase->actual_status = testcase->context->status;
 
-    free(result);
-
-    return retval;
+    return SUCCESS;
 }
 
 static void testcase_print(testcase_t *testcase)
@@ -1151,6 +1145,10 @@ static int testcase_dtor(testcase_t *testcase)
     if (testcase->actual) {
         free(testcase->actual);
     }
+    if (testcase->actual_number) {
+        free(testcase->actual_number);
+    }
+
     if (testcase->expected) {
         free(testcase->expected);
     }
