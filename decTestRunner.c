@@ -420,6 +420,23 @@ static s_or_f convert_status_name_to_value(const char *name, uint32_t *value)
     return FAILURE;
 }
 
+static void status_print(uint32_t status)
+{
+    status_map_t *entry;
+    int i;
+
+    i = 0;
+    for (entry = status_maps; entry->name; ++entry) {
+        if (status & entry->value) {
+            if (i > 0) {
+                printf(" ");
+            }
+            printf("%s", entry->name);
+            ++i;
+        }
+    }
+}
+
 static s_or_f tokens_get_conditions(tokens_t *tokens, int offset,
     uint32_t *status)
 {
@@ -753,7 +770,10 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
             }
         } else {
             if (!is_using_directive_precision) {
-                ctx.digits = count_coefficient_digit(s);
+                digits = count_coefficient_digit(s);
+                if (digits > ctx.digits) {
+                    ctx.digits = digits;
+                }
                 ctx.emax = DEC_MAX_EMAX;
                 ctx.emin = DEC_MIN_EMIN;
             }
@@ -1148,8 +1168,12 @@ static bool testcase_check(testcase_t *testcase)
             return TRUE;
         } else {
             testcase_print(testcase);
-            printf("status unmatch: actual=%x, expected=%x\n",
-                testcase->actual_status, testcase->expected_status);
+            printf("status unmatch: actual=%x [", testcase->actual_status);
+            status_print(testcase->actual_status);
+            printf("]\n");
+            printf("              expected=%x [", testcase->expected_status);
+            status_print(testcase->expected_status);
+            printf("]\n");
             printf("number        : actual=%s,\n", testcase->actual);
             printf("              expected=%s\n", expected);
             context_print(testcase->context);
@@ -1159,6 +1183,12 @@ static bool testcase_check(testcase_t *testcase)
         testcase_print(testcase);
         printf("number unmatch: actual=%s,\n", testcase->actual);
         printf("              expected=%s\n", expected);
+        printf("status        : actual=%x [", testcase->actual_status);
+        status_print(testcase->actual_status);
+        printf("]\n");
+        printf("              expected=%x [", testcase->expected_status);
+        status_print(testcase->expected_status);
+        printf("]\n");
         context_print(testcase->context);
         return FALSE;
     }
@@ -1205,7 +1235,7 @@ static s_or_f testfile_process_test(testfile_t *testfile, tokens_t *tokens)
         return FAILURE;
     }
     if (testcase_has_null_operand(&testcase)) {
-        printf("%s: null arg not supported -> skip.\n", testcase.id);
+//        printf("%s: null arg not supported -> skip.\n", testcase.id);
         ++testfile->skip_count;
     } else {
 //        testcase_print(&testcase);
