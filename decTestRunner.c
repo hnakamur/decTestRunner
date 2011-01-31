@@ -727,6 +727,136 @@ static s_or_f parse_hex_notation_canonical(const char *s, decNumber **number)
     return SUCCESS;
 }
 
+static s_or_f parse_format_dependent_decimal32(const char *s,
+    decNumber **number, decContext *ctx, bool is_using_directive_precision)
+{
+    int32_t digits;
+    decimal32 dec32;
+    decNumber *tmp;
+
+    if (!is_using_directive_precision) {
+        digits = count_coefficient_digit(s);
+        if (digits > ctx->digits) {
+            ctx->digits = digits;
+        }
+        ctx->emax = DEC_MAX_EMAX;
+        ctx->emin = DEC_MIN_EMIN;
+    }
+    tmp = alloc_number(ctx->digits);
+    if (!tmp) {
+        return FAILURE;
+    }
+    decNumberFromString(tmp, s, ctx);
+
+    decimal32FromNumber(&dec32, tmp, ctx);
+    free(tmp);
+
+    *number = alloc_number(DECIMAL32_Pmax);
+    if (!*number) {
+        return FAILURE;
+    }
+    decimal32ToNumber(&dec32, *number);
+
+    return SUCCESS;
+}
+
+static s_or_f parse_format_dependent_decimal64(const char *s,
+    decNumber **number, decContext *ctx, bool is_using_directive_precision)
+{
+    int32_t digits;
+    decimal64 dec64;
+    decNumber *tmp;
+
+    if (!is_using_directive_precision) {
+        digits = count_coefficient_digit(s);
+        if (digits > ctx->digits) {
+            ctx->digits = digits;
+        }
+        ctx->emax = DEC_MAX_EMAX;
+        ctx->emin = DEC_MIN_EMIN;
+    }
+    tmp = alloc_number(ctx->digits);
+    if (!tmp) {
+        return FAILURE;
+    }
+    decNumberFromString(tmp, s, ctx);
+
+    decimal64FromNumber(&dec64, tmp, ctx);
+    free(tmp);
+
+    *number = alloc_number(DECIMAL64_Pmax);
+    if (!*number) {
+        return FAILURE;
+    }
+    decimal64ToNumber(&dec64, *number);
+
+    return SUCCESS;
+}
+
+static s_or_f parse_format_dependent_decimal128(const char *s,
+    decNumber **number, decContext *ctx, bool is_using_directive_precision)
+{
+    int32_t digits;
+    decimal128 dec128;
+    decNumber *tmp;
+
+    if (!is_using_directive_precision) {
+        digits = count_coefficient_digit(s);
+        if (digits > ctx->digits) {
+            ctx->digits = digits;
+        }
+        ctx->emax = DEC_MAX_EMAX;
+        ctx->emin = DEC_MIN_EMIN;
+    }
+    tmp = alloc_number(ctx->digits);
+    if (!tmp) {
+        return FAILURE;
+    }
+    decNumberFromString(tmp, s, ctx);
+
+    decimal128FromNumber(&dec128, tmp, ctx);
+    free(tmp);
+
+    *number = alloc_number(DECIMAL128_Pmax);
+    if (!*number) {
+        return FAILURE;
+    }
+    decimal128ToNumber(&dec128, *number);
+
+    return SUCCESS;
+}
+
+static s_or_f parse_format_dependent_decimal(const char *s, decNumber **number,
+    decContext *ctx, bool is_using_directive_precision)
+{
+    if (strncmp(s, "32#", sizeof("32#") - 1) == 0) {
+        if (!parse_format_dependent_decimal32(s + sizeof("32#") - 1, number,
+            ctx, is_using_directive_precision)
+        ) {
+            print_error("%s[%d] parse_format_dependent_decimal32 failed [%s]\n", __FILE__, __LINE__, s);
+            return FAILURE;
+        }
+    } else if (strncmp(s, "64#", sizeof("64#") - 1) == 0) {
+        if (!parse_format_dependent_decimal64(s + sizeof("64#") - 1, number,
+            ctx, is_using_directive_precision)
+        ) {
+            print_error("%s[%d] parse_format_dependent_decimal64 failed [%s]\n", __FILE__, __LINE__, s);
+            return FAILURE;
+        }
+    } else if (strncmp(s, "128#", sizeof("128#") - 1) == 0) {
+        if (!parse_format_dependent_decimal128(s + sizeof("128#") - 1, number,
+            ctx, is_using_directive_precision)
+        ) {
+            print_error("%s[%d] parse_format_dependent_decimal128 failed [%s]\n", __FILE__, __LINE__, s);
+            return FAILURE;
+        }
+    } else {
+        print_error("%s[%d] invalid format dependent decimal notation [%s]\n", __FILE__, __LINE__, s);
+        return FAILURE;
+    }
+    return SUCCESS;
+}
+
 static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
 {
     char *op;
@@ -736,6 +866,7 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
     int i;
     int needbytes;
     decContext ctx;
+    char *p_sharp;
 
     op = testcase->operator;
     is_using_directive_precision = (strcasecmp(op, "apply") == 0
@@ -754,26 +885,41 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
     ctx = *testcase->context;
     for (i = 0; i < testcase->operand_count; ++i) {
         s = testcase->operands[i];
-        if (strncmp(s, "#", 1) == 0) {
-            if (strcmp(op, "canonical") == 0) {
-                if (!parse_hex_notation_canonical(s,
-                    &testcase->operand_numbers[i])
-                ) {
-                    print_error("%s[%d] parse_decimal64_hex_canonical failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
-                    return FAILURE;
+
+        ctx.digits = testcase->context->digits;
+        ctx.emax = testcase->context->emax;
+        ctx.emin = testcase->context->emin;
+
+        p_sharp = strchr(s, '#');
+        if (p_sharp != NULL) {
+            if (p_sharp == s) {
+                if (strcmp(op, "canonical") == 0) {
+                    if (!parse_hex_notation_canonical(s,
+                        &testcase->operand_numbers[i])
+                    ) {
+                        print_error("%s[%d] parse_decimal64_hex_canonical failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
+                        return FAILURE;
+                    }
+                } else {
+                    if (!parse_hex_notation(s, &testcase->operand_numbers[i])) {
+                        print_error("%s[%d] parse_hex_notation failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
+                        return FAILURE;
+                    }
                 }
             } else {
-                if (!parse_hex_notation(s, &testcase->operand_numbers[i])) {
-                    print_error("%s[%d] parse_hex_notation failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
+                if (!parse_format_dependent_decimal(s,
+                    &testcase->operand_numbers[i], &ctx,
+                    is_using_directive_precision)
+                ) {
+                    print_error("%s[%d] parse_format_dependent_decimal failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
                     return FAILURE;
                 }
             }
         } else {
             if (!is_using_directive_precision) {
                 digits = count_coefficient_digit(s);
-                if (digits > ctx.digits) {
-                    ctx.digits = digits;
-                }
+                ctx.digits = (digits > testcase->context->digits
+                    ? digits : testcase->context->digits);
                 ctx.emax = DEC_MAX_EMAX;
                 ctx.emin = DEC_MIN_EMIN;
             }
@@ -797,6 +943,8 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     char *s;
     int i;
     decNumber *n;
+    char *p_sharp;
+    decContext ctx;
 
     testcase->id = tokens->tokens[0];
     testcase->operator = tokens->tokens[1];
@@ -826,13 +974,27 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     testcase->expected = s;
     testcase->expected_number = NULL;
     testcase->converted_expected = NULL;
-    if (strncmp(s, "#", 1) == 0) {
-        if (!parse_hex_notation(s, &testcase->expected_number)) {
-            print_error("%s[%d] parse_hex_notation failed for result. [%s]\n", __FILE__, __LINE__, s);
-            return FAILURE;
+    p_sharp = strchr(s, '#');
+    if (p_sharp != NULL) {
+        if (p_sharp == s) {
+            if (!parse_hex_notation(s, &testcase->expected_number)) {
+                print_error("%s[%d] parse_hex_notation failed for result. [%s]\n", __FILE__, __LINE__, s);
+                return FAILURE;
+            }
+            testcase->converted_expected
+                = convert_number_to_string(testcase->expected_number);
+        } else {
+            ctx = *testcase->context;
+            ctx.digits = 1;
+            if (!parse_format_dependent_decimal(s, &testcase->expected_number,
+                &ctx, FALSE)
+            ) {
+                print_error("%s[%d] parse_format_dependent_decimal failed for result. [%s]\n", __FILE__, __LINE__, s);
+                return FAILURE;
+            }
+            testcase->converted_expected
+                = convert_number_to_string(testcase->expected_number);
         }
-        testcase->converted_expected
-            = convert_number_to_string(testcase->expected_number);
     }
 
     return SUCCESS;

@@ -194,97 +194,16 @@ number unmatch: actual=0E-1000000007,
 status        : actual=0 []
               expected=80 [Invalid_operation]
 context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
-id=quax1022  quantize 64#8.666666666666000E+384 64#1.000000000000000E+384 -> 8.666666666666000E+384 expected_status=0x0
-operand_numbers:
-[0] NaN digits=1, exp=0, bits=0x20, lsu=0
-[1] NaN digits=1, exp=0, bits=0x20, lsu=0
-number unmatch: actual=NaN,
-              expected=8.666666666666000E+384
-status        : actual=0 []
-              expected=0 []
-context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=0, extented=1
-id=quax1023  quantize 64#8.666666666666000E+384 128#1.000000000000000E+384 -> 8.666666666666000E+384 expected_status=0x0
-operand_numbers:
-[0] NaN digits=1, exp=0, bits=0x20, lsu=0
-[1] NaN digits=1, exp=0, bits=0x20, lsu=0
-number unmatch: actual=NaN,
-              expected=8.666666666666000E+384
-status        : actual=0 []
-              expected=0 []
-context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=0, extented=1
-id=quax1024  quantize 64#8.666666666666000E+384 64#1E+384 -> 8.666666666666000E+384 expected_status=0x0
-operand_numbers:
-[0] NaN digits=1, exp=0, bits=0x20, lsu=0
-[1] NaN digits=1, exp=0, bits=0x20, lsu=0
-number unmatch: actual=NaN,
-              expected=8.666666666666000E+384
-status        : actual=0 []
-              expected=0 []
-context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=0, extented=1
-id=quax1025  quantize 64#8.666666666666000E+384 64#1E+384 -> 64#8.666666666666000E+384 expected_status=0x0
-operand_numbers:
-[0] NaN digits=1, exp=0, bits=0x20, lsu=0
-[1] NaN digits=1, exp=0, bits=0x20, lsu=0
-number unmatch: actual=NaN,
-              expected=64#8.666666666666000E+384
-status        : actual=0 []
-              expected=0 []
-context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=0, extented=1
 id=quax1026  quantize 64#8.666666666666000E+384 128#1E+384 -> 64#9E+384 expected_status=0xc20
 operand_numbers:
-[0] NaN digits=1, exp=0, bits=0x20, lsu=0
-[1] NaN digits=1, exp=0, bits=0x20, lsu=0
-number unmatch: actual=NaN,
-              expected=64#9E+384
-status        : actual=0 []
+[0] 8.666666666666000E+384 digits=16, exp=369, bits=0x0, lsu=0 29a 29a 29a 29a 8
+[1] 1E+384 digits=1, exp=384, bits=0x0, lsu=1
+number unmatch: actual=9E+384,
+              expected=9.000000000000000E+384
+status        : actual=820 [Inexact Rounded]
               expected=c20 [Inexact Clamped Rounded]
-context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=0, extented=1
-id=quax1027  quantize 64#8.666666666666000E+323 64#1E+31 -> NaN expected_status=0x80
-operand_numbers:
-[0] NaN digits=1, exp=0, bits=0x20, lsu=0
-[1] NaN digits=1, exp=0, bits=0x20, lsu=0
-status unmatch: actual=0 []
-              expected=80 [Invalid_operation]
-number        : actual=NaN,
-              expected=NaN
-context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=0, extented=1
-id=quax1028  quantize 64#8.666666666666000E+323 128#1E+31 -> NaN expected_status=0x80
-operand_numbers:
-[0] NaN digits=1, exp=0, bits=0x20, lsu=0
-[1] NaN digits=1, exp=0, bits=0x20, lsu=0
-status unmatch: actual=0 []
-              expected=80 [Invalid_operation]
-number        : actual=NaN,
-              expected=NaN
-context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=0, extented=1
-id=quax1029  quantize 64#8.66666666E+3 128#1E+10 -> 64#0E10 expected_status=0x820
-operand_numbers:
-[0] NaN digits=1, exp=0, bits=0x20, lsu=0
-[1] NaN digits=1, exp=0, bits=0x20, lsu=0
-number unmatch: actual=NaN,
-              expected=64#0E10
-status        : actual=0 []
-              expected=820 [Inexact Rounded]
-context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=0, extented=1
-id=quax0a2  quantize 128#8.555555555555555555555555555555555E+6143 128#1E+6143 -> 8.55555555555555555555555555555556E+6143 expected_status=0x820
-operand_numbers:
-[0] NaN digits=1, exp=0, bits=0x20, lsu=0
-[1] NaN digits=1, exp=0, bits=0x20, lsu=0
-number unmatch: actual=NaN,
-              expected=8.55555555555555555555555555555556E+6143
-status        : actual=0 []
-              expected=820 [Inexact Rounded]
-context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=0, extented=1
-id=quax0a3  quantize 128#8.555555555555555555555555555555555E+6144 128#1E+6144 -> 8.555555555555555555555555555555555E+6144 expected_status=0x0
-operand_numbers:
-[0] NaN digits=1, exp=0, bits=0x20, lsu=0
-[1] NaN digits=1, exp=0, bits=0x20, lsu=0
-number unmatch: actual=NaN,
-              expected=8.555555555555555555555555555555555E+6144
-status        : actual=0 []
-              expected=0 []
-context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=0, extented=1
-== testcases/dectest/quantize.decTest: tests=775, success=752, failure=21, skip=2
+context prec=16, round=2, emax=384, emin=-383, status=820, traps=0, clamp=0, extented=1
+== testcases/dectest/quantize.decTest: tests=775, success=761, failure=12, skip=2
 == testcases/dectest/randoms.decTest: tests=4000, success=4000, failure=0, skip=0
 == testcases/dectest/reduce.decTest: tests=168, success=167, failure=0, skip=1
 == testcases/dectest/remainder.decTest: tests=517, success=515, failure=0, skip=2
@@ -647,4 +566,4 @@ context prec=34, round=3, emax=6144, emin=-6143, status=0, traps=0, clamp=1, ext
 == testcases/dectest/dqXor.decTest: tests=348, success=348, failure=0, skip=0
 == testcases/dectest/decQuad.decTest: tests=14800, success=14747, failure=10, skip=43
 == testcases/dectest/randombound32.decTest: tests=2400, success=2400, failure=0, skip=0
-== testcases/dectest/testall.decTest: tests=65127, success=64926, failure=60, skip=141
+== testcases/dectest/testall.decTest: tests=65127, success=64935, failure=51, skip=141
