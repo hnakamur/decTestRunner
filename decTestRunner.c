@@ -34,6 +34,9 @@
 #define STR_ARROW "->"
 #define STR_COLON ":"
 
+#define DBGPRINT(str) fprintf(stderr, "%s:%d:%s", __FILE__, __LINE__, str)
+#define DBGPRINTF(fmt, ...) fprintf(stderr, "%s:%d:" fmt, __FILE__, __LINE__, __VA_ARGS__)
+
 typedef enum {
     FALSE,
     TRUE
@@ -78,16 +81,6 @@ typedef struct _testcase_t {
 } testcase_t;
 
 static s_or_f process_file(char *filename, testfile_t *parent);
-
-static void print_error(const char *format, ...)
-{
-	va_list args;
-
-	va_start(args, format);
-    vfprintf(stdout, format, args);
-    fflush(stdout);
-	va_end(args);
-}
 
 static void context_print(const decContext *context)
 {
@@ -190,13 +183,13 @@ static s_or_f tokens_add_token(tokens_t *tokens, const char *text,
     count = tokens->count + 1;
     tokens->tokens = realloc(tokens->tokens, sizeof(char *) * count);
     if (!tokens->tokens) {
-        print_error("%s[%d] realloc failed\n", __FILE__, __LINE__);
+        DBGPRINT("realloc failed\n");
         return FAILURE;
     }
     tokens->tokens[tokens->count] = unquote_token(text, length);
 //    print_error("DEBUG %s[%d] token=%s.\n", __FILE__, __LINE__, tokens->tokens[tokens->count]);
     if (!tokens->tokens[tokens->count]) {
-        print_error("%s[%d] unquote_token failed\n", __FILE__, __LINE__);
+        DBGPRINT("unquote_token failed\n");
         return FAILURE;
     }
     tokens->count = count;
@@ -297,7 +290,7 @@ static s_or_f tokens_tokenize(tokens_t *tokens, char *line)
         }
 
         if (!tokens_add_token(tokens, line + start, end - start)) {
-            print_error("%s[%d] tokens_add_token failed\n", __FILE__, __LINE__);
+            DBGPRINT("tokens_add_token failed\n");
             return FAILURE;
         }
         offset = end;
@@ -416,7 +409,7 @@ static s_or_f convert_status_name_to_value(const char *name, uint32_t *value)
             return SUCCESS;
         }
     }
-    print_error("%s[%d] error in convert_status_name_to_value. name not found: %s\n", __FILE__, __LINE__, name);
+    DBGPRINTF("error in convert_status_name_to_value. name not found: %s\n",  name);
     return FAILURE;
 }
 
@@ -446,7 +439,7 @@ static s_or_f tokens_get_conditions(tokens_t *tokens, int offset,
     *status = 0;
     for (i = offset; i < tokens->count; ++i) {
         if (!convert_status_name_to_value(tokens->tokens[i], &flag)) {
-            print_error("%s[%d] convert_status_name_to_value failed\n", __FILE__, __LINE__);
+            DBGPRINT("convert_status_name_to_value failed\n");
             return FAILURE;
         }
 
@@ -463,7 +456,7 @@ static decNumber *alloc_number(long numdigits)
     needbytes = sizeof(decNumber) + (D2U(numdigits) - 1) * sizeof(Unit);
     number = (decNumber *)malloc(needbytes);
     if (!number) {
-        print_error("%s[%d] no more memory in alloc_number.\n", __FILE__, __LINE__);
+        DBGPRINT("no more memory in alloc_number.\n");
         return NULL;
     }
     memset(number, 0, needbytes);
@@ -541,7 +534,7 @@ static s_or_f parse_hex(int bytes, uint8_t buf[], const char *s)
     uint8_t lo;
 
     if (strlen(s) != bytes * 2) {
-        print_error("%s[%d] error in parse_hex expected length is %d, but was %d [%s]\n", __FILE__, __LINE__, bytes * 2, strlen(s), s);
+        DBGPRINTF("error in parse_hex expected length is %d, but was %d [%s]\n",  bytes * 2, strlen(s), s);
         return FAILURE;
     }
 
@@ -566,7 +559,7 @@ static s_or_f parse_decimal32_hex(const char *s, decNumber **number)
     decimal32 dec32;
 
     if (!parse_hex(DECIMAL32_Bytes, dec32.bytes, s)) {
-        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        DBGPRINTF("invalid hex notation [%s]\n",  s);
         return FAILURE;
     }
 
@@ -583,7 +576,7 @@ static s_or_f parse_decimal64_hex(const char *s, decNumber **number)
     decimal64 dec64;
 
     if (!parse_hex(DECIMAL64_Bytes, dec64.bytes, s)) {
-        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        DBGPRINTF("invalid hex notation [%s]\n",  s);
         return FAILURE;
     }
 
@@ -600,7 +593,7 @@ static s_or_f parse_decimal128_hex(const char *s, decNumber **number)
     decimal128 dec128;
 
     if (!parse_hex(DECIMAL128_Bytes, dec128.bytes, s)) {
-        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        DBGPRINTF("invalid hex notation [%s]\n",  s);
         return FAILURE;
     }
 
@@ -621,21 +614,21 @@ static s_or_f parse_hex_notation(const char *s, decNumber **number)
         *number = NULL;
     } else if (len == 8) {
         if (!parse_decimal32_hex(s + 1, number)) {
-            print_error("%s[%d] parse_decimal32_hex failed [%s]\n", __FILE__, __LINE__, s);
+            DBGPRINTF("parse_decimal32_hex failed [%s]\n",  s);
             return FAILURE;
         }
     } else if (len == 16) {
         if (!parse_decimal64_hex(s + 1, number)) {
-            print_error("%s[%d] parse_decimal32_hex failed [%s]\n", __FILE__, __LINE__, s);
+            DBGPRINTF("parse_decimal32_hex failed [%s]\n",  s);
             return FAILURE;
         }
     } else if (len == 32) {
         if (!parse_decimal128_hex(s + 1, number)) {
-            print_error("%s[%d] parse_decimal32_hex failed [%s]\n", __FILE__, __LINE__, s);
+            DBGPRINTF("parse_decimal32_hex failed [%s]\n",  s);
             return FAILURE;
         }
     } else {
-        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        DBGPRINTF("invalid hex notation [%s]\n",  s);
         return FAILURE;
     }
     return SUCCESS;
@@ -647,7 +640,7 @@ static s_or_f parse_decimal32_hex_canonical(const char *s, decNumber **number)
     decimal32 dec32canonical;
 
     if (!parse_hex(DECIMAL32_Bytes, dec32.bytes, s)) {
-        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        DBGPRINTF("invalid hex notation [%s]\n",  s);
         return FAILURE;
     }
     decimal32Canonical(&dec32canonical, &dec32);
@@ -666,7 +659,7 @@ static s_or_f parse_decimal64_hex_canonical(const char *s, decNumber **number)
     decimal64 dec64canonical;
 
     if (!parse_hex(DECIMAL64_Bytes, dec64.bytes, s)) {
-        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        DBGPRINTF("invalid hex notation [%s]\n",  s);
         return FAILURE;
     }
     decimal64Canonical(&dec64canonical, &dec64);
@@ -685,7 +678,7 @@ static s_or_f parse_decimal128_hex_canonical(const char *s, decNumber **number)
     decimal128 dec128canonical;
 
     if (!parse_hex(DECIMAL128_Bytes, dec128.bytes, s)) {
-        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        DBGPRINTF("invalid hex notation [%s]\n",  s);
         return FAILURE;
     }
     decimal128Canonical(&dec128canonical, &dec128);
@@ -707,21 +700,21 @@ static s_or_f parse_hex_notation_canonical(const char *s, decNumber **number)
         *number = NULL;
     } else if (len == 8) {
         if (!parse_decimal32_hex_canonical(s + 1, number)) {
-            print_error("%s[%d] parse_decimal32_hex_canonical failed [%s]\n", __FILE__, __LINE__, s);
+            DBGPRINTF("parse_decimal32_hex_canonical failed [%s]\n",  s);
             return FAILURE;
         }
     } else if (len == 16) {
         if (!parse_decimal64_hex_canonical(s + 1, number)) {
-            print_error("%s[%d] parse_decimal32_hex_canonical failed [%s]\n", __FILE__, __LINE__, s);
+            DBGPRINTF("parse_decimal32_hex_canonical failed [%s]\n",  s);
             return FAILURE;
         }
     } else if (len == 32) {
         if (!parse_decimal128_hex_canonical(s + 1, number)) {
-            print_error("%s[%d] parse_decimal32_hex_canonical failed [%s]\n", __FILE__, __LINE__, s);
+            DBGPRINTF("parse_decimal32_hex_canonical failed [%s]\n",  s);
             return FAILURE;
         }
     } else {
-        print_error("%s[%d] invalid hex notation [%s]\n", __FILE__, __LINE__, s);
+        DBGPRINTF("invalid hex notation [%s]\n",  s);
         return FAILURE;
     }
     return SUCCESS;
@@ -833,25 +826,25 @@ static s_or_f parse_format_dependent_decimal(const char *s, decNumber **number,
         if (!parse_format_dependent_decimal32(s + sizeof("32#") - 1, number,
             ctx, is_using_directive_precision)
         ) {
-            print_error("%s[%d] parse_format_dependent_decimal32 failed [%s]\n", __FILE__, __LINE__, s);
+            DBGPRINTF("parse_format_dependent_decimal32 failed [%s]\n",  s);
             return FAILURE;
         }
     } else if (strncmp(s, "64#", sizeof("64#") - 1) == 0) {
         if (!parse_format_dependent_decimal64(s + sizeof("64#") - 1, number,
             ctx, is_using_directive_precision)
         ) {
-            print_error("%s[%d] parse_format_dependent_decimal64 failed [%s]\n", __FILE__, __LINE__, s);
+            DBGPRINTF("parse_format_dependent_decimal64 failed [%s]\n",  s);
             return FAILURE;
         }
     } else if (strncmp(s, "128#", sizeof("128#") - 1) == 0) {
         if (!parse_format_dependent_decimal128(s + sizeof("128#") - 1, number,
             ctx, is_using_directive_precision)
         ) {
-            print_error("%s[%d] parse_format_dependent_decimal128 failed [%s]\n", __FILE__, __LINE__, s);
+            DBGPRINTF("parse_format_dependent_decimal128 failed [%s]\n",  s);
             return FAILURE;
         }
     } else {
-        print_error("%s[%d] invalid format dependent decimal notation [%s]\n", __FILE__, __LINE__, s);
+        DBGPRINTF("invalid format dependent decimal notation [%s]\n",  s);
         return FAILURE;
     }
     return SUCCESS;
@@ -877,7 +870,7 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
     needbytes = sizeof(decNumber *) * testcase->operand_count;
     testcase->operand_numbers = (decNumber **)malloc(needbytes);
     if (!testcase->operand_numbers) {
-        print_error("%s[%d] out of memory in testcase_convert_operands_to_numbers\n", __FILE__, __LINE__);
+        DBGPRINT("out of memory in testcase_convert_operands_to_numbers\n");
         return FAILURE;
     }
     memset(testcase->operand_numbers, 0, needbytes);
@@ -897,12 +890,12 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
                     if (!parse_hex_notation_canonical(s,
                         &testcase->operand_numbers[i])
                     ) {
-                        print_error("%s[%d] parse_decimal64_hex_canonical failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
+                        DBGPRINTF("parse_decimal64_hex_canonical failed for operand %d. [%s]\n",  i, s);
                         return FAILURE;
                     }
                 } else {
                     if (!parse_hex_notation(s, &testcase->operand_numbers[i])) {
-                        print_error("%s[%d] parse_hex_notation failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
+                        DBGPRINTF("parse_hex_notation failed for operand %d. [%s]\n",  i, s);
                         return FAILURE;
                     }
                 }
@@ -911,7 +904,7 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
                     &testcase->operand_numbers[i], &ctx,
                     is_using_directive_precision)
                 ) {
-                    print_error("%s[%d] parse_format_dependent_decimal failed for operand %d. [%s]\n", __FILE__, __LINE__, i, s);
+                    DBGPRINTF("parse_format_dependent_decimal failed for operand %d. [%s]\n",  i, s);
                     return FAILURE;
                 }
             }
@@ -956,14 +949,14 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     if (!tokens_get_conditions(tokens, 2 + testcase->operand_count + 2,
         &testcase->expected_status)
     ) {
-        print_error("%s[%d] tokens_get_conditions failed.\n", __FILE__, __LINE__);
+        DBGPRINT("tokens_get_conditions failed.\n");
         return FAILURE;
     }
 
     testcase->operand_numbers = NULL;
     testcase->operands = (char **)malloc(sizeof(char *) * testcase->operand_count);
     if (!testcase->operands) {
-        print_error("%s[%d] out of memory in testcase_init\n", __FILE__, __LINE__);
+        DBGPRINT("out of memory in testcase_init\n");
         return FAILURE;
     }
     for (i = 0; i < testcase->operand_count; ++i) {
@@ -978,7 +971,7 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     if (p_sharp != NULL) {
         if (p_sharp == s) {
             if (!parse_hex_notation(s, &testcase->expected_number)) {
-                print_error("%s[%d] parse_hex_notation failed for result. [%s]\n", __FILE__, __LINE__, s);
+                DBGPRINTF("parse_hex_notation failed for result. [%s]\n",  s);
                 return FAILURE;
             }
             testcase->converted_expected
@@ -989,7 +982,7 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
             if (!parse_format_dependent_decimal(s, &testcase->expected_number,
                 &ctx, FALSE)
             ) {
-                print_error("%s[%d] parse_format_dependent_decimal failed for result. [%s]\n", __FILE__, __LINE__, s);
+                DBGPRINTF("parse_format_dependent_decimal failed for result. [%s]\n",  s);
                 return FAILURE;
             }
             testcase->converted_expected
@@ -1018,7 +1011,7 @@ static s_or_f testcase_run(testcase_t *testcase)
     decNumber *result;
 
     if (strlen(testcase->operator) == 0) {
-        print_error("%s[%d] error in testcase_run. operator is empty.\n", __FILE__, __LINE__);
+        DBGPRINT("error in testcase_run. operator is empty.\n");
         return FAILURE;
     }
 
@@ -1044,7 +1037,7 @@ static s_or_f testcase_run(testcase_t *testcase)
         } else if (strcasecmp(testcase->operator, "apply") == 0) {
             testcase->actual = convert_number_to_string(operands[0]);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1076,7 +1069,7 @@ static s_or_f testcase_run(testcase_t *testcase)
         } else if (strcasecmp(testcase->operator, "copysign") == 0) {
             decNumberCopySign(result, operands[0], operands[1]);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n", testcase->operator);
             return FAILURE;
         }
         break;
@@ -1088,7 +1081,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberDivideInteger(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1096,7 +1089,7 @@ static s_or_f testcase_run(testcase_t *testcase)
         if (strcasecmp(testcase->operator, "exp") == 0) {
             decNumberExp(result, operands[0], testcase->context);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1105,7 +1098,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberFMA(result, operands[0], operands[1], operands[2],
                 testcase->context);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1113,7 +1106,7 @@ static s_or_f testcase_run(testcase_t *testcase)
         if (strcasecmp(testcase->operator, "invert") == 0) {
             decNumberInvert(result, operands[0], testcase->context);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1125,7 +1118,7 @@ static s_or_f testcase_run(testcase_t *testcase)
         } else if (strcasecmp(testcase->operator, "logb") == 0) {
             decNumberLogB(result, operands[0], testcase->context);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1147,7 +1140,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberMultiply(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1160,7 +1153,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberNextToward(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1168,7 +1161,7 @@ static s_or_f testcase_run(testcase_t *testcase)
         if (strcasecmp(testcase->operator, "or") == 0) {
             decNumberOr(result, operands[0], operands[1], testcase->context);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1179,7 +1172,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberPower(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1188,7 +1181,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberQuantize(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1208,7 +1201,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberRotate(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1226,7 +1219,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberSubtract(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1251,7 +1244,7 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberCopy(result, operands[0]);
             decNumberTrim(result);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
@@ -1259,12 +1252,12 @@ static s_or_f testcase_run(testcase_t *testcase)
         if (strcasecmp(testcase->operator, "xor") == 0) {
             decNumberXor(result, operands[0], operands[1], testcase->context);
         } else {
-            print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
         }
         break;
     default:
-        print_error("%s[%d] error in testcase_run. unknown operator: %s.\n", __FILE__, __LINE__, testcase->operator);
+        DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
         return FAILURE;
     }
 
@@ -1393,7 +1386,7 @@ static s_or_f testfile_process_test(testfile_t *testfile, tokens_t *tokens)
 
     ++testfile->test_count;
     if (!testcase_init(&testcase, testfile, tokens)) {
-        print_error("%s[%d] testcase_init failed.\n", __FILE__, __LINE__);
+        DBGPRINT("testcase_init failed.\n");
         return FAILURE;
     }
     if (testcase_has_null_operand(&testcase)) {
@@ -1403,7 +1396,7 @@ static s_or_f testfile_process_test(testfile_t *testfile, tokens_t *tokens)
 //        testcase_print(&testcase);
         if (!testcase_run(&testcase)) {
             tokens_print(tokens);
-            print_error("%s[%d] testcase_run failed.\n", __FILE__, __LINE__);
+            DBGPRINT("testcase_run failed.\n");
             return FAILURE;
         }
         if (testcase_check(&testcase)) {
@@ -1466,7 +1459,7 @@ static s_or_f handle_rounding(testfile_t *testfile, tokens_t *tokens)
 
     rounding = convert_rounding_name_to_value(tokens->tokens[2]);
     if (rounding == -1) {
-        print_error("%s[%d] convert_rounding_name_to_value failed.\n", __FILE__, __LINE__);
+        DBGPRINT("convert_rounding_name_to_value failed.\n");
         return FAILURE;
     }
 
@@ -1573,7 +1566,7 @@ static s_or_f testfile_process_directive(testfile_t *testfile, tokens_t *tokens)
     directive_handler_t handler;
     handler = get_directive_handler(tokens->tokens[0]);
     if (!handler) {
-        print_error("%s[%d] get_directive_handler failed.\n", __FILE__, __LINE__);
+        DBGPRINT("get_directive_handler failed.\n");
         return FAILURE;
     }
     return handler(testfile, tokens);
@@ -1588,7 +1581,7 @@ static s_or_f testfile_process_tokens(testfile_t *testfile, tokens_t *tokens)
     } else if (tokens_is_empty(tokens)) {
         return SUCCESS;
     }
-    print_error("%s[%d] error in testfile_process_tokens. unsupported line type.\n", __FILE__, __LINE__);
+    DBGPRINT("error in testfile_process_tokens. unsupported line type.\n");
     return FAILURE;
 }
 
