@@ -447,7 +447,7 @@ static s_or_f tokens_get_conditions(tokens_t *tokens, int offset,
     return SUCCESS;
 }
 
-static decNumber *alloc_number(long numdigits)
+static decNumber *alloc_number(int32_t numdigits)
 {
     uInt needbytes;
     decNumber *number;
@@ -553,8 +553,10 @@ static s_or_f parse_hex(int bytes, uint8_t buf[], const char *s)
     return SUCCESS;
 }
 
-static s_or_f parse_decimal32_hex(const char *s, decNumber **number)
+static s_or_f parse_decimal32_hex(const char *s, decNumber **number,
+    decContext *ctx, bool is_using_directive_precision)
 {
+    int32_t digits;
     decimal32 dec32;
 
     if (!parse_hex(DECIMAL32_Bytes, dec32.bytes, s)) {
@@ -562,7 +564,8 @@ static s_or_f parse_decimal32_hex(const char *s, decNumber **number)
         return FAILURE;
     }
 
-    *number = alloc_number(DECIMAL32_Pmax);
+    digits = is_using_directive_precision ? ctx->digits : DECIMAL32_Pmax;
+    *number = alloc_number(digits);
     if (!*number) {
         return FAILURE;
     }
@@ -570,8 +573,10 @@ static s_or_f parse_decimal32_hex(const char *s, decNumber **number)
     return SUCCESS;
 }
 
-static s_or_f parse_decimal64_hex(const char *s, decNumber **number)
+static s_or_f parse_decimal64_hex(const char *s, decNumber **number,
+    decContext *ctx, bool is_using_directive_precision)
 {
+    int32_t digits;
     decimal64 dec64;
 
     if (!parse_hex(DECIMAL64_Bytes, dec64.bytes, s)) {
@@ -579,7 +584,8 @@ static s_or_f parse_decimal64_hex(const char *s, decNumber **number)
         return FAILURE;
     }
 
-    *number = alloc_number(DECIMAL64_Pmax);
+    digits = is_using_directive_precision ? ctx->digits : DECIMAL64_Pmax;
+    *number = alloc_number(digits);
     if (!*number) {
         return FAILURE;
     }
@@ -587,8 +593,10 @@ static s_or_f parse_decimal64_hex(const char *s, decNumber **number)
     return SUCCESS;
 }
 
-static s_or_f parse_decimal128_hex(const char *s, decNumber **number)
+static s_or_f parse_decimal128_hex(const char *s, decNumber **number,
+    decContext *ctx, bool is_using_directive_precision)
 {
+    int32_t digits;
     decimal128 dec128;
 
     if (!parse_hex(DECIMAL128_Bytes, dec128.bytes, s)) {
@@ -596,7 +604,8 @@ static s_or_f parse_decimal128_hex(const char *s, decNumber **number)
         return FAILURE;
     }
 
-    *number = alloc_number(DECIMAL128_Pmax);
+    digits = is_using_directive_precision ? ctx->digits : DECIMAL128_Pmax;
+    *number = alloc_number(digits);
     if (!*number) {
         return FAILURE;
     }
@@ -604,7 +613,8 @@ static s_or_f parse_decimal128_hex(const char *s, decNumber **number)
     return SUCCESS;
 }
 
-static s_or_f parse_hex_notation(const char *s, decNumber **number)
+static s_or_f parse_hex_notation(const char *s, decNumber **number,
+    decContext *ctx, bool is_using_directive_precision)
 {
     int len;
 
@@ -612,17 +622,23 @@ static s_or_f parse_hex_notation(const char *s, decNumber **number)
     if (len == 0) {
         *number = NULL;
     } else if (len == 8) {
-        if (!parse_decimal32_hex(s + 1, number)) {
+        if (!parse_decimal32_hex(s + 1, number, ctx,
+            is_using_directive_precision)
+        ) {
             DBGPRINTF("parse_decimal32_hex failed [%s]\n",  s);
             return FAILURE;
         }
     } else if (len == 16) {
-        if (!parse_decimal64_hex(s + 1, number)) {
+        if (!parse_decimal64_hex(s + 1, number, ctx,
+            is_using_directive_precision)
+        ) {
             DBGPRINTF("parse_decimal32_hex failed [%s]\n",  s);
             return FAILURE;
         }
     } else if (len == 32) {
-        if (!parse_decimal128_hex(s + 1, number)) {
+        if (!parse_decimal128_hex(s + 1, number, ctx,
+            is_using_directive_precision)
+        ) {
             DBGPRINTF("parse_decimal32_hex failed [%s]\n",  s);
             return FAILURE;
         }
@@ -893,7 +909,9 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
                         return FAILURE;
                     }
                 } else {
-                    if (!parse_hex_notation(s, &testcase->operand_numbers[i])) {
+                    if (!parse_hex_notation(s, &testcase->operand_numbers[i],
+                        &ctx, is_using_directive_precision)
+                    ) {
                         DBGPRINTF("parse_hex_notation failed for operand %d. [%s]\n",  i, s);
                         return FAILURE;
                     }
@@ -973,7 +991,9 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
         p_sharp = strchr(s, '#');
         if (p_sharp != NULL) {
             if (p_sharp == s) {
-                if (!parse_hex_notation(s, &testcase->expected_number)) {
+                if (!parse_hex_notation(s, &testcase->expected_number, &ctx,
+                    FALSE)
+                ) {
                     DBGPRINTF("parse_hex_notation failed for result. [%s]\n",  s);
                     return FAILURE;
                 }
