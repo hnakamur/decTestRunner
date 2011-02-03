@@ -71,12 +71,11 @@ typedef struct _testcase_t {
     char **operands;
     decNumber **operand_numbers;
     uint32_t expected_status;
-    char *expected;
+    char *expected_string;
     decNumber *expected_number;
-    char *converted_expected;
     decContext *context;
     uint32_t actual_status;
-    char *actual;
+    char *actual_string;
     decNumber *actual_number;
 } testcase_t;
 
@@ -938,13 +937,14 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     decNumber *n;
     char *p_sharp;
     decContext ctx;
+    int32_t digits;
 
     testcase->id = tokens->tokens[0];
     testcase->operator = tokens->tokens[1];
     testcase->operand_count = tokens_count_operands(tokens);
     testcase->context = &testfile->context;
     testcase->actual_status = 0;
-    testcase->actual = NULL;
+    testcase->actual_string = NULL;
     testcase->actual_number = NULL;
     if (!tokens_get_conditions(tokens, 2 + testcase->operand_count + 2,
         &testcase->expected_status)
@@ -964,29 +964,41 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     }
 
     s = tokens->tokens[2 + testcase->operand_count + 1];
-    testcase->expected = s;
+    testcase->expected_string = s;
     testcase->expected_number = NULL;
-    testcase->converted_expected = NULL;
-    p_sharp = strchr(s, '#');
-    if (p_sharp != NULL) {
-        if (p_sharp == s) {
-            if (!parse_hex_notation(s, &testcase->expected_number)) {
-                DBGPRINTF("parse_hex_notation failed for result. [%s]\n",  s);
-                return FAILURE;
+    if (strcasecmp(testcase->operator, "class") != 0
+        && strcasecmp(testcase->operator, "tosci") != 0
+        && strcasecmp(testcase->operator, "toeng") != 0
+    ) {
+        p_sharp = strchr(s, '#');
+        if (p_sharp != NULL) {
+            if (p_sharp == s) {
+                if (!parse_hex_notation(s, &testcase->expected_number)) {
+                    DBGPRINTF("parse_hex_notation failed for result. [%s]\n",  s);
+                    return FAILURE;
+                }
+            } else {
+                ctx = *testcase->context;
+                ctx.digits = 1;
+                if (!parse_format_dependent_decimal(s, &testcase->expected_number,
+                    &ctx, FALSE)
+                ) {
+                    DBGPRINTF("parse_format_dependent_decimal failed for result. [%s]\n",  s);
+                    return FAILURE;
+                }
             }
-            testcase->converted_expected
-                = convert_number_to_string(testcase->expected_number);
         } else {
             ctx = *testcase->context;
-            ctx.digits = 1;
-            if (!parse_format_dependent_decimal(s, &testcase->expected_number,
-                &ctx, FALSE)
-            ) {
-                DBGPRINTF("parse_format_dependent_decimal failed for result. [%s]\n",  s);
+            digits = count_coefficient_digit(s);
+            ctx.digits = (digits > testcase->context->digits
+                ? digits : testcase->context->digits);
+            ctx.emax = DEC_MAX_EMAX;
+            ctx.emin = DEC_MIN_EMIN;
+            testcase->expected_number = alloc_number(ctx.digits);
+            if (!testcase->expected_number) {
                 return FAILURE;
             }
-            testcase->converted_expected
-                = convert_number_to_string(testcase->expected_number);
+            decNumberFromString(testcase->expected_number, s, &ctx);
         }
     }
 
@@ -1035,7 +1047,7 @@ static s_or_f testcase_run(testcase_t *testcase)
         } else if (strcasecmp(testcase->operator, "and") == 0) {
             decNumberAnd(result, operands[0], operands[1], testcase->context);
         } else if (strcasecmp(testcase->operator, "apply") == 0) {
-            testcase->actual = convert_number_to_string(operands[0]);
+            decNumberCopy(result, operands[0]);
         } else {
             DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
             return FAILURE;
@@ -1043,11 +1055,11 @@ static s_or_f testcase_run(testcase_t *testcase)
         break;
     case 'c':
         if (strcasecmp(testcase->operator, "canonical") == 0) {
-            testcase->actual = convert_number_to_string(operands[0]);
+            decNumberCopy(result, operands[0]);
         } else if (strcasecmp(testcase->operator, "class") == 0) {
             enum decClass num_class;
             num_class = decNumberClass(operands[0], testcase->context);
-            testcase->actual = strdup(decNumberClassToString(num_class));
+            testcase->actual_string = strdup(decNumberClassToString(num_class));
         } else if (strcasecmp(testcase->operator, "compare") == 0) {
             decNumberCompare(result, operands[0], operands[1],
                 testcase->context);
@@ -1225,13 +1237,13 @@ static s_or_f testcase_run(testcase_t *testcase)
         break;
     case 't':
         if (strcasecmp(testcase->operator, "toeng") == 0) {
-            testcase->actual = convert_number_to_eng_string(operands[0]);
+            testcase->actual_string = convert_number_to_eng_string(operands[0]);
         } else if (strcasecmp(testcase->operator, "tointegral") == 0) {
             decNumberToIntegralValue(result, operands[0], testcase->context);
         } else if (strcasecmp(testcase->operator, "tointegralx") == 0) {
             decNumberToIntegralExact(result, operands[0], testcase->context);
         } else if (strcasecmp(testcase->operator, "tosci") == 0) {
-            testcase->actual = convert_number_to_string(operands[0]);
+            testcase->actual_string = convert_number_to_string(operands[0]);
         } else if (strcasecmp(testcase->operator, "trim") == 0) {
             if (testcase->actual_number->digits < operands[0]->digits) {
                 free(testcase->actual_number);
@@ -1261,9 +1273,6 @@ static s_or_f testcase_run(testcase_t *testcase)
         return FAILURE;
     }
 
-    if (!testcase->actual) {
-        testcase->actual = convert_number_to_string(result);
-    }
     testcase->actual_status = testcase->context->status;
 
     return SUCCESS;
@@ -1285,7 +1294,7 @@ static void testcase_print(testcase_t *testcase)
         printf("%s", testcase->operands[i]);
     }
     printf(" -> ");
-    printf("%s", testcase->expected);
+    printf("%s", testcase->expected_string);
     printf(" expected_status=0x%x\n", testcase->expected_status);
 
     if (testcase->operand_numbers) {
@@ -1314,39 +1323,54 @@ static void testcase_print(testcase_t *testcase)
 
 static bool testcase_check(testcase_t *testcase)
 {
-    char *expected;
+    bool value_matched;
+    bool status_matched;
+    char *actual_string;
+    char *expected_string;
+    decNumber compare_result;
 
-    expected = testcase->converted_expected
-            ? testcase->converted_expected : testcase->expected;
-    if (strcmp(testcase->actual, expected) == 0) {
-        if (testcase->actual_status == testcase->expected_status) {
-            return TRUE;
-        } else {
-            testcase_print(testcase);
-            printf("status unmatch: actual=%x [", testcase->actual_status);
-            status_print(testcase->actual_status);
-            printf("]\n");
-            printf("              expected=%x [", testcase->expected_status);
-            status_print(testcase->expected_status);
-            printf("]\n");
-            printf("number        : actual=%s,\n", testcase->actual);
-            printf("              expected=%s\n", expected);
-            context_print(testcase->context);
-            return FALSE;
-        }
+    if (testcase->actual_string != NULL) {
+        value_matched = (strcmp(testcase->actual_string,
+            testcase->expected_string) == 0);
     } else {
-        testcase_print(testcase);
-        printf("number unmatch: actual=%s,\n", testcase->actual);
-        printf("              expected=%s\n", expected);
-        printf("status        : actual=%x [", testcase->actual_status);
-        status_print(testcase->actual_status);
-        printf("]\n");
-        printf("              expected=%x [", testcase->expected_status);
-        status_print(testcase->expected_status);
-        printf("]\n");
-        context_print(testcase->context);
-        return FALSE;
+        decNumberCompareTotal(&compare_result, testcase->actual_number,
+            testcase->expected_number, testcase->context);
+        value_matched = decNumberIsZero(&compare_result);
     }
+
+    status_matched = (testcase->actual_status == testcase->expected_status);
+
+    if (value_matched && status_matched) {
+        return TRUE;
+    }
+
+    testcase_print(testcase);
+
+    if (testcase->actual_string != NULL) {
+        actual_string = testcase->actual_string;
+        expected_string = testcase->expected_string;
+    } else {
+        actual_string = convert_number_to_string(testcase->actual_number);
+        expected_string = convert_number_to_string(testcase->expected_number);
+    }
+    printf("value %s\n", (value_matched ? "matched" : "unmatched"));
+    printf("   actual_value=[%s]\n", actual_string);
+    printf(" expected_value=[%s]\n", expected_string);
+    if (testcase->actual_string == NULL) {
+        free(actual_string);
+        free(expected_string);
+    }
+
+    printf("status %s\n", (status_matched ? "matched" : "unmatched"));
+    printf("    actual_status=%x [", testcase->actual_status);
+    status_print(testcase->actual_status);
+    printf("]\n");
+    printf("  expected_status=%x [", testcase->expected_status);
+    status_print(testcase->expected_status);
+    printf("]\n");
+    context_print(testcase->context);
+
+    return FALSE;
 }
 
 static int testcase_dtor(testcase_t *testcase)
@@ -1365,8 +1389,8 @@ static int testcase_dtor(testcase_t *testcase)
         free(testcase->operand_numbers);
     }
 
-    if (testcase->actual) {
-        free(testcase->actual);
+    if (testcase->actual_string) {
+        free(testcase->actual_string);
     }
     if (testcase->actual_number) {
         free(testcase->actual_number);
@@ -1374,9 +1398,6 @@ static int testcase_dtor(testcase_t *testcase)
 
     if (testcase->expected_number) {
         free(testcase->expected_number);
-    }
-    if (testcase->converted_expected) {
-        free(testcase->converted_expected);
     }
 }
 

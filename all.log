@@ -21,18 +21,22 @@
 id=lnx116  ln 0.99999991000000405 -> -8.9999999999999878E-8 expected_status=0x820
 operand_numbers:
 [0] 0.99999991000000405 digits=17, exp=-17, bits=0x0, lsu=195 0 0 3df 3e7 63
-number unmatch: actual=-8.9999999999999879E-8,
-              expected=-8.9999999999999878E-8
-status        : actual=820 [Inexact Rounded]
-              expected=820 [Inexact Rounded]
+value unmatched
+   actual_value=[-8.9999999999999879E-8]
+ expected_value=[-8.9999999999999878E-8]
+status matched
+    actual_status=820 [Inexact Rounded]
+  expected_status=820 [Inexact Rounded]
 context prec=17, round=3, emax=384, emin=-383, status=820, traps=0, clamp=0, extented=1
 id=lnx732  ln 9.99999999999266E+999 -> 2302.58509299404 expected_status=0x820
 operand_numbers:
 [0] 9.99999999999266E+999 digits=15, exp=985, bits=0x0, lsu=10a 3e7 3e7 3e7 3e7
-number unmatch: actual=2302.58509299405,
-              expected=2302.58509299404
-status        : actual=820 [Inexact Rounded]
-              expected=820 [Inexact Rounded]
+value unmatched
+   actual_value=[2302.58509299405]
+ expected_value=[2302.58509299404]
+status matched
+    actual_status=820 [Inexact Rounded]
+  expected_status=820 [Inexact Rounded]
 context prec=15, round=3, emax=999, emin=-999, status=820, traps=0, clamp=0, extented=1
 == testcases/dectest/ln.decTest: tests=414, success=411, failure=2, skip=1
 == testcases/dectest/logb.decTest: tests=128, success=127, failure=0, skip=1
@@ -52,156 +56,190 @@ id=powx4302  power 1.000001 1e-101 -> 1.000001 expected_status=0x820
 operand_numbers:
 [0] 1.000001 digits=7, exp=-6, bits=0x0, lsu=1 0 1
 [1] 1E-101 digits=1, exp=-101, bits=0x0, lsu=1
-number unmatch: actual=1.000000,
-              expected=1.000001
-status        : actual=820 [Inexact Rounded]
-              expected=820 [Inexact Rounded]
+value unmatched
+   actual_value=[1.000000]
+ expected_value=[1.000001]
+status matched
+    actual_status=820 [Inexact Rounded]
+  expected_status=820 [Inexact Rounded]
 context prec=7, round=0, emax=96, emin=-95, status=820, traps=0, clamp=0, extented=1
 id=powx4303  power 1.000001 1e-95 -> 1.000001 expected_status=0x820
 operand_numbers:
 [0] 1.000001 digits=7, exp=-6, bits=0x0, lsu=1 0 1
 [1] 1E-95 digits=1, exp=-95, bits=0x0, lsu=1
-number unmatch: actual=1.000000,
-              expected=1.000001
-status        : actual=820 [Inexact Rounded]
-              expected=820 [Inexact Rounded]
+value unmatched
+   actual_value=[1.000000]
+ expected_value=[1.000001]
+status matched
+    actual_status=820 [Inexact Rounded]
+  expected_status=820 [Inexact Rounded]
 context prec=7, round=0, emax=96, emin=-95, status=820, traps=0, clamp=0, extented=1
 id=powx4342  power 0.9999999 1e-101 -> 0.9999999 expected_status=0x820
 operand_numbers:
 [0] 0.9999999 digits=7, exp=-7, bits=0x0, lsu=3e7 3e7 9
 [1] 1E-101 digits=1, exp=-101, bits=0x0, lsu=1
-number unmatch: actual=1.000000,
-              expected=0.9999999
-status        : actual=820 [Inexact Rounded]
-              expected=820 [Inexact Rounded]
+value unmatched
+   actual_value=[1.000000]
+ expected_value=[0.9999999]
+status matched
+    actual_status=820 [Inexact Rounded]
+  expected_status=820 [Inexact Rounded]
 context prec=7, round=6, emax=96, emin=-95, status=820, traps=0, clamp=0, extented=1
 id=powx4343  power 0.9999999 1e-95 -> 0.9999999 expected_status=0x820
 operand_numbers:
 [0] 0.9999999 digits=7, exp=-7, bits=0x0, lsu=3e7 3e7 9
 [1] 1E-95 digits=1, exp=-95, bits=0x0, lsu=1
-number unmatch: actual=1.000000,
-              expected=0.9999999
-status        : actual=820 [Inexact Rounded]
-              expected=820 [Inexact Rounded]
+value unmatched
+   actual_value=[1.000000]
+ expected_value=[0.9999999]
+status matched
+    actual_status=820 [Inexact Rounded]
+  expected_status=820 [Inexact Rounded]
 context prec=7, round=6, emax=96, emin=-95, status=820, traps=0, clamp=0, extented=1
 == testcases/dectest/power.decTest: tests=1207, success=1201, failure=4, skip=2
 id=pwsx805  power 10E-19 0.5 -> 1.0000000000E-9 expected_status=0x820
 operand_numbers:
 [0] 1.0E-18 digits=2, exp=-19, bits=0x0, lsu=a
 [1] 0.5 digits=1, exp=-1, bits=0x0, lsu=5
-status unmatch: actual=3820 [Inexact Rounded Subnormal Underflow]
-              expected=820 [Inexact Rounded]
-number        : actual=1.0000000000E-9,
-              expected=1.0000000000E-9
+value matched
+   actual_value=[1.0000000000E-9]
+ expected_value=[1.0000000000E-9]
+status unmatched
+    actual_status=3820 [Inexact Rounded Subnormal Underflow]
+  expected_status=820 [Inexact Rounded]
 context prec=11, round=3, emax=9, emin=-9, status=3820, traps=0, clamp=0, extented=1
 == testcases/dectest/powersqrt.decTest: tests=2856, success=2854, failure=1, skip=1
 id=quax804  quantize 0 1e-2000000000 -> NaN expected_status=0x80
 operand_numbers:
 [0] 0 digits=1, exp=0, bits=0x0, lsu=0
 [1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
-number unmatch: actual=0E-1000000007,
-              expected=NaN
-status        : actual=0 []
-              expected=80 [Invalid_operation]
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
 context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
 id=quax806  quantize 0 1e-3000000000 -> NaN expected_status=0x80
 operand_numbers:
 [0] 0 digits=1, exp=0, bits=0x0, lsu=0
 [1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
-number unmatch: actual=0E-1000000007,
-              expected=NaN
-status        : actual=0 []
-              expected=80 [Invalid_operation]
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
 context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
 id=quax808  quantize 0 1e-4000000000 -> NaN expected_status=0x80
 operand_numbers:
 [0] 0 digits=1, exp=0, bits=0x0, lsu=0
 [1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
-number unmatch: actual=0E-1000000007,
-              expected=NaN
-status        : actual=0 []
-              expected=80 [Invalid_operation]
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
 context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
 id=quax810  quantize 0 1e-5000000000 -> NaN expected_status=0x80
 operand_numbers:
 [0] 0 digits=1, exp=0, bits=0x0, lsu=0
 [1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
-number unmatch: actual=0E-1000000007,
-              expected=NaN
-status        : actual=0 []
-              expected=80 [Invalid_operation]
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
 context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
 id=quax812  quantize 0 1e-6000000000 -> NaN expected_status=0x80
 operand_numbers:
 [0] 0 digits=1, exp=0, bits=0x0, lsu=0
 [1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
-number unmatch: actual=0E-1000000007,
-              expected=NaN
-status        : actual=0 []
-              expected=80 [Invalid_operation]
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
 context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
 id=quax814  quantize 0 1e-7000000000 -> NaN expected_status=0x80
 operand_numbers:
 [0] 0 digits=1, exp=0, bits=0x0, lsu=0
 [1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
-number unmatch: actual=0E-1000000007,
-              expected=NaN
-status        : actual=0 []
-              expected=80 [Invalid_operation]
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
 context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
 id=quax816  quantize 0 1e-8000000000 -> NaN expected_status=0x80
 operand_numbers:
 [0] 0 digits=1, exp=0, bits=0x0, lsu=0
 [1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
-number unmatch: actual=0E-1000000007,
-              expected=NaN
-status        : actual=0 []
-              expected=80 [Invalid_operation]
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
 context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
 id=quax818  quantize 0 1e-9000000000 -> NaN expected_status=0x80
 operand_numbers:
 [0] 0 digits=1, exp=0, bits=0x0, lsu=0
 [1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
-number unmatch: actual=0E-1000000007,
-              expected=NaN
-status        : actual=0 []
-              expected=80 [Invalid_operation]
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
 context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
 id=quax820  quantize 0 1e-9999999999 -> NaN expected_status=0x80
 operand_numbers:
 [0] 0 digits=1, exp=0, bits=0x0, lsu=0
 [1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
-number unmatch: actual=0E-1000000007,
-              expected=NaN
-status        : actual=0 []
-              expected=80 [Invalid_operation]
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
 context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
 id=quax822  quantize 0 1e-10000000000 -> NaN expected_status=0x80
 operand_numbers:
 [0] 0 digits=1, exp=0, bits=0x0, lsu=0
 [1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
-number unmatch: actual=0E-1000000007,
-              expected=NaN
-status        : actual=0 []
-              expected=80 [Invalid_operation]
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
 context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
 id=quax854  quantize 0 1e-1000000008 -> NaN expected_status=0x80
 operand_numbers:
 [0] 0 digits=1, exp=0, bits=0x0, lsu=0
 [1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
-number unmatch: actual=0E-1000000007,
-              expected=NaN
-status        : actual=0 []
-              expected=80 [Invalid_operation]
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
 context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
 id=quax1026  quantize 64#8.666666666666000E+384 128#1E+384 -> 64#9E+384 expected_status=0xc20
 operand_numbers:
 [0] 8.666666666666000E+384 digits=16, exp=369, bits=0x0, lsu=0 29a 29a 29a 29a 8
 [1] 1E+384 digits=1, exp=384, bits=0x0, lsu=1
-number unmatch: actual=9E+384,
-              expected=9.000000000000000E+384
-status        : actual=820 [Inexact Rounded]
-              expected=c20 [Inexact Clamped Rounded]
+value unmatched
+   actual_value=[9E+384]
+ expected_value=[9.000000000000000E+384]
+status unmatched
+    actual_status=820 [Inexact Rounded]
+  expected_status=c20 [Inexact Clamped Rounded]
 context prec=16, round=2, emax=384, emin=-383, status=820, traps=0, clamp=0, extented=1
 == testcases/dectest/quantize.decTest: tests=775, success=761, failure=12, skip=2
 == testcases/dectest/randoms.decTest: tests=4000, success=4000, failure=0, skip=0
@@ -224,74 +262,92 @@ context prec=16, round=2, emax=384, emin=-383, status=820, traps=0, clamp=0, ext
 id=decs078  apply #00020000 -> 1.00000E-96 expected_status=0x1000
 operand_numbers:
 [0] 1.00000E-96 digits=6, exp=-101, bits=0x0, lsu=0 64
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1.00000E-96,
-              expected=1.00000E-96
+value matched
+   actual_value=[1.00000E-96]
+ expected_value=[1.00000E-96]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
 id=decs080  apply #00000010 -> 1.0E-100 expected_status=0x1000
 operand_numbers:
 [0] 1.0E-100 digits=2, exp=-101, bits=0x0, lsu=a
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1.0E-100,
-              expected=1.0E-100
+value matched
+   actual_value=[1.0E-100]
+ expected_value=[1.0E-100]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
 id=decs082  apply #00000001 -> 1E-101 expected_status=0x1000
 operand_numbers:
 [0] 1E-101 digits=1, exp=-101, bits=0x0, lsu=1
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1E-101,
-              expected=1E-101
+value matched
+   actual_value=[1E-101]
+ expected_value=[1E-101]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
 id=decs084  apply #00000001 -> 1E-101 expected_status=0x1000
 operand_numbers:
 [0] 1E-101 digits=1, exp=-101, bits=0x0, lsu=1
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1E-101,
-              expected=1E-101
+value matched
+   actual_value=[1E-101]
+ expected_value=[1E-101]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
 id=decs178  apply #80020000 -> -1.00000E-96 expected_status=0x1000
 operand_numbers:
 [0] -1.00000E-96 digits=6, exp=-101, bits=0x80, lsu=0 64
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=-1.00000E-96,
-              expected=-1.00000E-96
+value matched
+   actual_value=[-1.00000E-96]
+ expected_value=[-1.00000E-96]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
 id=decs180  apply #80000010 -> -1.0E-100 expected_status=0x1000
 operand_numbers:
 [0] -1.0E-100 digits=2, exp=-101, bits=0x80, lsu=a
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=-1.0E-100,
-              expected=-1.0E-100
+value matched
+   actual_value=[-1.0E-100]
+ expected_value=[-1.0E-100]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
 id=decs182  apply #80000001 -> -1E-101 expected_status=0x1000
 operand_numbers:
 [0] -1E-101 digits=1, exp=-101, bits=0x80, lsu=1
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=-1E-101,
-              expected=-1E-101
+value matched
+   actual_value=[-1E-101]
+ expected_value=[-1E-101]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
 id=decs184  apply #80000001 -> -1E-101 expected_status=0x1000
 operand_numbers:
 [0] -1E-101 digits=1, exp=-101, bits=0x80, lsu=1
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=-1E-101,
-              expected=-1E-101
+value matched
+   actual_value=[-1E-101]
+ expected_value=[-1E-101]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
 id=decs791  apply #00000100 -> 2.00E-99 expected_status=0x1000
 operand_numbers:
 [0] 2.00E-99 digits=3, exp=-101, bits=0x0, lsu=c8
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=2.00E-99,
-              expected=2.00E-99
+value matched
+   actual_value=[2.00E-99]
+ expected_value=[2.00E-99]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
 == testcases/dectest/dsEncode.decTest: tests=268, success=259, failure=9, skip=0
 == testcases/dectest/decSingle.decTest: tests=1177, success=1168, failure=9, skip=0
@@ -314,90 +370,112 @@ context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented
 id=decd078  apply #0000800000000000 -> 1.00000000000000E-384 expected_status=0x1000
 operand_numbers:
 [0] 1.00000000000000E-384 digits=15, exp=-398, bits=0x0, lsu=0 0 0 0 64
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1.00000000000000E-384,
-              expected=1.00000000000000E-384
+value matched
+   actual_value=[1.00000000000000E-384]
+ expected_value=[1.00000000000000E-384]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
 id=decd080  apply #0000000000000010 -> 1.0E-397 expected_status=0x1000
 operand_numbers:
 [0] 1.0E-397 digits=2, exp=-398, bits=0x0, lsu=a
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1.0E-397,
-              expected=1.0E-397
+value matched
+   actual_value=[1.0E-397]
+ expected_value=[1.0E-397]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
 id=decd082  apply #0004000000000001 -> 1E-397 expected_status=0x1000
 operand_numbers:
 [0] 1E-397 digits=1, exp=-397, bits=0x0, lsu=1
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1E-397,
-              expected=1E-397
+value matched
+   actual_value=[1E-397]
+ expected_value=[1E-397]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
 id=decd084  apply #0000000000000001 -> 1E-398 expected_status=0x1000
 operand_numbers:
 [0] 1E-398 digits=1, exp=-398, bits=0x0, lsu=1
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1E-398,
-              expected=1E-398
+value matched
+   actual_value=[1E-398]
+ expected_value=[1E-398]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
 id=decd178  apply #8000800000000000 -> -1.00000000000000E-384 expected_status=0x1000
 operand_numbers:
 [0] -1.00000000000000E-384 digits=15, exp=-398, bits=0x80, lsu=0 0 0 0 64
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=-1.00000000000000E-384,
-              expected=-1.00000000000000E-384
+value matched
+   actual_value=[-1.00000000000000E-384]
+ expected_value=[-1.00000000000000E-384]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
 id=decd180  apply #8000000000000010 -> -1.0E-397 expected_status=0x1000
 operand_numbers:
 [0] -1.0E-397 digits=2, exp=-398, bits=0x80, lsu=a
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=-1.0E-397,
-              expected=-1.0E-397
+value matched
+   actual_value=[-1.0E-397]
+ expected_value=[-1.0E-397]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
 id=decd182  apply #8004000000000001 -> -1E-397 expected_status=0x1000
 operand_numbers:
 [0] -1E-397 digits=1, exp=-397, bits=0x80, lsu=1
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=-1E-397,
-              expected=-1E-397
+value matched
+   actual_value=[-1E-397]
+ expected_value=[-1E-397]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
 id=decd184  apply #8000000000000001 -> -1E-398 expected_status=0x1000
 operand_numbers:
 [0] -1E-398 digits=1, exp=-398, bits=0x80, lsu=1
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=-1E-398,
-              expected=-1E-398
+value matched
+   actual_value=[-1E-398]
+ expected_value=[-1E-398]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
 id=decd188  apply #00009124491246a4 -> 1.11111111111524E-384 expected_status=0x1000
 operand_numbers:
 [0] 1.11111111111524E-384 digits=15, exp=-398, bits=0x0, lsu=20c 6f 6f 6f 6f
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1.11111111111524E-384,
-              expected=1.11111111111524E-384
+value matched
+   actual_value=[1.11111111111524E-384]
+ expected_value=[1.11111111111524E-384]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
 id=decd850  apply #0004070000000000 -> 7.000000000000E-385 expected_status=0x1000
 operand_numbers:
 [0] 7.000000000000E-385 digits=13, exp=-397, bits=0x0, lsu=0 0 0 0 7
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=7.000000000000E-385,
-              expected=7.000000000000E-385
+value matched
+   actual_value=[7.000000000000E-385]
+ expected_value=[7.000000000000E-385]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
 id=decd851  apply #0008000000020000 -> 1.00000E-391 expected_status=0x1000
 operand_numbers:
 [0] 1.00000E-391 digits=6, exp=-396, bits=0x0, lsu=0 64
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1.00000E-391,
-              expected=1.00000E-391
+value matched
+   actual_value=[1.00000E-391]
+ expected_value=[1.00000E-391]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
 == testcases/dectest/ddEncode.decTest: tests=376, success=365, failure=11, skip=0
 == testcases/dectest/ddFMA.decTest: tests=1378, success=1374, failure=0, skip=4
@@ -426,18 +504,22 @@ context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, exten
 id=ddintx074  tointegralx 1.23E+384 -> #47fd300000000000 expected_status=0x400
 operand_numbers:
 [0] 1.23E+384 digits=3, exp=382, bits=0x0, lsu=7b
-number unmatch: actual=1.23E+384,
-              expected=1.230000000000000E+384
-status        : actual=0 []
-              expected=400 [Clamped]
+value unmatched
+   actual_value=[1.23E+384]
+ expected_value=[1.230000000000000E+384]
+status unmatched
+    actual_status=0 []
+  expected_status=400 [Clamped]
 context prec=16, round=3, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
 id=ddintx094  tointegralx -1.23E+384 -> #c7fd300000000000 expected_status=0x400
 operand_numbers:
 [0] -1.23E+384 digits=3, exp=382, bits=0x80, lsu=7b
-number unmatch: actual=-1.23E+384,
-              expected=-1.230000000000000E+384
-status        : actual=0 []
-              expected=400 [Clamped]
+value unmatched
+   actual_value=[-1.23E+384]
+ expected_value=[-1.230000000000000E+384]
+status unmatched
+    actual_status=0 []
+  expected_status=400 [Clamped]
 context prec=16, round=3, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
 == testcases/dectest/ddToIntegral.decTest: tests=178, success=176, failure=2, skip=0
 == testcases/dectest/ddXor.decTest: tests=278, success=278, failure=0, skip=0
@@ -461,66 +543,82 @@ context prec=16, round=3, emax=384, emin=-383, status=0, traps=0, clamp=1, exten
 id=decq078  apply #00000800000000000000000000000000 -> 1.00000000000000000000000000000000E-6144 expected_status=0x1000
 operand_numbers:
 [0] 1.00000000000000000000000000000000E-6144 digits=33, exp=-6176, bits=0x0, lsu=0 0 0 0 0 0 0 0 0 0 64
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1.00000000000000000000000000000000E-6144,
-              expected=1.00000000000000000000000000000000E-6144
+value matched
+   actual_value=[1.00000000000000000000000000000000E-6144]
+ expected_value=[1.00000000000000000000000000000000E-6144]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
 id=decq080  apply #00000000000000000000000000000010 -> 1.0E-6175 expected_status=0x1000
 operand_numbers:
 [0] 1.0E-6175 digits=2, exp=-6176, bits=0x0, lsu=a
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1.0E-6175,
-              expected=1.0E-6175
+value matched
+   actual_value=[1.0E-6175]
+ expected_value=[1.0E-6175]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
 id=decq082  apply #00004000000000000000000000000001 -> 1E-6175 expected_status=0x1000
 operand_numbers:
 [0] 1E-6175 digits=1, exp=-6175, bits=0x0, lsu=1
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1E-6175,
-              expected=1E-6175
+value matched
+   actual_value=[1E-6175]
+ expected_value=[1E-6175]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
 id=decq084  apply #00000000000000000000000000000001 -> 1E-6176 expected_status=0x1000
 operand_numbers:
 [0] 1E-6176 digits=1, exp=-6176, bits=0x0, lsu=1
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=1E-6176,
-              expected=1E-6176
+value matched
+   actual_value=[1E-6176]
+ expected_value=[1E-6176]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
 id=decq178  apply #80000800000000000000000000000000 -> -1.00000000000000000000000000000000E-6144 expected_status=0x1000
 operand_numbers:
 [0] -1.00000000000000000000000000000000E-6144 digits=33, exp=-6176, bits=0x80, lsu=0 0 0 0 0 0 0 0 0 0 64
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=-1.00000000000000000000000000000000E-6144,
-              expected=-1.00000000000000000000000000000000E-6144
+value matched
+   actual_value=[-1.00000000000000000000000000000000E-6144]
+ expected_value=[-1.00000000000000000000000000000000E-6144]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
 id=decq180  apply #80000000000000000000000000000010 -> -1.0E-6175 expected_status=0x1000
 operand_numbers:
 [0] -1.0E-6175 digits=2, exp=-6176, bits=0x80, lsu=a
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=-1.0E-6175,
-              expected=-1.0E-6175
+value matched
+   actual_value=[-1.0E-6175]
+ expected_value=[-1.0E-6175]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
 id=decq182  apply #80004000000000000000000000000001 -> -1E-6175 expected_status=0x1000
 operand_numbers:
 [0] -1E-6175 digits=1, exp=-6175, bits=0x80, lsu=1
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=-1E-6175,
-              expected=-1E-6175
+value matched
+   actual_value=[-1E-6175]
+ expected_value=[-1E-6175]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
 id=decq184  apply #80000000000000000000000000000001 -> -1E-6176 expected_status=0x1000
 operand_numbers:
 [0] -1E-6176 digits=1, exp=-6176, bits=0x80, lsu=1
-status unmatch: actual=0 []
-              expected=1000 [Subnormal]
-number        : actual=-1E-6176,
-              expected=-1E-6176
+value matched
+   actual_value=[-1E-6176]
+ expected_value=[-1E-6176]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
 context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
 == testcases/dectest/dqEncode.decTest: tests=368, success=360, failure=8, skip=0
 == testcases/dectest/dqFMA.decTest: tests=1451, success=1447, failure=0, skip=4
@@ -549,18 +647,22 @@ context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, ext
 id=dqintx074  tointegralx 1.23E+6144 -> #47ffd300000000000000000000000000 expected_status=0x400
 operand_numbers:
 [0] 1.23E+6144 digits=3, exp=6142, bits=0x0, lsu=7b
-number unmatch: actual=1.23E+6144,
-              expected=1.230000000000000000000000000000000E+6144
-status        : actual=0 []
-              expected=400 [Clamped]
+value unmatched
+   actual_value=[1.23E+6144]
+ expected_value=[1.230000000000000000000000000000000E+6144]
+status unmatched
+    actual_status=0 []
+  expected_status=400 [Clamped]
 context prec=34, round=3, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
 id=dqintx094  tointegralx -1.23E+6144 -> #c7ffd300000000000000000000000000 expected_status=0x400
 operand_numbers:
 [0] -1.23E+6144 digits=3, exp=6142, bits=0x80, lsu=7b
-number unmatch: actual=-1.23E+6144,
-              expected=-1.230000000000000000000000000000000E+6144
-status        : actual=0 []
-              expected=400 [Clamped]
+value unmatched
+   actual_value=[-1.23E+6144]
+ expected_value=[-1.230000000000000000000000000000000E+6144]
+status unmatched
+    actual_status=0 []
+  expected_status=400 [Clamped]
 context prec=34, round=3, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
 == testcases/dectest/dqToIntegral.decTest: tests=178, success=176, failure=2, skip=0
 == testcases/dectest/dqXor.decTest: tests=348, success=348, failure=0, skip=0
