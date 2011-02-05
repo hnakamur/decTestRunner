@@ -406,7 +406,7 @@ static s_or_f convert_status_name_to_value(const char *name, uint32_t *value)
             return SUCCESS;
         }
     }
-    DBGPRINTF("error in convert_status_name_to_value. name not found: %s\n",  name);
+    DBGPRINTF("error in convert_status_name_to_value. name not found: %s\n", name);
     return FAILURE;
 }
 
@@ -531,7 +531,7 @@ static s_or_f parse_hex(int bytes, uint8_t buf[], const char *s)
     uint8_t lo;
 
     if (strlen(s) != bytes * 2) {
-        DBGPRINTF("error in parse_hex expected length is %d, but was %d [%s]\n",  bytes * 2, strlen(s), s);
+        DBGPRINTF("error in parse_hex expected length is %d, but was %d [%s]\n", bytes * 2, strlen(s), s);
         return FAILURE;
     }
 
@@ -555,7 +555,7 @@ static s_or_f parse_decimal32_hex(const char *s, decNumber **number,
     decimal32 dec32;
 
     if (!parse_hex(DECIMAL32_Bytes, dec32.bytes, s)) {
-        DBGPRINTF("invalid hex notation [%s]\n",  s);
+        DBGPRINTF("invalid hex notation [%s]\n", s);
         return FAILURE;
     }
 
@@ -575,7 +575,7 @@ static s_or_f parse_decimal64_hex(const char *s, decNumber **number,
     decimal64 dec64;
 
     if (!parse_hex(DECIMAL64_Bytes, dec64.bytes, s)) {
-        DBGPRINTF("invalid hex notation [%s]\n",  s);
+        DBGPRINTF("invalid hex notation [%s]\n", s);
         return FAILURE;
     }
 
@@ -595,7 +595,7 @@ static s_or_f parse_decimal128_hex(const char *s, decNumber **number,
     decimal128 dec128;
 
     if (!parse_hex(DECIMAL128_Bytes, dec128.bytes, s)) {
-        DBGPRINTF("invalid hex notation [%s]\n",  s);
+        DBGPRINTF("invalid hex notation [%s]\n", s);
         return FAILURE;
     }
 
@@ -620,25 +620,25 @@ static s_or_f parse_hex_notation(const char *s, decNumber **number,
         if (!parse_decimal32_hex(s + 1, number, ctx,
             is_using_directive_precision)
         ) {
-            DBGPRINTF("parse_decimal32_hex failed [%s]\n",  s);
+            DBGPRINTF("parse_decimal32_hex failed [%s]\n", s);
             return FAILURE;
         }
     } else if (len == 16) {
         if (!parse_decimal64_hex(s + 1, number, ctx,
             is_using_directive_precision)
         ) {
-            DBGPRINTF("parse_decimal32_hex failed [%s]\n",  s);
+            DBGPRINTF("parse_decimal32_hex failed [%s]\n", s);
             return FAILURE;
         }
     } else if (len == 32) {
         if (!parse_decimal128_hex(s + 1, number, ctx,
             is_using_directive_precision)
         ) {
-            DBGPRINTF("parse_decimal32_hex failed [%s]\n",  s);
+            DBGPRINTF("parse_decimal32_hex failed [%s]\n", s);
             return FAILURE;
         }
     } else {
-        DBGPRINTF("invalid hex notation [%s]\n",  s);
+        DBGPRINTF("invalid hex notation [%s]\n", s);
         return FAILURE;
     }
     return SUCCESS;
@@ -650,7 +650,7 @@ static s_or_f parse_decimal32_hex_canonical(const char *s, decNumber **number)
     decimal32 dec32canonical;
 
     if (!parse_hex(DECIMAL32_Bytes, dec32.bytes, s)) {
-        DBGPRINTF("invalid hex notation [%s]\n",  s);
+        DBGPRINTF("invalid hex notation [%s]\n", s);
         return FAILURE;
     }
     decimal32Canonical(&dec32canonical, &dec32);
@@ -669,7 +669,7 @@ static s_or_f parse_decimal64_hex_canonical(const char *s, decNumber **number)
     decimal64 dec64canonical;
 
     if (!parse_hex(DECIMAL64_Bytes, dec64.bytes, s)) {
-        DBGPRINTF("invalid hex notation [%s]\n",  s);
+        DBGPRINTF("invalid hex notation [%s]\n", s);
         return FAILURE;
     }
     decimal64Canonical(&dec64canonical, &dec64);
@@ -688,7 +688,7 @@ static s_or_f parse_decimal128_hex_canonical(const char *s, decNumber **number)
     decimal128 dec128canonical;
 
     if (!parse_hex(DECIMAL128_Bytes, dec128.bytes, s)) {
-        DBGPRINTF("invalid hex notation [%s]\n",  s);
+        DBGPRINTF("invalid hex notation [%s]\n", s);
         return FAILURE;
     }
     decimal128Canonical(&dec128canonical, &dec128);
@@ -710,21 +710,21 @@ static s_or_f parse_hex_notation_canonical(const char *s, decNumber **number)
         *number = NULL;
     } else if (len == 8) {
         if (!parse_decimal32_hex_canonical(s + 1, number)) {
-            DBGPRINTF("parse_decimal32_hex_canonical failed [%s]\n",  s);
+            DBGPRINTF("parse_decimal32_hex_canonical failed [%s]\n", s);
             return FAILURE;
         }
     } else if (len == 16) {
         if (!parse_decimal64_hex_canonical(s + 1, number)) {
-            DBGPRINTF("parse_decimal32_hex_canonical failed [%s]\n",  s);
+            DBGPRINTF("parse_decimal32_hex_canonical failed [%s]\n", s);
             return FAILURE;
         }
     } else if (len == 32) {
         if (!parse_decimal128_hex_canonical(s + 1, number)) {
-            DBGPRINTF("parse_decimal32_hex_canonical failed [%s]\n",  s);
+            DBGPRINTF("parse_decimal32_hex_canonical failed [%s]\n", s);
             return FAILURE;
         }
     } else {
-        DBGPRINTF("invalid hex notation [%s]\n",  s);
+        DBGPRINTF("invalid hex notation [%s]\n", s);
         return FAILURE;
     }
     return SUCCESS;
@@ -836,27 +836,87 @@ static s_or_f parse_format_dependent_decimal(const char *s, decNumber **number,
         if (!parse_format_dependent_decimal32(s + sizeof("32#") - 1, number,
             ctx, is_using_directive_precision)
         ) {
-            DBGPRINTF("parse_format_dependent_decimal32 failed [%s]\n",  s);
+            DBGPRINTF("parse_format_dependent_decimal32 failed [%s]\n", s);
             return FAILURE;
         }
     } else if (strncmp(s, "64#", sizeof("64#") - 1) == 0) {
         if (!parse_format_dependent_decimal64(s + sizeof("64#") - 1, number,
             ctx, is_using_directive_precision)
         ) {
-            DBGPRINTF("parse_format_dependent_decimal64 failed [%s]\n",  s);
+            DBGPRINTF("parse_format_dependent_decimal64 failed [%s]\n", s);
             return FAILURE;
         }
     } else if (strncmp(s, "128#", sizeof("128#") - 1) == 0) {
         if (!parse_format_dependent_decimal128(s + sizeof("128#") - 1, number,
             ctx, is_using_directive_precision)
         ) {
-            DBGPRINTF("parse_format_dependent_decimal128 failed [%s]\n",  s);
+            DBGPRINTF("parse_format_dependent_decimal128 failed [%s]\n", s);
             return FAILURE;
         }
     } else {
-        DBGPRINTF("invalid format dependent decimal notation [%s]\n",  s);
+        DBGPRINTF("invalid format dependent decimal notation [%s]\n", s);
         return FAILURE;
     }
+    return SUCCESS;
+}
+
+static s_or_f testcase_convert_operand_to_number(testcase_t *testcase,
+    int arg_pos, bool is_using_directive_precision)
+{
+    decContext ctx;
+    char *s;
+    int32_t digits;
+    char *p_sharp;
+
+    ctx = *testcase->context;
+
+    s = testcase->operands[arg_pos];
+    p_sharp = strchr(s, '#');
+    if (p_sharp != NULL) {
+        if (p_sharp == s) {
+            if (strcmp(testcase->operator, "canonical") == 0) {
+                if (!parse_hex_notation_canonical(s,
+                    &testcase->operand_numbers[arg_pos])
+                ) {
+                    DBGPRINTF("parse_decimal64_hex_canonical failed for operand %d. [%s]\n", arg_pos, s);
+                    return FAILURE;
+                }
+            } else {
+                if (!parse_hex_notation(s, &testcase->operand_numbers[arg_pos],
+                    &ctx, is_using_directive_precision)
+                ) {
+                    DBGPRINTF("parse_hex_notation failed for operand %d. [%s]\n", arg_pos, s);
+                    return FAILURE;
+                }
+            }
+        } else {
+            if (!parse_format_dependent_decimal(s,
+                &testcase->operand_numbers[arg_pos], &ctx,
+                is_using_directive_precision)
+            ) {
+                DBGPRINTF("parse_format_dependent_decimal failed for operand %d. [%s]\n", arg_pos, s);
+                return FAILURE;
+            }
+        }
+    } else {
+        if (!is_using_directive_precision) {
+            digits = count_coefficient_digit(s);
+            if (digits > ctx.digits) {
+                ctx.digits = digits;
+            }
+            ctx.emax = DEC_MAX_EMAX;
+            ctx.emin = DEC_MIN_EMIN;
+        }
+        testcase->operand_numbers[arg_pos] = alloc_number(ctx.digits);
+        if (!testcase->operand_numbers[arg_pos]) {
+            return FAILURE;
+        }
+        decNumberFromString(testcase->operand_numbers[arg_pos], s, &ctx);
+    }
+    if (is_using_directive_precision) {
+        testcase->context->status |= ctx.status;
+    }
+
     return SUCCESS;
 }
 
@@ -864,12 +924,8 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
 {
     char *op;
     bool is_using_directive_precision;
-    int32_t digits;
-    char *s;
-    int i;
     int needbytes;
-    decContext ctx;
-    char *p_sharp;
+    int i;
 
     op = testcase->operator;
     is_using_directive_precision = (strcasecmp(op, "apply") == 0
@@ -885,72 +941,61 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
     }
     memset(testcase->operand_numbers, 0, needbytes);
 
-    ctx = *testcase->context;
     for (i = 0; i < testcase->operand_count; ++i) {
-        s = testcase->operands[i];
-
-        ctx.digits = testcase->context->digits;
-        ctx.emax = testcase->context->emax;
-        ctx.emin = testcase->context->emin;
-
-        p_sharp = strchr(s, '#');
-        if (p_sharp != NULL) {
-            if (p_sharp == s) {
-                if (strcmp(op, "canonical") == 0) {
-                    if (!parse_hex_notation_canonical(s,
-                        &testcase->operand_numbers[i])
-                    ) {
-                        DBGPRINTF("parse_decimal64_hex_canonical failed for operand %d. [%s]\n",  i, s);
-                        return FAILURE;
-                    }
-                } else {
-                    if (!parse_hex_notation(s, &testcase->operand_numbers[i],
-                        &ctx, is_using_directive_precision)
-                    ) {
-                        DBGPRINTF("parse_hex_notation failed for operand %d. [%s]\n",  i, s);
-                        return FAILURE;
-                    }
-                }
-            } else {
-                if (!parse_format_dependent_decimal(s,
-                    &testcase->operand_numbers[i], &ctx,
-                    is_using_directive_precision)
-                ) {
-                    DBGPRINTF("parse_format_dependent_decimal failed for operand %d. [%s]\n",  i, s);
-                    return FAILURE;
-                }
-            }
-        } else {
-            if (!is_using_directive_precision) {
-                digits = count_coefficient_digit(s);
-                ctx.digits = (digits > testcase->context->digits
-                    ? digits : testcase->context->digits);
-                ctx.emax = DEC_MAX_EMAX;
-                ctx.emin = DEC_MIN_EMIN;
-            }
-            testcase->operand_numbers[i] = alloc_number(ctx.digits);
-            if (!testcase->operand_numbers[i]) {
-                return FAILURE;
-            }
-            decNumberFromString(testcase->operand_numbers[i], s, &ctx);
+        if (!testcase_convert_operand_to_number(testcase, i,
+            is_using_directive_precision)
+        ) {
+            return FAILURE;
         }
     }
-    if (is_using_directive_precision) {
-        testcase->context->status = ctx.status;
-    }
 
+    return SUCCESS;
+}
+
+static s_or_f testcase_convert_result_to_number(testcase_t *testcase)
+{
+    char *s;
+    char *p_sharp;
+    decContext ctx;
+    int32_t digits;
+
+    s = testcase->expected_string;
+    ctx = *testcase->context;
+    p_sharp = strchr(s, '#');
+    if (p_sharp != NULL) {
+        if (p_sharp == s) {
+            if (!parse_hex_notation(s, &testcase->expected_number, &ctx,
+                FALSE)
+            ) {
+                DBGPRINTF("parse_hex_notation failed for result. [%s]\n", s);
+                return FAILURE;
+            }
+        } else {
+            if (!parse_format_dependent_decimal(s, &testcase->expected_number,
+                &ctx, FALSE)
+            ) {
+                DBGPRINTF("parse_format_dependent_decimal failed for result. [%s]\n", s);
+                return FAILURE;
+            }
+        }
+    } else {
+        digits = count_coefficient_digit(s);
+        if (digits > ctx.digits) {
+            ctx.digits = digits;
+        }
+        testcase->expected_number = alloc_number(ctx.digits);
+        if (!testcase->expected_number) {
+            return FAILURE;
+        }
+        decNumberFromString(testcase->expected_number, s, &ctx);
+    }
     return SUCCESS;
 }
 
 static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     tokens_t *tokens)
 {
-    char *s;
     int i;
-    decNumber *n;
-    char *p_sharp;
-    decContext ctx;
-    int32_t digits;
 
     testcase->id = tokens->tokens[0];
     testcase->operator = tokens->tokens[1];
@@ -967,7 +1012,8 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     }
 
     testcase->operand_numbers = NULL;
-    testcase->operands = (char **)malloc(sizeof(char *) * testcase->operand_count);
+    testcase->operands = (char **)malloc(sizeof(char *)
+        * testcase->operand_count);
     if (!testcase->operands) {
         DBGPRINT("out of memory in testcase_init\n");
         return FAILURE;
@@ -976,44 +1022,14 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
         testcase->operands[i] = tokens->tokens[i + 2];
     }
 
-    s = tokens->tokens[2 + testcase->operand_count + 1];
-    testcase->expected_string = s;
+    testcase->expected_string = tokens->tokens[2 + testcase->operand_count + 1];
     testcase->expected_number = NULL;
     if (strcasecmp(testcase->operator, "class") != 0
         && strcasecmp(testcase->operator, "tosci") != 0
         && strcasecmp(testcase->operator, "toeng") != 0
     ) {
-        p_sharp = strchr(s, '#');
-        if (p_sharp != NULL) {
-            if (p_sharp == s) {
-                if (!parse_hex_notation(s, &testcase->expected_number, &ctx,
-                    FALSE)
-                ) {
-                    DBGPRINTF("parse_hex_notation failed for result. [%s]\n",  s);
-                    return FAILURE;
-                }
-            } else {
-                ctx = *testcase->context;
-                ctx.digits = 1;
-                if (!parse_format_dependent_decimal(s, &testcase->expected_number,
-                    &ctx, FALSE)
-                ) {
-                    DBGPRINTF("parse_format_dependent_decimal failed for result. [%s]\n",  s);
-                    return FAILURE;
-                }
-            }
-        } else {
-            ctx = *testcase->context;
-            digits = count_coefficient_digit(s);
-            ctx.digits = (digits > testcase->context->digits
-                ? digits : testcase->context->digits);
-            ctx.emax = DEC_MAX_EMAX;
-            ctx.emin = DEC_MIN_EMIN;
-            testcase->expected_number = alloc_number(ctx.digits);
-            if (!testcase->expected_number) {
-                return FAILURE;
-            }
-            decNumberFromString(testcase->expected_number, s, &ctx);
+        if (!testcase_convert_result_to_number(testcase)) {
+            return FAILURE;
         }
     }
 
@@ -1064,7 +1080,8 @@ static s_or_f testcase_run(testcase_t *testcase)
         } else if (strcasecmp(testcase->operator, "apply") == 0) {
             decNumberCopy(result, operands[0]);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1096,7 +1113,8 @@ static s_or_f testcase_run(testcase_t *testcase)
         } else if (strcasecmp(testcase->operator, "copysign") == 0) {
             decNumberCopySign(result, operands[0], operands[1]);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n", testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1108,7 +1126,8 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberDivideInteger(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1116,7 +1135,8 @@ static s_or_f testcase_run(testcase_t *testcase)
         if (strcasecmp(testcase->operator, "exp") == 0) {
             decNumberExp(result, operands[0], testcase->context);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1125,7 +1145,8 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberFMA(result, operands[0], operands[1], operands[2],
                 testcase->context);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1133,7 +1154,8 @@ static s_or_f testcase_run(testcase_t *testcase)
         if (strcasecmp(testcase->operator, "invert") == 0) {
             decNumberInvert(result, operands[0], testcase->context);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1145,7 +1167,8 @@ static s_or_f testcase_run(testcase_t *testcase)
         } else if (strcasecmp(testcase->operator, "logb") == 0) {
             decNumberLogB(result, operands[0], testcase->context);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1167,7 +1190,8 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberMultiply(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1180,7 +1204,8 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberNextToward(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1188,7 +1213,8 @@ static s_or_f testcase_run(testcase_t *testcase)
         if (strcasecmp(testcase->operator, "or") == 0) {
             decNumberOr(result, operands[0], operands[1], testcase->context);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1199,7 +1225,8 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberPower(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1208,7 +1235,8 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberQuantize(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1228,7 +1256,8 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberRotate(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1246,7 +1275,8 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberSubtract(result, operands[0], operands[1],
                 testcase->context);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1271,7 +1301,8 @@ static s_or_f testcase_run(testcase_t *testcase)
             decNumberCopy(result, operands[0]);
             decNumberTrim(result);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
@@ -1279,12 +1310,14 @@ static s_or_f testcase_run(testcase_t *testcase)
         if (strcasecmp(testcase->operator, "xor") == 0) {
             decNumberXor(result, operands[0], operands[1], testcase->context);
         } else {
-            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+            DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+                testcase->operator);
             return FAILURE;
         }
         break;
     default:
-        DBGPRINTF("error in testcase_run. unknown operator: %s.\n",  testcase->operator);
+        DBGPRINTF("error in testcase_run. unknown operator: %s.\n",
+            testcase->operator);
         return FAILURE;
     }
 
