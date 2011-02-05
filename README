@@ -5,4 +5,4 @@ see LICENSE for license.
 
 ./configure
 make
-./decTestRunner testcases/dectest/testall.decTest
+./decTestRunner testcases/dectest/testall.decTest > all.log
