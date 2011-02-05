@@ -186,7 +186,6 @@ static s_or_f tokens_add_token(tokens_t *tokens, const char *text,
         return FAILURE;
     }
     tokens->tokens[tokens->count] = unquote_token(text, length);
-//    print_error("DEBUG %s[%d] token=%s.\n", __FILE__, __LINE__, tokens->tokens[tokens->count]);
     if (!tokens->tokens[tokens->count]) {
         DBGPRINT("unquote_token failed\n");
         return FAILURE;
@@ -357,7 +356,6 @@ static int count_coefficient_digit(const char *s)
             break;
         }
     }
-//printf("count_coefficient_digit %s -> %d\n", s, count);
     return count;
 }
 
@@ -538,7 +536,6 @@ static s_or_f parse_hex(int bytes, uint8_t buf[], const char *s)
     }
 
     j = 0;
-//    printf("parse_hex");
     for (i = bytes - 1; i >= 0; --i, j += 2) {
         if (!convert_hex_char_to_int(s[j], &hi)) {
             return FAILURE;
@@ -547,9 +544,7 @@ static s_or_f parse_hex(int bytes, uint8_t buf[], const char *s)
             return FAILURE;
         }
         buf[i] = hi << 4 | lo;
-//        printf(" %02x", buf[i]);
     }
-//    printf("\n");
     return SUCCESS;
 }
 
@@ -1431,10 +1426,8 @@ static s_or_f testfile_process_test(testfile_t *testfile, tokens_t *tokens)
         return FAILURE;
     }
     if (testcase_has_null_operand(&testcase)) {
-//        printf("%s: null arg not supported -> skip.\n", testcase.id);
         ++testfile->skip_count;
     } else {
-//        testcase_print(&testcase);
         if (!testcase_run(&testcase)) {
             tokens_print(tokens);
             DBGPRINT("testcase_run failed.\n");
@@ -1636,7 +1629,6 @@ static s_or_f process_file(char *filename, testfile_t *parent)
     result = SUCCESS;
     testfile_init(&testfile, filename);
     while (fgets(line_buf, LINE_BUF_MAX_LEN, testfile.fp) != NULL) {
-//        printf(line_buf);
         if (!tokens_tokenize(&tokens, line_buf)) {
             result = FAILURE;
         }
