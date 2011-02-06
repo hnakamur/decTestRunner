@@ -93,7 +93,7 @@ static char *convert_number_to_string(const decNumber *dn)
     char *s;
     int buf_len;
 
-    buf_len = dn->digits + 14;
+    buf_len = dn->digits + 14 + 1;
     s = (char *)malloc(sizeof(char) * buf_len);
     if (!s) {
         return NULL;
@@ -107,7 +107,7 @@ static char *convert_number_to_eng_string(const decNumber *dn)
     char *s;
     int buf_len;
 
-    buf_len = dn->digits + 14;
+    buf_len = dn->digits + 14 + 1;
     s = (char *)malloc(sizeof(char) * buf_len);
     if (!s) {
         return NULL;
@@ -153,18 +153,20 @@ static char *unquote_token_helper(const char *s, size_t n, char quote)
     char *dup;
     int quote_count;
     int i;
+    int j;
     int len;
 
     quote_count = count_char(s + 1, n - 2, quote);
     len = n - 2 - quote_count / 2;
-    dup = (char *)malloc(sizeof(char) * (len + 1));
-    for (i = 0; i < len; ++i) {
-        dup[i] = s[i + 1];
-        if (dup[i] == quote) {
-            ++i;
+    dup = (char *)calloc(len + 1, sizeof(char));
+    i = 0;
+    for (j = 1; j < n - 1; ++j) {
+        dup[i++] = s[j];
+        if (s[j] == quote && s[j + 1] == quote) {
+            ++j;
         }
     }
-    dup[i] = '\0';
+    dup[len] = '\0';
     return dup;
 }
 
@@ -924,7 +926,6 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
 {
     char *op;
     bool is_using_directive_precision;
-    int needbytes;
     int i;
 
     op = testcase->operator;
@@ -933,13 +934,12 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
     testcase->context->traps = 0;
     testcase->context->status = 0;
 
-    needbytes = sizeof(decNumber *) * testcase->operand_count;
-    testcase->operand_numbers = (decNumber **)malloc(needbytes);
+    testcase->operand_numbers = (decNumber **)calloc(testcase->operand_count,
+        sizeof(decNumber *));
     if (!testcase->operand_numbers) {
         DBGPRINT("out of memory in testcase_convert_operands_to_numbers\n");
         return FAILURE;
     }
-    memset(testcase->operand_numbers, 0, needbytes);
 
     for (i = 0; i < testcase->operand_count; ++i) {
         if (!testcase_convert_operand_to_number(testcase, i,
@@ -1012,8 +1012,8 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     }
 
     testcase->operand_numbers = NULL;
-    testcase->operands = (char **)malloc(sizeof(char *)
-        * testcase->operand_count);
+    testcase->operands = (char **)calloc(testcase->operand_count,
+        sizeof(char *));
     if (!testcase->operands) {
         DBGPRINT("out of memory in testcase_init\n");
         return FAILURE;
