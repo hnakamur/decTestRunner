@@ -1757,7 +1757,7 @@ _ACEOF
 
 
 cat >>confdefs.h <<\_ACEOF
-#define DECSUBSET 0
+#define DECSUBSET 1
 _ACEOF
 
 

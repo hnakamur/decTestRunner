@@ -1,144 +1,671 @@
-== testcases/dectest/base.decTest: tests=1170, success=0, failure=0, skip=1170
-== testcases/dectest/abs.decTest: tests=89, success=0, failure=0, skip=89
-== testcases/dectest/add.decTest: tests=2100, success=0, failure=0, skip=2100
-== testcases/dectest/and.decTest: tests=279, success=0, failure=0, skip=279
-== testcases/dectest/clamp.decTest: tests=132, success=0, failure=0, skip=132
-== testcases/dectest/class.decTest: tests=84, success=0, failure=0, skip=84
-== testcases/dectest/compare.decTest: tests=639, success=0, failure=0, skip=639
-== testcases/dectest/comparesig.decTest: tests=625, success=0, failure=0, skip=625
-== testcases/dectest/comparetotal.decTest: tests=670, success=0, failure=0, skip=670
-== testcases/dectest/comparetotmag.decTest: tests=664, success=0, failure=0, skip=664
-== testcases/dectest/copy.decTest: tests=43, success=0, failure=0, skip=43
-== testcases/dectest/copyabs.decTest: tests=43, success=0, failure=0, skip=43
-== testcases/dectest/copynegate.decTest: tests=43, success=0, failure=0, skip=43
-== testcases/dectest/copysign.decTest: tests=111, success=0, failure=0, skip=111
-== testcases/dectest/divide.decTest: tests=631, success=0, failure=0, skip=631
-== testcases/dectest/divideint.decTest: tests=389, success=0, failure=0, skip=389
-== testcases/dectest/exp.decTest: tests=440, success=0, failure=0, skip=440
-== testcases/dectest/fma.decTest: tests=2612, success=0, failure=0, skip=2612
-== testcases/dectest/inexact.decTest: tests=152, success=0, failure=0, skip=152
-== testcases/dectest/invert.decTest: tests=128, success=0, failure=0, skip=128
-== testcases/dectest/ln.decTest: tests=414, success=0, failure=0, skip=414
-== testcases/dectest/logb.decTest: tests=128, success=0, failure=0, skip=128
-== testcases/dectest/log10.decTest: tests=389, success=0, failure=0, skip=389
-== testcases/dectest/max.decTest: tests=328, success=0, failure=0, skip=328
-== testcases/dectest/maxmag.decTest: tests=313, success=0, failure=0, skip=313
-== testcases/dectest/min.decTest: tests=317, success=0, failure=0, skip=317
-== testcases/dectest/minmag.decTest: tests=303, success=0, failure=0, skip=303
-== testcases/dectest/minus.decTest: tests=113, success=0, failure=0, skip=113
-== testcases/dectest/multiply.decTest: tests=521, success=0, failure=0, skip=521
-== testcases/dectest/nextminus.decTest: tests=104, success=0, failure=0, skip=104
-== testcases/dectest/nextplus.decTest: tests=106, success=0, failure=0, skip=106
-== testcases/dectest/nexttoward.decTest: tests=341, success=0, failure=0, skip=341
-== testcases/dectest/or.decTest: tests=276, success=0, failure=0, skip=276
-== testcases/dectest/plus.decTest: tests=122, success=0, failure=0, skip=122
-== testcases/dectest/power.decTest: tests=1207, success=0, failure=0, skip=1207
-== testcases/dectest/powersqrt.decTest: tests=2856, success=0, failure=0, skip=2856
-== testcases/dectest/quantize.decTest: tests=775, success=0, failure=0, skip=775
-== testcases/dectest/randoms.decTest: tests=4000, success=0, failure=0, skip=4000
-== testcases/dectest/reduce.decTest: tests=168, success=0, failure=0, skip=168
-== testcases/dectest/remainder.decTest: tests=517, success=0, failure=0, skip=517
-== testcases/dectest/remaindernear.decTest: tests=446, success=0, failure=0, skip=446
-== testcases/dectest/rescale.decTest: tests=617, success=0, failure=0, skip=617
-== testcases/dectest/rotate.decTest: tests=195, success=0, failure=0, skip=195
-== testcases/dectest/rounding.decTest: tests=1030, success=0, failure=0, skip=1030
-== testcases/dectest/samequantum.decTest: tests=333, success=0, failure=0, skip=333
-== testcases/dectest/scaleb.decTest: tests=155, success=0, failure=0, skip=155
-== testcases/dectest/shift.decTest: tests=200, success=0, failure=0, skip=200
-== testcases/dectest/squareroot.decTest: tests=3586, success=0, failure=0, skip=3586
-== testcases/dectest/subtract.decTest: tests=681, success=0, failure=0, skip=681
-== testcases/dectest/tointegral.decTest: tests=168, success=0, failure=0, skip=168
-== testcases/dectest/tointegralx.decTest: tests=180, success=0, failure=0, skip=180
-== testcases/dectest/trim.decTest: tests=110, success=0, failure=0, skip=110
-== testcases/dectest/xor.decTest: tests=277, success=0, failure=0, skip=277
-== testcases/dectest/dsBase.decTest: tests=909, success=0, failure=0, skip=909
-== testcases/dectest/dsEncode.decTest: tests=268, success=0, failure=0, skip=268
-== testcases/dectest/decSingle.decTest: tests=1177, success=0, failure=0, skip=1177
-== testcases/dectest/ddAbs.decTest: tests=75, success=0, failure=0, skip=75
-== testcases/dectest/ddAdd.decTest: tests=1091, success=0, failure=0, skip=1091
-== testcases/dectest/ddAnd.decTest: tests=287, success=0, failure=0, skip=287
-== testcases/dectest/ddBase.decTest: tests=947, success=0, failure=0, skip=947
-== testcases/dectest/ddCanonical.decTest: tests=230, success=0, failure=0, skip=230
-== testcases/dectest/ddClass.decTest: tests=42, success=0, failure=0, skip=42
-== testcases/dectest/ddCompare.decTest: tests=649, success=0, failure=0, skip=649
-== testcases/dectest/ddCompareSig.decTest: tests=559, success=0, failure=0, skip=559
-== testcases/dectest/ddCompareTotal.decTest: tests=613, success=0, failure=0, skip=613
-== testcases/dectest/ddCompareTotalMag.decTest: tests=613, success=0, failure=0, skip=613
-== testcases/dectest/ddCopy.decTest: tests=43, success=0, failure=0, skip=43
-== testcases/dectest/ddCopyAbs.decTest: tests=43, success=0, failure=0, skip=43
-== testcases/dectest/ddCopyNegate.decTest: tests=43, success=0, failure=0, skip=43
-== testcases/dectest/ddCopySign.decTest: tests=107, success=0, failure=0, skip=107
-== testcases/dectest/ddDivide.decTest: tests=717, success=0, failure=0, skip=717
-== testcases/dectest/ddDivideInt.decTest: tests=373, success=0, failure=0, skip=373
-== testcases/dectest/ddEncode.decTest: tests=376, success=0, failure=0, skip=376
-== testcases/dectest/ddFMA.decTest: tests=1378, success=0, failure=0, skip=1378
-== testcases/dectest/ddInvert.decTest: tests=151, success=0, failure=0, skip=151
-== testcases/dectest/ddLogB.decTest: tests=108, success=0, failure=0, skip=108
-== testcases/dectest/ddMax.decTest: tests=257, success=0, failure=0, skip=257
-== testcases/dectest/ddMaxMag.decTest: tests=243, success=0, failure=0, skip=243
-== testcases/dectest/ddMin.decTest: tests=247, success=0, failure=0, skip=247
-== testcases/dectest/ddMinMag.decTest: tests=233, success=0, failure=0, skip=233
-== testcases/dectest/ddMinus.decTest: tests=43, success=0, failure=0, skip=43
-== testcases/dectest/ddMultiply.decTest: tests=446, success=0, failure=0, skip=446
-== testcases/dectest/ddNextMinus.decTest: tests=84, success=0, failure=0, skip=84
-== testcases/dectest/ddNextPlus.decTest: tests=84, success=0, failure=0, skip=84
-== testcases/dectest/ddNextToward.decTest: tests=304, success=0, failure=0, skip=304
-== testcases/dectest/ddOr.decTest: tests=237, success=0, failure=0, skip=237
-== testcases/dectest/ddPlus.decTest: tests=43, success=0, failure=0, skip=43
-== testcases/dectest/ddQuantize.decTest: tests=683, success=0, failure=0, skip=683
-== testcases/dectest/ddReduce.decTest: tests=134, success=0, failure=0, skip=134
-== testcases/dectest/ddRemainder.decTest: tests=505, success=0, failure=0, skip=505
-== testcases/dectest/ddRemainderNear.decTest: tests=529, success=0, failure=0, skip=529
-== testcases/dectest/ddRotate.decTest: tests=212, success=0, failure=0, skip=212
-== testcases/dectest/ddSameQuantum.decTest: tests=333, success=0, failure=0, skip=333
-== testcases/dectest/ddScaleB.decTest: tests=184, success=0, failure=0, skip=184
-== testcases/dectest/ddShift.decTest: tests=212, success=0, failure=0, skip=212
-== testcases/dectest/ddSubtract.decTest: tests=516, success=0, failure=0, skip=516
-== testcases/dectest/ddToIntegral.decTest: tests=178, success=0, failure=0, skip=178
-== testcases/dectest/ddXor.decTest: tests=278, success=0, failure=0, skip=278
-== testcases/dectest/decDouble.decTest: tests=14430, success=0, failure=0, skip=14430
-== testcases/dectest/dqAbs.decTest: tests=75, success=0, failure=0, skip=75
-== testcases/dectest/dqAdd.decTest: tests=1012, success=0, failure=0, skip=1012
-== testcases/dectest/dqAnd.decTest: tests=357, success=0, failure=0, skip=357
-== testcases/dectest/dqBase.decTest: tests=928, success=0, failure=0, skip=928
-== testcases/dectest/dqCanonical.decTest: tests=244, success=0, failure=0, skip=244
-== testcases/dectest/dqClass.decTest: tests=42, success=0, failure=0, skip=42
-== testcases/dectest/dqCompare.decTest: tests=659, success=0, failure=0, skip=659
-== testcases/dectest/dqCompareSig.decTest: tests=559, success=0, failure=0, skip=559
-== testcases/dectest/dqCompareTotal.decTest: tests=613, success=0, failure=0, skip=613
-== testcases/dectest/dqCompareTotalMag.decTest: tests=613, success=0, failure=0, skip=613
-== testcases/dectest/dqCopy.decTest: tests=43, success=0, failure=0, skip=43
-== testcases/dectest/dqCopyAbs.decTest: tests=43, success=0, failure=0, skip=43
-== testcases/dectest/dqCopyNegate.decTest: tests=43, success=0, failure=0, skip=43
-== testcases/dectest/dqCopySign.decTest: tests=107, success=0, failure=0, skip=107
-== testcases/dectest/dqDivide.decTest: tests=688, success=0, failure=0, skip=688
-== testcases/dectest/dqDivideInt.decTest: tests=374, success=0, failure=0, skip=374
-== testcases/dectest/dqEncode.decTest: tests=368, success=0, failure=0, skip=368
-== testcases/dectest/dqFMA.decTest: tests=1451, success=0, failure=0, skip=1451
-== testcases/dectest/dqInvert.decTest: tests=193, success=0, failure=0, skip=193
-== testcases/dectest/dqLogB.decTest: tests=109, success=0, failure=0, skip=109
-== testcases/dectest/dqMax.decTest: tests=257, success=0, failure=0, skip=257
-== testcases/dectest/dqMaxMag.decTest: tests=243, success=0, failure=0, skip=243
-== testcases/dectest/dqMin.decTest: tests=247, success=0, failure=0, skip=247
-== testcases/dectest/dqMinMag.decTest: tests=233, success=0, failure=0, skip=233
-== testcases/dectest/dqMinus.decTest: tests=43, success=0, failure=0, skip=43
-== testcases/dectest/dqMultiply.decTest: tests=473, success=0, failure=0, skip=473
-== testcases/dectest/dqNextMinus.decTest: tests=84, success=0, failure=0, skip=84
-== testcases/dectest/dqNextPlus.decTest: tests=84, success=0, failure=0, skip=84
-== testcases/dectest/dqNextToward.decTest: tests=304, success=0, failure=0, skip=304
-== testcases/dectest/dqOr.decTest: tests=341, success=0, failure=0, skip=341
-== testcases/dectest/dqPlus.decTest: tests=43, success=0, failure=0, skip=43
-== testcases/dectest/dqQuantize.decTest: tests=686, success=0, failure=0, skip=686
-== testcases/dectest/dqReduce.decTest: tests=134, success=0, failure=0, skip=134
-== testcases/dectest/dqRemainder.decTest: tests=500, success=0, failure=0, skip=500
-== testcases/dectest/dqRemainderNear.decTest: tests=530, success=0, failure=0, skip=530
-== testcases/dectest/dqRotate.decTest: tests=248, success=0, failure=0, skip=248
-== testcases/dectest/dqSameQuantum.decTest: tests=333, success=0, failure=0, skip=333
-== testcases/dectest/dqScaleB.decTest: tests=202, success=0, failure=0, skip=202
-== testcases/dectest/dqShift.decTest: tests=248, success=0, failure=0, skip=248
-== testcases/dectest/dqSubtract.decTest: tests=520, success=0, failure=0, skip=520
-== testcases/dectest/dqToIntegral.decTest: tests=178, success=0, failure=0, skip=178
-== testcases/dectest/dqXor.decTest: tests=348, success=0, failure=0, skip=348
-== testcases/dectest/decQuad.decTest: tests=14800, success=0, failure=0, skip=14800
-== testcases/dectest/randombound32.decTest: tests=2400, success=0, failure=0, skip=2400
-== testcases/dectest/testall.decTest: tests=65127, success=0, failure=0, skip=65127
+== testcases/dectest/base.decTest: tests=1170, success=1170, failure=0, skip=0
+== testcases/dectest/abs.decTest: tests=89, success=88, failure=0, skip=1
+== testcases/dectest/add.decTest: tests=2100, success=2098, failure=0, skip=2
+== testcases/dectest/and.decTest: tests=279, success=279, failure=0, skip=0
+== testcases/dectest/clamp.decTest: tests=132, success=132, failure=0, skip=0
+== testcases/dectest/class.decTest: tests=84, success=84, failure=0, skip=0
+== testcases/dectest/compare.decTest: tests=639, success=637, failure=0, skip=2
+== testcases/dectest/comparesig.decTest: tests=625, success=623, failure=0, skip=2
+== testcases/dectest/comparetotal.decTest: tests=670, success=668, failure=0, skip=2
+== testcases/dectest/comparetotmag.decTest: tests=664, success=662, failure=0, skip=2
+== testcases/dectest/copy.decTest: tests=43, success=43, failure=0, skip=0
+== testcases/dectest/copyabs.decTest: tests=43, success=43, failure=0, skip=0
+== testcases/dectest/copynegate.decTest: tests=43, success=43, failure=0, skip=0
+== testcases/dectest/copysign.decTest: tests=111, success=111, failure=0, skip=0
+== testcases/dectest/divide.decTest: tests=631, success=629, failure=0, skip=2
+== testcases/dectest/divideint.decTest: tests=389, success=387, failure=0, skip=2
+== testcases/dectest/exp.decTest: tests=440, success=439, failure=0, skip=1
+== testcases/dectest/fma.decTest: tests=2612, success=2608, failure=0, skip=4
+== testcases/dectest/inexact.decTest: tests=152, success=152, failure=0, skip=0
+== testcases/dectest/invert.decTest: tests=128, success=128, failure=0, skip=0
+id=lnx116  ln 0.99999991000000405 -> -8.9999999999999878E-8 expected_status=0x820
+operand_numbers:
+[0] 0.99999991000000405 digits=17, exp=-17, bits=0x0, lsu=195 0 0 3df 3e7 63
+value unmatched
+   actual_value=[-8.9999999999999879E-8]
+ expected_value=[-8.9999999999999878E-8]
+status matched
+    actual_status=820 [Inexact Rounded]
+  expected_status=820 [Inexact Rounded]
+context prec=17, round=3, emax=384, emin=-383, status=820, traps=0, clamp=0, extented=1
+id=lnx732  ln 9.99999999999266E+999 -> 2302.58509299404 expected_status=0x820
+operand_numbers:
+[0] 9.99999999999266E+999 digits=15, exp=985, bits=0x0, lsu=10a 3e7 3e7 3e7 3e7
+value unmatched
+   actual_value=[2302.58509299405]
+ expected_value=[2302.58509299404]
+status matched
+    actual_status=820 [Inexact Rounded]
+  expected_status=820 [Inexact Rounded]
+context prec=15, round=3, emax=999, emin=-999, status=820, traps=0, clamp=0, extented=1
+== testcases/dectest/ln.decTest: tests=414, success=411, failure=2, skip=1
+== testcases/dectest/logb.decTest: tests=128, success=127, failure=0, skip=1
+== testcases/dectest/log10.decTest: tests=389, success=388, failure=0, skip=1
+== testcases/dectest/max.decTest: tests=328, success=326, failure=0, skip=2
+== testcases/dectest/maxmag.decTest: tests=313, success=311, failure=0, skip=2
+== testcases/dectest/min.decTest: tests=317, success=315, failure=0, skip=2
+== testcases/dectest/minmag.decTest: tests=303, success=301, failure=0, skip=2
+== testcases/dectest/minus.decTest: tests=113, success=112, failure=0, skip=1
+== testcases/dectest/multiply.decTest: tests=521, success=519, failure=0, skip=2
+== testcases/dectest/nextminus.decTest: tests=104, success=103, failure=0, skip=1
+== testcases/dectest/nextplus.decTest: tests=106, success=105, failure=0, skip=1
+== testcases/dectest/nexttoward.decTest: tests=341, success=339, failure=0, skip=2
+== testcases/dectest/or.decTest: tests=276, success=276, failure=0, skip=0
+== testcases/dectest/plus.decTest: tests=122, success=121, failure=0, skip=1
+id=powx4302  power 1.000001 1e-101 -> 1.000001 expected_status=0x820
+operand_numbers:
+[0] 1.000001 digits=7, exp=-6, bits=0x0, lsu=1 0 1
+[1] 1E-101 digits=1, exp=-101, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1.000000]
+ expected_value=[1.000001]
+status matched
+    actual_status=820 [Inexact Rounded]
+  expected_status=820 [Inexact Rounded]
+context prec=7, round=0, emax=96, emin=-95, status=820, traps=0, clamp=0, extented=1
+id=powx4303  power 1.000001 1e-95 -> 1.000001 expected_status=0x820
+operand_numbers:
+[0] 1.000001 digits=7, exp=-6, bits=0x0, lsu=1 0 1
+[1] 1E-95 digits=1, exp=-95, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1.000000]
+ expected_value=[1.000001]
+status matched
+    actual_status=820 [Inexact Rounded]
+  expected_status=820 [Inexact Rounded]
+context prec=7, round=0, emax=96, emin=-95, status=820, traps=0, clamp=0, extented=1
+id=powx4342  power 0.9999999 1e-101 -> 0.9999999 expected_status=0x820
+operand_numbers:
+[0] 0.9999999 digits=7, exp=-7, bits=0x0, lsu=3e7 3e7 9
+[1] 1E-101 digits=1, exp=-101, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1.000000]
+ expected_value=[0.9999999]
+status matched
+    actual_status=820 [Inexact Rounded]
+  expected_status=820 [Inexact Rounded]
+context prec=7, round=6, emax=96, emin=-95, status=820, traps=0, clamp=0, extented=1
+id=powx4343  power 0.9999999 1e-95 -> 0.9999999 expected_status=0x820
+operand_numbers:
+[0] 0.9999999 digits=7, exp=-7, bits=0x0, lsu=3e7 3e7 9
+[1] 1E-95 digits=1, exp=-95, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1.000000]
+ expected_value=[0.9999999]
+status matched
+    actual_status=820 [Inexact Rounded]
+  expected_status=820 [Inexact Rounded]
+context prec=7, round=6, emax=96, emin=-95, status=820, traps=0, clamp=0, extented=1
+== testcases/dectest/power.decTest: tests=1207, success=1201, failure=4, skip=2
+id=pwsx805  power 10E-19 0.5 -> 1.0000000000E-9 expected_status=0x820
+operand_numbers:
+[0] 1.0E-18 digits=2, exp=-19, bits=0x0, lsu=a
+[1] 0.5 digits=1, exp=-1, bits=0x0, lsu=5
+value matched
+   actual_value=[1.0000000000E-9]
+ expected_value=[1.0000000000E-9]
+status unmatched
+    actual_status=3820 [Inexact Rounded Subnormal Underflow]
+  expected_status=820 [Inexact Rounded]
+context prec=11, round=3, emax=9, emin=-9, status=3820, traps=0, clamp=0, extented=1
+== testcases/dectest/powersqrt.decTest: tests=2856, success=2854, failure=1, skip=1
+id=quax804  quantize 0 1e-2000000000 -> NaN expected_status=0x80
+operand_numbers:
+[0] 0 digits=1, exp=0, bits=0x0, lsu=0
+[1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
+id=quax806  quantize 0 1e-3000000000 -> NaN expected_status=0x80
+operand_numbers:
+[0] 0 digits=1, exp=0, bits=0x0, lsu=0
+[1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
+id=quax808  quantize 0 1e-4000000000 -> NaN expected_status=0x80
+operand_numbers:
+[0] 0 digits=1, exp=0, bits=0x0, lsu=0
+[1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
+id=quax810  quantize 0 1e-5000000000 -> NaN expected_status=0x80
+operand_numbers:
+[0] 0 digits=1, exp=0, bits=0x0, lsu=0
+[1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
+id=quax812  quantize 0 1e-6000000000 -> NaN expected_status=0x80
+operand_numbers:
+[0] 0 digits=1, exp=0, bits=0x0, lsu=0
+[1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
+id=quax814  quantize 0 1e-7000000000 -> NaN expected_status=0x80
+operand_numbers:
+[0] 0 digits=1, exp=0, bits=0x0, lsu=0
+[1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
+id=quax816  quantize 0 1e-8000000000 -> NaN expected_status=0x80
+operand_numbers:
+[0] 0 digits=1, exp=0, bits=0x0, lsu=0
+[1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
+id=quax818  quantize 0 1e-9000000000 -> NaN expected_status=0x80
+operand_numbers:
+[0] 0 digits=1, exp=0, bits=0x0, lsu=0
+[1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
+id=quax820  quantize 0 1e-9999999999 -> NaN expected_status=0x80
+operand_numbers:
+[0] 0 digits=1, exp=0, bits=0x0, lsu=0
+[1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
+id=quax822  quantize 0 1e-10000000000 -> NaN expected_status=0x80
+operand_numbers:
+[0] 0 digits=1, exp=0, bits=0x0, lsu=0
+[1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
+id=quax854  quantize 0 1e-1000000008 -> NaN expected_status=0x80
+operand_numbers:
+[0] 0 digits=1, exp=0, bits=0x0, lsu=0
+[1] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[NaN]
+status unmatched
+    actual_status=0 []
+  expected_status=80 [Invalid_operation]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0, extented=1
+id=quax1026  quantize 64#8.666666666666000E+384 128#1E+384 -> 64#9E+384 expected_status=0xc20
+operand_numbers:
+[0] 8.666666666666000E+384 digits=16, exp=369, bits=0x0, lsu=0 29a 29a 29a 29a 8
+[1] 1E+384 digits=1, exp=384, bits=0x0, lsu=1
+value unmatched
+   actual_value=[9E+384]
+ expected_value=[9.000000000000000E+384]
+status unmatched
+    actual_status=820 [Inexact Rounded]
+  expected_status=c20 [Inexact Clamped Rounded]
+context prec=16, round=2, emax=384, emin=-383, status=820, traps=0, clamp=0, extented=1
+== testcases/dectest/quantize.decTest: tests=775, success=761, failure=12, skip=2
+== testcases/dectest/randoms.decTest: tests=4000, success=4000, failure=0, skip=0
+== testcases/dectest/reduce.decTest: tests=168, success=167, failure=0, skip=1
+== testcases/dectest/remainder.decTest: tests=517, success=515, failure=0, skip=2
+== testcases/dectest/remaindernear.decTest: tests=446, success=444, failure=0, skip=2
+== testcases/dectest/rescale.decTest: tests=617, success=615, failure=0, skip=2
+== testcases/dectest/rotate.decTest: tests=195, success=195, failure=0, skip=0
+== testcases/dectest/rounding.decTest: tests=1030, success=1030, failure=0, skip=0
+== testcases/dectest/samequantum.decTest: tests=333, success=333, failure=0, skip=0
+== testcases/dectest/scaleb.decTest: tests=155, success=155, failure=0, skip=0
+== testcases/dectest/shift.decTest: tests=200, success=200, failure=0, skip=0
+== testcases/dectest/squareroot.decTest: tests=3586, success=3585, failure=0, skip=1
+== testcases/dectest/subtract.decTest: tests=681, success=679, failure=0, skip=2
+== testcases/dectest/tointegral.decTest: tests=168, success=168, failure=0, skip=0
+== testcases/dectest/tointegralx.decTest: tests=180, success=180, failure=0, skip=0
+== testcases/dectest/trim.decTest: tests=110, success=109, failure=0, skip=1
+== testcases/dectest/xor.decTest: tests=277, success=277, failure=0, skip=0
+== testcases/dectest/dsBase.decTest: tests=909, success=909, failure=0, skip=0
+id=decs078  apply #00020000 -> 1.00000E-96 expected_status=0x1000
+operand_numbers:
+[0] 1.00000E-96 digits=6, exp=-101, bits=0x0, lsu=0 64
+value matched
+   actual_value=[1.00000E-96]
+ expected_value=[1.00000E-96]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
+id=decs080  apply #00000010 -> 1.0E-100 expected_status=0x1000
+operand_numbers:
+[0] 1.0E-100 digits=2, exp=-101, bits=0x0, lsu=a
+value matched
+   actual_value=[1.0E-100]
+ expected_value=[1.0E-100]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
+id=decs082  apply #00000001 -> 1E-101 expected_status=0x1000
+operand_numbers:
+[0] 1E-101 digits=1, exp=-101, bits=0x0, lsu=1
+value matched
+   actual_value=[1E-101]
+ expected_value=[1E-101]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
+id=decs084  apply #00000001 -> 1E-101 expected_status=0x1000
+operand_numbers:
+[0] 1E-101 digits=1, exp=-101, bits=0x0, lsu=1
+value matched
+   actual_value=[1E-101]
+ expected_value=[1E-101]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
+id=decs178  apply #80020000 -> -1.00000E-96 expected_status=0x1000
+operand_numbers:
+[0] -1.00000E-96 digits=6, exp=-101, bits=0x80, lsu=0 64
+value matched
+   actual_value=[-1.00000E-96]
+ expected_value=[-1.00000E-96]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
+id=decs180  apply #80000010 -> -1.0E-100 expected_status=0x1000
+operand_numbers:
+[0] -1.0E-100 digits=2, exp=-101, bits=0x80, lsu=a
+value matched
+   actual_value=[-1.0E-100]
+ expected_value=[-1.0E-100]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
+id=decs182  apply #80000001 -> -1E-101 expected_status=0x1000
+operand_numbers:
+[0] -1E-101 digits=1, exp=-101, bits=0x80, lsu=1
+value matched
+   actual_value=[-1E-101]
+ expected_value=[-1E-101]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
+id=decs184  apply #80000001 -> -1E-101 expected_status=0x1000
+operand_numbers:
+[0] -1E-101 digits=1, exp=-101, bits=0x80, lsu=1
+value matched
+   actual_value=[-1E-101]
+ expected_value=[-1E-101]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
+id=decs791  apply #00000100 -> 2.00E-99 expected_status=0x1000
+operand_numbers:
+[0] 2.00E-99 digits=3, exp=-101, bits=0x0, lsu=c8
+value matched
+   actual_value=[2.00E-99]
+ expected_value=[2.00E-99]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=7, round=2, emax=96, emin=-95, status=0, traps=0, clamp=1, extented=1
+== testcases/dectest/dsEncode.decTest: tests=268, success=259, failure=9, skip=0
+== testcases/dectest/decSingle.decTest: tests=1177, success=1168, failure=9, skip=0
+== testcases/dectest/ddAbs.decTest: tests=75, success=74, failure=0, skip=1
+== testcases/dectest/ddAdd.decTest: tests=1091, success=1089, failure=0, skip=2
+== testcases/dectest/ddAnd.decTest: tests=287, success=287, failure=0, skip=0
+== testcases/dectest/ddBase.decTest: tests=947, success=947, failure=0, skip=0
+== testcases/dectest/ddCanonical.decTest: tests=230, success=230, failure=0, skip=0
+== testcases/dectest/ddClass.decTest: tests=42, success=42, failure=0, skip=0
+== testcases/dectest/ddCompare.decTest: tests=649, success=647, failure=0, skip=2
+== testcases/dectest/ddCompareSig.decTest: tests=559, success=557, failure=0, skip=2
+== testcases/dectest/ddCompareTotal.decTest: tests=613, success=611, failure=0, skip=2
+== testcases/dectest/ddCompareTotalMag.decTest: tests=613, success=611, failure=0, skip=2
+== testcases/dectest/ddCopy.decTest: tests=43, success=43, failure=0, skip=0
+== testcases/dectest/ddCopyAbs.decTest: tests=43, success=43, failure=0, skip=0
+== testcases/dectest/ddCopyNegate.decTest: tests=43, success=43, failure=0, skip=0
+== testcases/dectest/ddCopySign.decTest: tests=107, success=107, failure=0, skip=0
+== testcases/dectest/ddDivide.decTest: tests=717, success=715, failure=0, skip=2
+== testcases/dectest/ddDivideInt.decTest: tests=373, success=371, failure=0, skip=2
+id=decd078  apply #0000800000000000 -> 1.00000000000000E-384 expected_status=0x1000
+operand_numbers:
+[0] 1.00000000000000E-384 digits=15, exp=-398, bits=0x0, lsu=0 0 0 0 64
+value matched
+   actual_value=[1.00000000000000E-384]
+ expected_value=[1.00000000000000E-384]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
+id=decd080  apply #0000000000000010 -> 1.0E-397 expected_status=0x1000
+operand_numbers:
+[0] 1.0E-397 digits=2, exp=-398, bits=0x0, lsu=a
+value matched
+   actual_value=[1.0E-397]
+ expected_value=[1.0E-397]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
+id=decd082  apply #0004000000000001 -> 1E-397 expected_status=0x1000
+operand_numbers:
+[0] 1E-397 digits=1, exp=-397, bits=0x0, lsu=1
+value matched
+   actual_value=[1E-397]
+ expected_value=[1E-397]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
+id=decd084  apply #0000000000000001 -> 1E-398 expected_status=0x1000
+operand_numbers:
+[0] 1E-398 digits=1, exp=-398, bits=0x0, lsu=1
+value matched
+   actual_value=[1E-398]
+ expected_value=[1E-398]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
+id=decd178  apply #8000800000000000 -> -1.00000000000000E-384 expected_status=0x1000
+operand_numbers:
+[0] -1.00000000000000E-384 digits=15, exp=-398, bits=0x80, lsu=0 0 0 0 64
+value matched
+   actual_value=[-1.00000000000000E-384]
+ expected_value=[-1.00000000000000E-384]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
+id=decd180  apply #8000000000000010 -> -1.0E-397 expected_status=0x1000
+operand_numbers:
+[0] -1.0E-397 digits=2, exp=-398, bits=0x80, lsu=a
+value matched
+   actual_value=[-1.0E-397]
+ expected_value=[-1.0E-397]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
+id=decd182  apply #8004000000000001 -> -1E-397 expected_status=0x1000
+operand_numbers:
+[0] -1E-397 digits=1, exp=-397, bits=0x80, lsu=1
+value matched
+   actual_value=[-1E-397]
+ expected_value=[-1E-397]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
+id=decd184  apply #8000000000000001 -> -1E-398 expected_status=0x1000
+operand_numbers:
+[0] -1E-398 digits=1, exp=-398, bits=0x80, lsu=1
+value matched
+   actual_value=[-1E-398]
+ expected_value=[-1E-398]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
+id=decd188  apply #00009124491246a4 -> 1.11111111111524E-384 expected_status=0x1000
+operand_numbers:
+[0] 1.11111111111524E-384 digits=15, exp=-398, bits=0x0, lsu=20c 6f 6f 6f 6f
+value matched
+   actual_value=[1.11111111111524E-384]
+ expected_value=[1.11111111111524E-384]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
+id=decd850  apply #0004070000000000 -> 7.000000000000E-385 expected_status=0x1000
+operand_numbers:
+[0] 7.000000000000E-385 digits=13, exp=-397, bits=0x0, lsu=0 0 0 0 7
+value matched
+   actual_value=[7.000000000000E-385]
+ expected_value=[7.000000000000E-385]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
+id=decd851  apply #0008000000020000 -> 1.00000E-391 expected_status=0x1000
+operand_numbers:
+[0] 1.00000E-391 digits=6, exp=-396, bits=0x0, lsu=0 64
+value matched
+   actual_value=[1.00000E-391]
+ expected_value=[1.00000E-391]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=16, round=2, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
+== testcases/dectest/ddEncode.decTest: tests=376, success=365, failure=11, skip=0
+== testcases/dectest/ddFMA.decTest: tests=1378, success=1374, failure=0, skip=4
+== testcases/dectest/ddInvert.decTest: tests=151, success=151, failure=0, skip=0
+== testcases/dectest/ddLogB.decTest: tests=108, success=107, failure=0, skip=1
+== testcases/dectest/ddMax.decTest: tests=257, success=255, failure=0, skip=2
+== testcases/dectest/ddMaxMag.decTest: tests=243, success=241, failure=0, skip=2
+== testcases/dectest/ddMin.decTest: tests=247, success=245, failure=0, skip=2
+== testcases/dectest/ddMinMag.decTest: tests=233, success=231, failure=0, skip=2
+== testcases/dectest/ddMinus.decTest: tests=43, success=43, failure=0, skip=0
+== testcases/dectest/ddMultiply.decTest: tests=446, success=444, failure=0, skip=2
+== testcases/dectest/ddNextMinus.decTest: tests=84, success=83, failure=0, skip=1
+== testcases/dectest/ddNextPlus.decTest: tests=84, success=83, failure=0, skip=1
+== testcases/dectest/ddNextToward.decTest: tests=304, success=302, failure=0, skip=2
+== testcases/dectest/ddOr.decTest: tests=237, success=237, failure=0, skip=0
+== testcases/dectest/ddPlus.decTest: tests=43, success=43, failure=0, skip=0
+== testcases/dectest/ddQuantize.decTest: tests=683, success=681, failure=0, skip=2
+== testcases/dectest/ddReduce.decTest: tests=134, success=133, failure=0, skip=1
+== testcases/dectest/ddRemainder.decTest: tests=505, success=503, failure=0, skip=2
+== testcases/dectest/ddRemainderNear.decTest: tests=529, success=527, failure=0, skip=2
+== testcases/dectest/ddRotate.decTest: tests=212, success=212, failure=0, skip=0
+== testcases/dectest/ddSameQuantum.decTest: tests=333, success=333, failure=0, skip=0
+== testcases/dectest/ddScaleB.decTest: tests=184, success=184, failure=0, skip=0
+== testcases/dectest/ddShift.decTest: tests=212, success=212, failure=0, skip=0
+== testcases/dectest/ddSubtract.decTest: tests=516, success=514, failure=0, skip=2
+id=ddintx074  tointegralx 1.23E+384 -> #47fd300000000000 expected_status=0x400
+operand_numbers:
+[0] 1.23E+384 digits=3, exp=382, bits=0x0, lsu=7b
+value unmatched
+   actual_value=[1.23E+384]
+ expected_value=[1.230000000000000E+384]
+status unmatched
+    actual_status=0 []
+  expected_status=400 [Clamped]
+context prec=16, round=3, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
+id=ddintx094  tointegralx -1.23E+384 -> #c7fd300000000000 expected_status=0x400
+operand_numbers:
+[0] -1.23E+384 digits=3, exp=382, bits=0x80, lsu=7b
+value unmatched
+   actual_value=[-1.23E+384]
+ expected_value=[-1.230000000000000E+384]
+status unmatched
+    actual_status=0 []
+  expected_status=400 [Clamped]
+context prec=16, round=3, emax=384, emin=-383, status=0, traps=0, clamp=1, extented=1
+== testcases/dectest/ddToIntegral.decTest: tests=178, success=176, failure=2, skip=0
+== testcases/dectest/ddXor.decTest: tests=278, success=278, failure=0, skip=0
+== testcases/dectest/decDouble.decTest: tests=14430, success=14374, failure=13, skip=43
+== testcases/dectest/dqAbs.decTest: tests=75, success=74, failure=0, skip=1
+== testcases/dectest/dqAdd.decTest: tests=1012, success=1010, failure=0, skip=2
+== testcases/dectest/dqAnd.decTest: tests=357, success=357, failure=0, skip=0
+== testcases/dectest/dqBase.decTest: tests=928, success=928, failure=0, skip=0
+== testcases/dectest/dqCanonical.decTest: tests=244, success=244, failure=0, skip=0
+== testcases/dectest/dqClass.decTest: tests=42, success=42, failure=0, skip=0
+== testcases/dectest/dqCompare.decTest: tests=659, success=657, failure=0, skip=2
+== testcases/dectest/dqCompareSig.decTest: tests=559, success=557, failure=0, skip=2
+== testcases/dectest/dqCompareTotal.decTest: tests=613, success=611, failure=0, skip=2
+== testcases/dectest/dqCompareTotalMag.decTest: tests=613, success=611, failure=0, skip=2
+== testcases/dectest/dqCopy.decTest: tests=43, success=43, failure=0, skip=0
+== testcases/dectest/dqCopyAbs.decTest: tests=43, success=43, failure=0, skip=0
+== testcases/dectest/dqCopyNegate.decTest: tests=43, success=43, failure=0, skip=0
+== testcases/dectest/dqCopySign.decTest: tests=107, success=107, failure=0, skip=0
+== testcases/dectest/dqDivide.decTest: tests=688, success=686, failure=0, skip=2
+== testcases/dectest/dqDivideInt.decTest: tests=374, success=372, failure=0, skip=2
+id=decq078  apply #00000800000000000000000000000000 -> 1.00000000000000000000000000000000E-6144 expected_status=0x1000
+operand_numbers:
+[0] 1.00000000000000000000000000000000E-6144 digits=33, exp=-6176, bits=0x0, lsu=0 0 0 0 0 0 0 0 0 0 64
+value matched
+   actual_value=[1.00000000000000000000000000000000E-6144]
+ expected_value=[1.00000000000000000000000000000000E-6144]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
+id=decq080  apply #00000000000000000000000000000010 -> 1.0E-6175 expected_status=0x1000
+operand_numbers:
+[0] 1.0E-6175 digits=2, exp=-6176, bits=0x0, lsu=a
+value matched
+   actual_value=[1.0E-6175]
+ expected_value=[1.0E-6175]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
+id=decq082  apply #00004000000000000000000000000001 -> 1E-6175 expected_status=0x1000
+operand_numbers:
+[0] 1E-6175 digits=1, exp=-6175, bits=0x0, lsu=1
+value matched
+   actual_value=[1E-6175]
+ expected_value=[1E-6175]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
+id=decq084  apply #00000000000000000000000000000001 -> 1E-6176 expected_status=0x1000
+operand_numbers:
+[0] 1E-6176 digits=1, exp=-6176, bits=0x0, lsu=1
+value matched
+   actual_value=[1E-6176]
+ expected_value=[1E-6176]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
+id=decq178  apply #80000800000000000000000000000000 -> -1.00000000000000000000000000000000E-6144 expected_status=0x1000
+operand_numbers:
+[0] -1.00000000000000000000000000000000E-6144 digits=33, exp=-6176, bits=0x80, lsu=0 0 0 0 0 0 0 0 0 0 64
+value matched
+   actual_value=[-1.00000000000000000000000000000000E-6144]
+ expected_value=[-1.00000000000000000000000000000000E-6144]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
+id=decq180  apply #80000000000000000000000000000010 -> -1.0E-6175 expected_status=0x1000
+operand_numbers:
+[0] -1.0E-6175 digits=2, exp=-6176, bits=0x80, lsu=a
+value matched
+   actual_value=[-1.0E-6175]
+ expected_value=[-1.0E-6175]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
+id=decq182  apply #80004000000000000000000000000001 -> -1E-6175 expected_status=0x1000
+operand_numbers:
+[0] -1E-6175 digits=1, exp=-6175, bits=0x80, lsu=1
+value matched
+   actual_value=[-1E-6175]
+ expected_value=[-1E-6175]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
+id=decq184  apply #80000000000000000000000000000001 -> -1E-6176 expected_status=0x1000
+operand_numbers:
+[0] -1E-6176 digits=1, exp=-6176, bits=0x80, lsu=1
+value matched
+   actual_value=[-1E-6176]
+ expected_value=[-1E-6176]
+status unmatched
+    actual_status=0 []
+  expected_status=1000 [Subnormal]
+context prec=34, round=2, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
+== testcases/dectest/dqEncode.decTest: tests=368, success=360, failure=8, skip=0
+== testcases/dectest/dqFMA.decTest: tests=1451, success=1447, failure=0, skip=4
+== testcases/dectest/dqInvert.decTest: tests=193, success=193, failure=0, skip=0
+== testcases/dectest/dqLogB.decTest: tests=109, success=108, failure=0, skip=1
+== testcases/dectest/dqMax.decTest: tests=257, success=255, failure=0, skip=2
+== testcases/dectest/dqMaxMag.decTest: tests=243, success=241, failure=0, skip=2
+== testcases/dectest/dqMin.decTest: tests=247, success=245, failure=0, skip=2
+== testcases/dectest/dqMinMag.decTest: tests=233, success=231, failure=0, skip=2
+== testcases/dectest/dqMinus.decTest: tests=43, success=43, failure=0, skip=0
+== testcases/dectest/dqMultiply.decTest: tests=473, success=471, failure=0, skip=2
+== testcases/dectest/dqNextMinus.decTest: tests=84, success=83, failure=0, skip=1
+== testcases/dectest/dqNextPlus.decTest: tests=84, success=83, failure=0, skip=1
+== testcases/dectest/dqNextToward.decTest: tests=304, success=302, failure=0, skip=2
+== testcases/dectest/dqOr.decTest: tests=341, success=341, failure=0, skip=0
+== testcases/dectest/dqPlus.decTest: tests=43, success=43, failure=0, skip=0
+== testcases/dectest/dqQuantize.decTest: tests=686, success=684, failure=0, skip=2
+== testcases/dectest/dqReduce.decTest: tests=134, success=133, failure=0, skip=1
+== testcases/dectest/dqRemainder.decTest: tests=500, success=498, failure=0, skip=2
+== testcases/dectest/dqRemainderNear.decTest: tests=530, success=528, failure=0, skip=2
+== testcases/dectest/dqRotate.decTest: tests=248, success=248, failure=0, skip=0
+== testcases/dectest/dqSameQuantum.decTest: tests=333, success=333, failure=0, skip=0
+== testcases/dectest/dqScaleB.decTest: tests=202, success=202, failure=0, skip=0
+== testcases/dectest/dqShift.decTest: tests=248, success=248, failure=0, skip=0
+== testcases/dectest/dqSubtract.decTest: tests=520, success=518, failure=0, skip=2
+id=dqintx074  tointegralx 1.23E+6144 -> #47ffd300000000000000000000000000 expected_status=0x400
+operand_numbers:
+[0] 1.23E+6144 digits=3, exp=6142, bits=0x0, lsu=7b
+value unmatched
+   actual_value=[1.23E+6144]
+ expected_value=[1.230000000000000000000000000000000E+6144]
+status unmatched
+    actual_status=0 []
+  expected_status=400 [Clamped]
+context prec=34, round=3, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
+id=dqintx094  tointegralx -1.23E+6144 -> #c7ffd300000000000000000000000000 expected_status=0x400
+operand_numbers:
+[0] -1.23E+6144 digits=3, exp=6142, bits=0x80, lsu=7b
+value unmatched
+   actual_value=[-1.23E+6144]
+ expected_value=[-1.230000000000000000000000000000000E+6144]
+status unmatched
+    actual_status=0 []
+  expected_status=400 [Clamped]
+context prec=34, round=3, emax=6144, emin=-6143, status=0, traps=0, clamp=1, extented=1
+== testcases/dectest/dqToIntegral.decTest: tests=178, success=176, failure=2, skip=0
+== testcases/dectest/dqXor.decTest: tests=348, success=348, failure=0, skip=0
+== testcases/dectest/decQuad.decTest: tests=14800, success=14747, failure=10, skip=43
+== testcases/dectest/randombound32.decTest: tests=2400, success=2400, failure=0, skip=0
+== testcases/dectest/testall.decTest: tests=65127, success=64935, failure=51, skip=141

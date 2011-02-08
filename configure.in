@@ -7,7 +7,7 @@ AM_INIT_AUTOMAKE([foreign])
 AC_CONFIG_SRCDIR([decTestRunner.c])
 AC_CONFIG_HEADER([config.h])
 AC_DEFINE([DECEXTFLAG], 1, [Define to 1 to enable extended flags.])
-AC_DEFINE([DECSUBSET], 0, [Define to 1 to enable subset arithmetic.])
+AC_DEFINE([DECSUBSET], 1, [Define to 1 to enable subset arithmetic.])
 AC_DEFINE([DECNUMDIGITS], 34, [The default number of digits that can be held.])
 AC_DEFINE([DECCHECK], 1, [Define to 1 for extended operand checking (including NULL operands).])
 
