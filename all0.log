@@ -1,0 +1,3371 @@
+id=bas130  toSci 0.000E-1 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0000 digits=1, exp=-4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas131  toSci 0.000E-2 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00000 digits=1, exp=-5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas132  toSci 0.000E-3 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000000 digits=1, exp=-6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas133  toSci 0.000E-4 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-7 digits=1, exp=-7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-7]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas134  toSci 0.00E-2 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0000 digits=1, exp=-4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas135  toSci 0.00E-3 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00000 digits=1, exp=-5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas136  toSci 0.00E-4 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000000 digits=1, exp=-6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas137  toSci 0.00E-5 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-7 digits=1, exp=-7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-7]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas138  toSci +0E+9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+9 digits=1, exp=9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas139  toSci -0E+9 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0E+9 digits=1, exp=9, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0E+9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas144  toSci 0E+9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+9 digits=1, exp=9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas149  toSci 000E+9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+9 digits=1, exp=9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas154  toSci 0E9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+9 digits=1, exp=9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas155  toSci 0.000e+0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000 digits=1, exp=-3, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas156  toSci 0.000E-1 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0000 digits=1, exp=-4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas160  toSci 00E+9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+9 digits=1, exp=9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas161  toSci 00E-9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-9 digits=1, exp=-9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=15, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas500  toSci 1..2 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas501  toSci . -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas502  toSci .. -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas503  toSci ++1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas504  toSci --1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas505  toSci -+1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas506  toSci +-1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas507  toSci 12e -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas508  toSci 12e++ -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas509  toSci 12f4 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas510  toSci  +1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas511  toSci + 1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas512  toSci 12  -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas513  toSci  + 1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas514  toSci  - 1  -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas515  toSci x -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas516  toSci -1- -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas517  toSci 12- -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas518  toSci 3+ -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas519  toSci  -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas520  toSci 1e- -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas521  toSci 7e99999a -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas522  toSci 7e123567890x -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas523  toSci 7e12356789012x -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas524  toSci  -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas525  toSci e100 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas526  toSci \u0e5a -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas527  toSci \u0b65 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas528  toSci 123,65 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas529  toSci 1.34.5 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas530  toSci .123.5 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas531  toSci 01.35. -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas532  toSci 01.35- -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas533  toSci 0000.. -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas534  toSci .0000. -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas535  toSci 00..00 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas536  toSci 111e*123 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas537  toSci 111e123- -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas538  toSci 111e+12+ -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas539  toSci 111e1-3- -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas540  toSci 111e1*23 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas541  toSci 111e1e+3 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas542  toSci 1e1.0 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas543  toSci 1e123e -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas544  toSci ten -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas545  toSci ONE -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas546  toSci 1e.1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas547  toSci 1e1. -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas548  toSci 1ee -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas549  toSci e+1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas550  toSci 1.23.4 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas551  toSci 1.2.1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas552  toSci 1E+1.2 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas553  toSci 1E+1.2.3 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas554  toSci 1E++1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas555  toSci 1E--1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas556  toSci 1E+-1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas557  toSci 1E-+1 -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas558  toSci 1E' 1' -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+[1] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas559  toSci 1E" 1" -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+[1] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas560  toSci 1E"" -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas561  toSci qNaN -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas562  toSci NaNq -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas563  toSci NaNs -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas564  toSci Infi -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas565  toSci Infin -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas566  toSci Infini -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas567  toSci Infinit -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status matched
+    actual_status=1 [Conversion_syntax]
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1, traps=0, clamp=0
+id=bas570  toSci 99e999999999 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=bas571  toSci 999e999999999 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=bas572  toSci 0.9e-999999999 -> ? expected_status=0x3820
+operand_numbers:
+[0] 9E-1000000000 digits=1, exp=-1000000000, bits=0x0, lsu=9
+value unmatched
+   actual_value=[9E-1000000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=bas573  toSci 0.09e-999999999 -> ? expected_status=0x3820
+operand_numbers:
+[0] 9E-1000000001 digits=1, exp=-1000000001, bits=0x0, lsu=9
+value unmatched
+   actual_value=[9E-1000000001]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=bas576  toSci 0.9e9999999999 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=bas577  toSci 99e-9999999999 -> ? expected_status=0x3820
+operand_numbers:
+[0] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[?]
+status unmatched
+    actual_status=3c20 [Inexact Clamped Rounded Subnormal Underflow]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=3c20, traps=0, clamp=0
+id=bas578  toSci 111e9999999999 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=bas579  toSci 1111e-9999999999 -> ? expected_status=0x3820
+operand_numbers:
+[0] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[?]
+status unmatched
+    actual_status=3c20 [Inexact Clamped Rounded Subnormal Underflow]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=3c20, traps=0, clamp=0
+id=bas580  toSci 1111e-99999999999 -> ? expected_status=0x3820
+operand_numbers:
+[0] 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-1000000007]
+ expected_value=[?]
+status unmatched
+    actual_status=3c20 [Inexact Clamped Rounded Subnormal Underflow]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=3c20, traps=0, clamp=0
+id=bas581  toSci 7e1000000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=bas582  toSci -99e999999999 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=bas583  toSci -999e999999999 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=bas584  toSci -0.9e-999999999 -> ? expected_status=0x3820
+operand_numbers:
+[0] -9E-1000000000 digits=1, exp=-1000000000, bits=0x80, lsu=9
+value unmatched
+   actual_value=[-9E-1000000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=bas585  toSci -0.09e-999999999 -> ? expected_status=0x3820
+operand_numbers:
+[0] -9E-1000000001 digits=1, exp=-1000000001, bits=0x80, lsu=9
+value unmatched
+   actual_value=[-9E-1000000001]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=bas588  toSci -0.9e9999999999 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=bas589  toSci -99e-9999999999 -> ? expected_status=0x3820
+operand_numbers:
+[0] -0E-1000000007 digits=1, exp=-1000000007, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0E-1000000007]
+ expected_value=[?]
+status unmatched
+    actual_status=3c20 [Inexact Clamped Rounded Subnormal Underflow]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=3c20, traps=0, clamp=0
+id=bas590  toSci -111e9999999999 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=bas591  toSci -1111e-9999999999 -> ? expected_status=0x3820
+operand_numbers:
+[0] -0E-1000000007 digits=1, exp=-1000000007, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0E-1000000007]
+ expected_value=[?]
+status unmatched
+    actual_status=3c20 [Inexact Clamped Rounded Subnormal Underflow]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=3c20, traps=0, clamp=0
+id=bas592  toSci -1111e-99999999999 -> ? expected_status=0x3820
+operand_numbers:
+[0] -0E-1000000007 digits=1, exp=-1000000007, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0E-1000000007]
+ expected_value=[?]
+status unmatched
+    actual_status=3c20 [Inexact Clamped Rounded Subnormal Underflow]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=3c20, traps=0, clamp=0
+id=bas593  toSci -7e1000000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=bas700  toSci Infinity -> ? expected_status=0x1
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas701  toSci sNaN -> ? expected_status=0x1
+operand_numbers:
+[0] sNaN digits=1, exp=0, bits=0x10, lsu=0
+value unmatched
+   actual_value=[sNaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas702  toSci NaN -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas703  toSci -Infinity -> ? expected_status=0x1
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas704  toSci -sNaN -> ? expected_status=0x1
+operand_numbers:
+[0] -sNaN digits=1, exp=0, bits=0x90, lsu=0
+value unmatched
+   actual_value=[-sNaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas705  toSci -NaN -> ? expected_status=0x1
+operand_numbers:
+[0] -NaN digits=1, exp=0, bits=0xa0, lsu=0
+value unmatched
+   actual_value=[-NaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas706  toSci +Infinity -> ? expected_status=0x1
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas708  toSci +sNaN -> ? expected_status=0x1
+operand_numbers:
+[0] sNaN digits=1, exp=0, bits=0x10, lsu=0
+value unmatched
+   actual_value=[sNaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas709  toSci +NaN -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas710  toSci INFINITY -> ? expected_status=0x1
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas711  toSci SNAN -> ? expected_status=0x1
+operand_numbers:
+[0] sNaN digits=1, exp=0, bits=0x10, lsu=0
+value unmatched
+   actual_value=[sNaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas712  toSci NAN -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas713  toSci infinity -> ? expected_status=0x1
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas714  toSci snan -> ? expected_status=0x1
+operand_numbers:
+[0] sNaN digits=1, exp=0, bits=0x10, lsu=0
+value unmatched
+   actual_value=[sNaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas715  toSci nan -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas716  toSci InFINITY -> ? expected_status=0x1
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas717  toSci SnAN -> ? expected_status=0x1
+operand_numbers:
+[0] sNaN digits=1, exp=0, bits=0x10, lsu=0
+value unmatched
+   actual_value=[sNaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas718  toSci nAN -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas719  toSci iNfinity -> ? expected_status=0x1
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas720  toSci sNan -> ? expected_status=0x1
+operand_numbers:
+[0] sNaN digits=1, exp=0, bits=0x10, lsu=0
+value unmatched
+   actual_value=[sNaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas721  toSci Nan -> ? expected_status=0x1
+operand_numbers:
+[0] NaN digits=1, exp=0, bits=0x20, lsu=0
+value unmatched
+   actual_value=[NaN]
+ expected_value=[?]
+status unmatched
+    actual_status=0 []
+  expected_status=1 [Conversion_syntax]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas601  toSci 0.000000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-9 digits=1, exp=-9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas602  toSci 0.00000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-8 digits=1, exp=-8, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-8]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas603  toSci 0.0000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-7 digits=1, exp=-7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-7]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas604  toSci 0.000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000000 digits=1, exp=-6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas605  toSci 0.00000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00000 digits=1, exp=-5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas606  toSci 0.0000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0000 digits=1, exp=-4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas607  toSci 0.000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000 digits=1, exp=-3, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas608  toSci 0.00 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00 digits=1, exp=-2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas609  toSci 0.0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0 digits=1, exp=-1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas610  toSci .0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0 digits=1, exp=-1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas612  toSci -.0 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.0 digits=1, exp=-1, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas613  toSci -0. -> 0 expected_status=0x0
+operand_numbers:
+[0] -0 digits=1, exp=0, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas614  toSci -0.0 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.0 digits=1, exp=-1, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas615  toSci -0.00 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.00 digits=1, exp=-2, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas616  toSci -0.000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.000 digits=1, exp=-3, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas617  toSci -0.0000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.0000 digits=1, exp=-4, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.0000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas618  toSci -0.00000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.00000 digits=1, exp=-5, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.00000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas619  toSci -0.000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.000000 digits=1, exp=-6, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.000000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas620  toSci -0.0000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0E-7 digits=1, exp=-7, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0E-7]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas621  toSci -0.00000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0E-8 digits=1, exp=-8, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0E-8]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas622  toSci -0.000000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0E-9 digits=1, exp=-9, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0E-9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas630  toSci 0.00E+0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00 digits=1, exp=-2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas631  toSci 0.00E+1 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0 digits=1, exp=-1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas633  toSci 0.00E+3 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+1 digits=1, exp=1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+1]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas634  toSci 0.00E+4 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+2 digits=1, exp=2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+2]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas635  toSci 0.00E+5 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+3 digits=1, exp=3, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+3]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas636  toSci 0.00E+6 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+4 digits=1, exp=4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+4]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas637  toSci 0.00E+7 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+5 digits=1, exp=5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+5]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas638  toSci 0.00E+8 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+6 digits=1, exp=6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas639  toSci 0.00E+9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+7 digits=1, exp=7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+7]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas640  toSci 0.0E+0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0 digits=1, exp=-1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas642  toSci 0.0E+2 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+1 digits=1, exp=1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+1]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas643  toSci 0.0E+3 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+2 digits=1, exp=2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+2]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas644  toSci 0.0E+4 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+3 digits=1, exp=3, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+3]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas645  toSci 0.0E+5 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+4 digits=1, exp=4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+4]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas646  toSci 0.0E+6 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+5 digits=1, exp=5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+5]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas647  toSci 0.0E+7 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+6 digits=1, exp=6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas648  toSci 0.0E+8 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+7 digits=1, exp=7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+7]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas649  toSci 0.0E+9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+8 digits=1, exp=8, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+8]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas651  toSci 0E+1 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+1 digits=1, exp=1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+1]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas652  toSci 0E+2 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+2 digits=1, exp=2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+2]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas653  toSci 0E+3 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+3 digits=1, exp=3, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+3]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas654  toSci 0E+4 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+4 digits=1, exp=4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+4]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas655  toSci 0E+5 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+5 digits=1, exp=5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+5]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas656  toSci 0E+6 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+6 digits=1, exp=6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas657  toSci 0E+7 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+7 digits=1, exp=7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+7]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas658  toSci 0E+8 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+8 digits=1, exp=8, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+8]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas659  toSci 0E+9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+9 digits=1, exp=9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas660  toSci 0.0E-0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0 digits=1, exp=-1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas661  toSci 0.0E-1 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00 digits=1, exp=-2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas662  toSci 0.0E-2 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000 digits=1, exp=-3, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas663  toSci 0.0E-3 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0000 digits=1, exp=-4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas664  toSci 0.0E-4 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00000 digits=1, exp=-5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas665  toSci 0.0E-5 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000000 digits=1, exp=-6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas666  toSci 0.0E-6 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-7 digits=1, exp=-7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-7]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas667  toSci 0.0E-7 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-8 digits=1, exp=-8, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-8]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas668  toSci 0.0E-8 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-9 digits=1, exp=-9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas669  toSci 0.0E-9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-10 digits=1, exp=-10, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-10]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas670  toSci 0.00E-0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00 digits=1, exp=-2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas671  toSci 0.00E-1 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000 digits=1, exp=-3, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas672  toSci 0.00E-2 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0000 digits=1, exp=-4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas673  toSci 0.00E-3 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00000 digits=1, exp=-5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas674  toSci 0.00E-4 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000000 digits=1, exp=-6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas675  toSci 0.00E-5 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-7 digits=1, exp=-7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-7]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas676  toSci 0.00E-6 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-8 digits=1, exp=-8, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-8]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas677  toSci 0.00E-7 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-9 digits=1, exp=-9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas678  toSci 0.00E-8 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-10 digits=1, exp=-10, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-10]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas679  toSci 0.00E-9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-11 digits=1, exp=-11, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-11]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas801  toEng 0.000000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-9 digits=1, exp=-9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas802  toEng 0.00000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-8 digits=1, exp=-8, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00E-6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas803  toEng 0.0000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-7 digits=1, exp=-7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0E-6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas804  toEng 0.000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000000 digits=1, exp=-6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas805  toEng 0.00000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00000 digits=1, exp=-5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas806  toEng 0.0000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0000 digits=1, exp=-4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas807  toEng 0.000 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000 digits=1, exp=-3, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas808  toEng 0.00 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00 digits=1, exp=-2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas809  toEng 0.0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0 digits=1, exp=-1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas810  toEng .0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0 digits=1, exp=-1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas812  toEng -.0 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.0 digits=1, exp=-1, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas813  toEng -0. -> 0 expected_status=0x0
+operand_numbers:
+[0] -0 digits=1, exp=0, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas814  toEng -0.0 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.0 digits=1, exp=-1, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas815  toEng -0.00 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.00 digits=1, exp=-2, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas816  toEng -0.000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.000 digits=1, exp=-3, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas817  toEng -0.0000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.0000 digits=1, exp=-4, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.0000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas818  toEng -0.00000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.00000 digits=1, exp=-5, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.00000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas819  toEng -0.000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.000000 digits=1, exp=-6, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.000000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas820  toEng -0.0000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0E-7 digits=1, exp=-7, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.0E-6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas821  toEng -0.00000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0E-8 digits=1, exp=-8, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0.00E-6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas822  toEng -0.000000000 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0E-9 digits=1, exp=-9, bits=0x80, lsu=0
+value unmatched
+   actual_value=[-0E-9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas830  toEng 0.00E+0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00 digits=1, exp=-2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas831  toEng 0.00E+1 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0 digits=1, exp=-1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas833  toEng 0.00E+3 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+1 digits=1, exp=1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00E+3]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas834  toEng 0.00E+4 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+2 digits=1, exp=2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0E+3]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas835  toEng 0.00E+5 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+3 digits=1, exp=3, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+3]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas836  toEng 0.00E+6 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+4 digits=1, exp=4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00E+6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas837  toEng 0.00E+7 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+5 digits=1, exp=5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0E+6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas838  toEng 0.00E+8 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+6 digits=1, exp=6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas839  toEng 0.00E+9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+7 digits=1, exp=7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00E+9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas840  toEng 0.0E+0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0 digits=1, exp=-1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas842  toEng 0.0E+2 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+1 digits=1, exp=1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00E+3]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas843  toEng 0.0E+3 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+2 digits=1, exp=2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0E+3]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas844  toEng 0.0E+4 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+3 digits=1, exp=3, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+3]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas845  toEng 0.0E+5 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+4 digits=1, exp=4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00E+6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas846  toEng 0.0E+6 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+5 digits=1, exp=5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0E+6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas847  toEng 0.0E+7 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+6 digits=1, exp=6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas848  toEng 0.0E+8 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+7 digits=1, exp=7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00E+9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas849  toEng 0.0E+9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+8 digits=1, exp=8, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0E+9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas851  toEng 0E+1 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+1 digits=1, exp=1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00E+3]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas852  toEng 0E+2 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+2 digits=1, exp=2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0E+3]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas853  toEng 0E+3 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+3 digits=1, exp=3, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+3]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas854  toEng 0E+4 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+4 digits=1, exp=4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00E+6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas855  toEng 0E+5 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+5 digits=1, exp=5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0E+6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas856  toEng 0E+6 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+6 digits=1, exp=6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas857  toEng 0E+7 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+7 digits=1, exp=7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00E+9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas858  toEng 0E+8 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+8 digits=1, exp=8, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0E+9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas859  toEng 0E+9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E+9 digits=1, exp=9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E+9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas860  toEng 0.0E-0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0 digits=1, exp=-1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas861  toEng 0.0E-1 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00 digits=1, exp=-2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas862  toEng 0.0E-2 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000 digits=1, exp=-3, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas863  toEng 0.0E-3 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0000 digits=1, exp=-4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas864  toEng 0.0E-4 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00000 digits=1, exp=-5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas865  toEng 0.0E-5 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000000 digits=1, exp=-6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas866  toEng 0.0E-6 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-7 digits=1, exp=-7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0E-6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas867  toEng 0.0E-7 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-8 digits=1, exp=-8, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00E-6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas868  toEng 0.0E-8 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-9 digits=1, exp=-9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas869  toEng 0.0E-9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-10 digits=1, exp=-10, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0E-9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas870  toEng 0.00E-0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00 digits=1, exp=-2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas871  toEng 0.00E-1 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000 digits=1, exp=-3, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas872  toEng 0.00E-2 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0000 digits=1, exp=-4, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas873  toEng 0.00E-3 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00000 digits=1, exp=-5, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas874  toEng 0.00E-4 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.000000 digits=1, exp=-6, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.000000]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas875  toEng 0.00E-5 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-7 digits=1, exp=-7, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0E-6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas876  toEng 0.00E-6 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-8 digits=1, exp=-8, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00E-6]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas877  toEng 0.00E-7 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-9 digits=1, exp=-9, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0E-9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas878  toEng 0.00E-8 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-10 digits=1, exp=-10, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0E-9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=bas879  toEng 0.00E-9 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0E-11 digits=1, exp=-11, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00E-9]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999999999, emin=-999999999, status=0, traps=0, clamp=0
+id=emax001  toSci -1E+2 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=0, emin=0, status=a20, traps=0, clamp=0
+id=emax002  toSci -100 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=0, emin=0, status=a20, traps=0, clamp=0
+id=emax003  toSci -10 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=0, emin=0, status=a20, traps=0, clamp=0
+id=emax011  toSci 10 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=0, emin=0, status=a20, traps=0, clamp=0
+id=emax012  toSci 100 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=0, emin=0, status=a20, traps=0, clamp=0
+id=emax013  toSci 1E+2 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=0, emin=0, status=a20, traps=0, clamp=0
+id=emax014  toSci 0.99 -> ? expected_status=0x3820
+operand_numbers:
+[0] 0.99 digits=2, exp=-2, bits=0x0, lsu=63
+value unmatched
+   actual_value=[0.99]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=0, emin=0, status=1000, traps=0, clamp=0
+id=emax015  toSci 0.1 -> ? expected_status=0x3820
+operand_numbers:
+[0] 0.1 digits=1, exp=-1, bits=0x0, lsu=1
+value unmatched
+   actual_value=[0.1]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=0, emin=0, status=1000, traps=0, clamp=0
+id=emax016  toSci 0.01 -> ? expected_status=0x3820
+operand_numbers:
+[0] 0.01 digits=1, exp=-2, bits=0x0, lsu=1
+value unmatched
+   actual_value=[0.01]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=0, emin=0, status=1000, traps=0, clamp=0
+id=emax017  toSci 1E-1 -> ? expected_status=0x3820
+operand_numbers:
+[0] 0.1 digits=1, exp=-1, bits=0x0, lsu=1
+value unmatched
+   actual_value=[0.1]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=0, emin=0, status=1000, traps=0, clamp=0
+id=emax018  toSci 1E-2 -> ? expected_status=0x3820
+operand_numbers:
+[0] 0.01 digits=1, exp=-2, bits=0x0, lsu=1
+value unmatched
+   actual_value=[0.01]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=0, emin=0, status=1000, traps=0, clamp=0
+id=emax100  toSci -1E+3 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=1, emin=-1, status=a20, traps=0, clamp=0
+id=emax101  toSci -1E+2 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=1, emin=-1, status=a20, traps=0, clamp=0
+id=emax102  toSci -100 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=1, emin=-1, status=a20, traps=0, clamp=0
+id=emax112  toSci 100 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=1, emin=-1, status=a20, traps=0, clamp=0
+id=emax113  toSci 1E+2 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=1, emin=-1, status=a20, traps=0, clamp=0
+id=emax114  toSci 1E+3 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=1, emin=-1, status=a20, traps=0, clamp=0
+id=emax117  toSci 0.01 -> ? expected_status=0x3820
+operand_numbers:
+[0] 0.01 digits=1, exp=-2, bits=0x0, lsu=1
+value unmatched
+   actual_value=[0.01]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=1, emin=-1, status=1000, traps=0, clamp=0
+id=emax119  toSci 1E-2 -> ? expected_status=0x3820
+operand_numbers:
+[0] 0.01 digits=1, exp=-2, bits=0x0, lsu=1
+value unmatched
+   actual_value=[0.01]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=1, emin=-1, status=1000, traps=0, clamp=0
+id=emax120  toSci 1E-3 -> ? expected_status=0x3820
+operand_numbers:
+[0] 0.001 digits=1, exp=-3, bits=0x0, lsu=1
+value unmatched
+   actual_value=[0.001]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=1, emin=-1, status=1000, traps=0, clamp=0
+id=emax200  toSci -1E+3 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=2, emin=-2, status=a20, traps=0, clamp=0
+id=emax214  toSci 1E+3 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=2, emin=-2, status=a20, traps=0, clamp=0
+id=emax218  toSci 0.001 -> ? expected_status=0x3820
+operand_numbers:
+[0] 0.001 digits=1, exp=-3, bits=0x0, lsu=1
+value unmatched
+   actual_value=[0.001]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=2, emin=-2, status=1000, traps=0, clamp=0
+id=emax221  toSci 1E-3 -> ? expected_status=0x3820
+operand_numbers:
+[0] 0.001 digits=1, exp=-3, bits=0x0, lsu=1
+value unmatched
+   actual_value=[0.001]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=2, emin=-2, status=1000, traps=0, clamp=0
+id=emax231  toSci 1E-8 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1E-8 digits=1, exp=-8, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1E-8]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=7, emin=-7, status=1000, traps=0, clamp=0
+id=emax238  toSci 1E+8 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=7, emin=-7, status=a20, traps=0, clamp=0
+id=emax241  toSci 1E-10 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1E-10 digits=1, exp=-10, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1E-10]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=9, emin=-9, status=1000, traps=0, clamp=0
+id=emax248  toSci 1E+10 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=9, emin=-9, status=a20, traps=0, clamp=0
+id=emax251  toSci 1E-11 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1E-11 digits=1, exp=-11, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1E-11]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=10, emin=-10, status=1000, traps=0, clamp=0
+id=emax258  toSci 1E+11 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=10, emin=-10, status=a20, traps=0, clamp=0
+id=emax261  toSci 1.00E-11 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1.00E-11 digits=3, exp=-13, bits=0x0, lsu=64
+value unmatched
+   actual_value=[1.00E-11]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=10, emin=-10, status=1000, traps=0, clamp=0
+id=emax268  toSci 1.00E+11 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=10, emin=-10, status=a20, traps=0, clamp=0
+id=emax271  toSci 9.99E-11 -> ? expected_status=0x3820
+operand_numbers:
+[0] 9.99E-11 digits=3, exp=-13, bits=0x0, lsu=3e7
+value unmatched
+   actual_value=[9.99E-11]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=10, emin=-10, status=1000, traps=0, clamp=0
+id=emax278  toSci 9.99E+11 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=10, emin=-10, status=a20, traps=0, clamp=0
+id=emax281  toSci 1E-100 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1E-100 digits=1, exp=-100, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1E-100]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=99, emin=-99, status=1000, traps=0, clamp=0
+id=emax286  toSci 1E+100 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=99, emin=-99, status=a20, traps=0, clamp=0
+id=emax291  toSci 1E-1000 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1E-1000 digits=1, exp=-1000, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1E-1000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999, emin=-999, status=1000, traps=0, clamp=0
+id=emax294  toSci 1E+1000 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999, emin=-999, status=a20, traps=0, clamp=0
+id=emax301  toSci 1E-10000 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1E-10000 digits=1, exp=-10000, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1E-10000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=9999, emin=-9999, status=1000, traps=0, clamp=0
+id=emax304  toSci 1E+10000 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=9999, emin=-9999, status=a20, traps=0, clamp=0
+id=emax311  toSci 1E-100000 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1E-100000 digits=1, exp=-100000, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1E-100000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=99999, emin=-99999, status=1000, traps=0, clamp=0
+id=emax314  toSci 1E+100000 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=99999, emin=-99999, status=a20, traps=0, clamp=0
+id=emax321  toSci 1E-1000000 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1E-1000000 digits=1, exp=-1000000, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1E-1000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999, emin=-999999, status=1000, traps=0, clamp=0
+id=emax324  toSci 1E+1000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999, emin=-999999, status=a20, traps=0, clamp=0
+id=emax331  toSci 1E-10000000 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1E-10000000 digits=1, exp=-10000000, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1E-10000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=9999999, emin=-9999999, status=1000, traps=0, clamp=0
+id=emax334  toSci 1E+10000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=9999999, emin=-9999999, status=a20, traps=0, clamp=0
+id=emax341  toSci 1E-100000000 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1E-100000000 digits=1, exp=-100000000, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1E-100000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=99999999, emin=-99999999, status=1000, traps=0, clamp=0
+id=emax344  toSci 1E+100000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=99999999, emin=-99999999, status=a20, traps=0, clamp=0
+id=emax351  toSci 1E-1000000000 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1E-1000000000 digits=1, exp=-1000000000, bits=0x0, lsu=1
+value unmatched
+   actual_value=[1E-1000000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=emax354  toSci 1E+1000000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=emax355  toSci 1.000E-1000000000 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1.000E-1000000000 digits=4, exp=-1000000003, bits=0x0, lsu=0 1
+value unmatched
+   actual_value=[1.000E-1000000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=emax358  toSci 1.000E+1000000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=emax359  toSci 1.001E-1000000000 -> ? expected_status=0x3820
+operand_numbers:
+[0] 1.001E-1000000000 digits=4, exp=-1000000003, bits=0x0, lsu=1 1
+value unmatched
+   actual_value=[1.001E-1000000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=emax362  toSci 1.001E+1000000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=emax363  toSci 9.000E-1000000000 -> ? expected_status=0x3820
+operand_numbers:
+[0] 9.000E-1000000000 digits=4, exp=-1000000003, bits=0x0, lsu=0 9
+value unmatched
+   actual_value=[9.000E-1000000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=emax366  toSci 9.000E+1000000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=emax367  toSci 9.999E-1000000000 -> ? expected_status=0x3820
+operand_numbers:
+[0] 9.999E-1000000000 digits=4, exp=-1000000003, bits=0x0, lsu=3e7 9
+value unmatched
+   actual_value=[9.999E-1000000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=emax370  toSci 9.999E+1000000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] Infinity digits=1, exp=0, bits=0x40, lsu=0
+value unmatched
+   actual_value=[Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=emax371  toSci -1E-1000000000 -> ? expected_status=0x3820
+operand_numbers:
+[0] -1E-1000000000 digits=1, exp=-1000000000, bits=0x80, lsu=1
+value unmatched
+   actual_value=[-1E-1000000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=emax374  toSci -1E+1000000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=emax375  toSci -1.000E-1000000000 -> ? expected_status=0x3820
+operand_numbers:
+[0] -1.000E-1000000000 digits=4, exp=-1000000003, bits=0x80, lsu=0 1
+value unmatched
+   actual_value=[-1.000E-1000000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=emax378  toSci -1.000E+1000000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=emax379  toSci -1.001E-1000000000 -> ? expected_status=0x3820
+operand_numbers:
+[0] -1.001E-1000000000 digits=4, exp=-1000000003, bits=0x80, lsu=1 1
+value unmatched
+   actual_value=[-1.001E-1000000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=emax382  toSci -1.001E+1000000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=emax383  toSci -9.000E-1000000000 -> ? expected_status=0x3820
+operand_numbers:
+[0] -9.000E-1000000000 digits=4, exp=-1000000003, bits=0x80, lsu=0 9
+value unmatched
+   actual_value=[-9.000E-1000000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=emax386  toSci -9.000E+1000000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+id=emax387  toSci -9.999E-1000000000 -> ? expected_status=0x3820
+operand_numbers:
+[0] -9.999E-1000000000 digits=4, exp=-1000000003, bits=0x80, lsu=3e7 9
+value unmatched
+   actual_value=[-9.999E-1000000000]
+ expected_value=[?]
+status unmatched
+    actual_status=1000 [Subnormal]
+  expected_status=3820 [Inexact Rounded Subnormal Underflow]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=1000, traps=0, clamp=0
+id=emax390  toSci -9.999E+1000000000 -> ? expected_status=0xa20
+operand_numbers:
+[0] -Infinity digits=1, exp=0, bits=0xc0, lsu=0
+value unmatched
+   actual_value=[-Infinity]
+ expected_value=[?]
+status matched
+    actual_status=a20 [Inexact Overflow Rounded]
+  expected_status=a20 [Inexact Overflow Rounded]
+context prec=9, round=2, emax=999999999, emin=-999999999, status=a20, traps=0, clamp=0
+== testcases/dectest0/base0.decTest: tests=774, success=444, failure=330, skip=0
+id=abs006  abs 0.00 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00 digits=1, exp=-2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999, emin=-999, status=0, traps=0, clamp=0
+id=abs007  abs 00.0 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.0 digits=1, exp=-1, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999, emin=-999, status=0, traps=0, clamp=0
+id=abs008  abs 00.00 -> 0 expected_status=0x0
+operand_numbers:
+[0] 0.00 digits=1, exp=-2, bits=0x0, lsu=0
+value unmatched
+   actual_value=[0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999, emin=-999, status=0, traps=0, clamp=0
+id=abs015  abs -0.00 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.00 digits=1, exp=-2, bits=0x80, lsu=0
+value unmatched
+   actual_value=[0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999, emin=-999, status=0, traps=0, clamp=0
+id=abs016  abs -00.0 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.0 digits=1, exp=-1, bits=0x80, lsu=0
+value unmatched
+   actual_value=[0.0]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999, emin=-999, status=0, traps=0, clamp=0
+id=abs017  abs -00.00 -> 0 expected_status=0x0
+operand_numbers:
+[0] -0.00 digits=1, exp=-2, bits=0x80, lsu=0
+decTestRunner.c:426:error in convert_status_name_to_value. name not found: Lost_digits
+decTestRunner.c:456:convert_status_name_to_value failed
+decTestRunner.c:1025:tokens_get_conditions failed.
+decTestRunner.c:1480:testcase_init failed.
+value unmatched
+   actual_value=[0.00]
+ expected_value=[0]
+status matched
+    actual_status=0 []
+  expected_status=0 []
+context prec=9, round=2, emax=999, emin=-999, status=0, traps=0, clamp=0
+== break because of failure.testcases/dectest0/abs0.decTest
+== testcases/dectest0/abs0.decTest: tests=46, success=39, failure=6, skip=0
+== break because of failure.testcases/dectest0/testall0.decTest
+== testcases/dectest0/testall0.decTest: tests=820, success=483, failure=336, skip=0

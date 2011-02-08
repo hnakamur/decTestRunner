@@ -5,4 +5,5 @@ see LICENSE for license.
 
 ./configure
 make
-./decTestRunner testcases/dectest/testall.decTest > all.log
+./decTestRunner testcases/dectest/testall.decTest 2>&1 | tee all.log
+./decTestRunner testcases/dectest0/testall0.decTest 2>&1 | tee all0.log

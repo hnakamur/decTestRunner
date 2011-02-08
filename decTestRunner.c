@@ -51,6 +51,9 @@ typedef struct _testfile_t {
     char *filename;
     FILE *fp;
     decContext context;
+#if !DECSUBSET
+    uint8_t  extended;
+#endif
     int test_count;
     int success_count;
     int failure_count;
@@ -83,9 +86,15 @@ static s_or_f process_file(char *filename, testfile_t *parent);
 
 static void context_print(const decContext *context)
 {
+#if DECSUBSET
     printf("context prec=%d, round=%d, emax=%d, emin=%d, status=%x, traps=%x, clamp=%d, extented=%d\n",
         context->digits, context->round, context->emax, context->emin,
         context->status, context->traps, context->clamp, context->extended);
+#else
+    printf("context prec=%d, round=%d, emax=%d, emin=%d, status=%x, traps=%x, clamp=%d\n",
+        context->digits, context->round, context->emax, context->emin,
+        context->status, context->traps, context->clamp);
+#endif /* DECSUBSET */
 }
 
 static char *convert_number_to_string(const decNumber *dn)
@@ -327,7 +336,11 @@ static s_or_f testfile_init(testfile_t *testfile, const char* filename)
     testfile->fp = fopen(filename, "r");
 
     decContextDefault(&testfile->context, DEC_INIT_BASE);
+#if DECSUBSET
     testfile->context.extended = 0;
+#else
+    testfile->extended = 0;
+#endif
 
     testfile->test_count = 0;
     testfile->success_count = 0;
@@ -390,7 +403,9 @@ static status_map_t status_maps[] = {
     { "Inexact",              DEC_Inexact },
     { "Invalid_context",      DEC_Invalid_context },
     { "Invalid_operation",    DEC_Invalid_operation },
+#if DECSUBSET
     { "Lost_digits",          DEC_Lost_digits },
+#endif
     { "Overflow",             DEC_Overflow },
     { "Clamped",              DEC_Clamped },
     { "Rounded",              DEC_Rounded },
@@ -1454,6 +1469,13 @@ static s_or_f testfile_process_test(testfile_t *testfile, tokens_t *tokens)
     testcase_t testcase;
 
     ++testfile->test_count;
+#if !DECSUBSET
+    if (testfile->extended) {
+        ++testfile->skip_count;
+        return SUCCESS;
+    }
+#endif
+
     if (!testcase_init(&testcase, testfile, tokens)) {
         DBGPRINT("testcase_init failed.\n");
         return FAILURE;
@@ -1566,7 +1588,11 @@ static s_or_f handle_extended(testfile_t *testfile, tokens_t *tokens)
     int extended;
 
     extended = atoi(tokens->tokens[2]);
+#if DECSUBSET
     testfile_context(testfile).extended = extended;
+#else
+    testfile->extended = extended;
+#endif
     return SUCCESS;
 }
 

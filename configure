@@ -1757,12 +1757,17 @@ _ACEOF
 
 
 cat >>confdefs.h <<\_ACEOF
-#define DECSUBSET 1
+#define DECSUBSET 0
 _ACEOF
 
 
 cat >>confdefs.h <<\_ACEOF
 #define DECNUMDIGITS 34
+_ACEOF
+
+
+cat >>confdefs.h <<\_ACEOF
+#define DECCHECK 1
 _ACEOF
 
 
