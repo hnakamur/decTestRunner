@@ -815,18 +815,7 @@ quax863 [1] 1e+2147483647 -> Infinity digits=1, exp=0, bits=0x40, lsu=0 context 
 quax864 [1] 1e-2147483647 -> 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0 context prec=9, round=2, emax=999999999, emin=-999999999, status=[Inexact Clamped Rounded Subnormal Underflow], traps=[], clamp=0, extended=1
 quax865 [1] 1e-2147483648 -> 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0 context prec=9, round=2, emax=999999999, emin=-999999999, status=[Inexact Clamped Rounded Subnormal Underflow], traps=[], clamp=0, extended=1
 quax866 [1] 1e-2147483649 -> 0E-1000000007 digits=1, exp=-1000000007, bits=0x0, lsu=0 context prec=9, round=2, emax=999999999, emin=-999999999, status=[Inexact Clamped Rounded Subnormal Underflow], traps=[], clamp=0, extended=1
-id=quax1026  quantize 64#8.666666666666000E+384 128#1E+384 -> 64#9E+384 expected_status=0xc20
-operand_numbers:
-[0] 8.666666666666000E+384 digits=16, exp=369, bits=0x0, lsu=0 29a 29a 29a 29a 8
-[1] 1E+384 digits=1, exp=384, bits=0x0, lsu=1
-value unmatched
-   actual_value=[9E+384]
- expected_value=[9.000000000000000E+384]
-status unmatched
-    actual_status=820 [Inexact Rounded]
-  expected_status=c20 [Inexact Clamped Rounded]
-context prec=16, round=2, emax=384, emin=-383, status=[Inexact Rounded], traps=[], clamp=0, extended=1
-== testcases/dectest/quantize.decTest: tests=775, success=761, failure=12, skip=2
+== testcases/dectest/quantize.decTest: tests=775, success=762, failure=11, skip=2
 == testcases/dectest/randoms.decTest: tests=4000, success=4000, failure=0, skip=0
 == testcases/dectest/reduce.decTest: tests=168, success=167, failure=0, skip=1
 == testcases/dectest/remainder.decTest: tests=517, success=515, failure=0, skip=2
@@ -2466,4 +2455,4 @@ context prec=34, round=3, emax=6144, emin=-6143, status=[], traps=[], clamp=1, e
 == testcases/dectest/dqXor.decTest: tests=348, success=348, failure=0, skip=0
 == testcases/dectest/decQuad.decTest: tests=14800, success=14747, failure=10, skip=43
 == testcases/dectest/randombound32.decTest: tests=2400, success=2400, failure=0, skip=0
-== testcases/dectest/testall.decTest: tests=65127, success=64935, failure=51, skip=141
+== testcases/dectest/testall.decTest: tests=65127, success=64936, failure=50, skip=141
