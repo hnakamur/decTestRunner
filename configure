@@ -1766,21 +1766,6 @@ cat >>confdefs.h <<\_ACEOF
 _ACEOF
 
 
-cat >>confdefs.h <<\_ACEOF
-#define DECCHECK 1
-_ACEOF
-
-
-cat >>confdefs.h <<\_ACEOF
-#define DECTRACE 1
-_ACEOF
-
-
-cat >>confdefs.h <<\_ACEOF
-#define DECPRINT 1
-_ACEOF
-
-
 # Checks for programs.
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'

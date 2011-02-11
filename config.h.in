@@ -1,22 +1,13 @@
 /* config.h.in.  Generated from configure.in by autoheader.  */
 
-/* Define to 1 for extended operand checking (including NULL operands). */
-#undef DECCHECK
-
 /* Define to 1 to enable extended flags. */
 #undef DECEXTFLAG
 
 /* The default number of digits that can be held. */
 #undef DECNUMDIGITS
 
-/* Define to 1 to allow printf calls; 0=no printf. */
-#undef DECPRINT
-
 /* Define to 1 to enable subset arithmetic. */
 #undef DECSUBSET
-
-/* Define to 1 to trace certain internals, etc. */
-#undef DECTRACE
 
 /* Define to 1 if you don't have `vprintf' but do have `_doprnt.' */
 #undef HAVE_DOPRNT

@@ -34,6 +34,8 @@
 #define STR_ARROW "->"
 #define STR_COLON ":"
 
+#define WHATEVER_RESULT "?"
+
 #define DBGPRINT(str) fprintf(stderr, "%s:%d:%s", __FILE__, __LINE__, str)
 #define DBGPRINTF(fmt, ...) fprintf(stderr, "%s:%d:" fmt, __FILE__, __LINE__, __VA_ARGS__)
 
@@ -70,12 +72,15 @@ typedef struct _tokens_t {
 typedef struct _testcase_t {
     char *id;
     char *operator;
+    bool is_using_directive_precision;
     int operand_count;
     char **operands;
     decNumber **operand_numbers;
+    decContext *operand_contexts;
     uint32_t expected_status;
     char *expected_string;
     decNumber *expected_number;
+    decContext expected_context;
     decContext *context;
     uint32_t actual_status;
     char *actual_string;
@@ -84,6 +89,27 @@ typedef struct _testcase_t {
 
 static s_or_f process_file(char *filename, testfile_t *parent);
 static void status_print(uint32_t status);
+
+/*
+ * named testcases to skip (>0.5 ulp or flags cases)
+ * that Mr. Mike Cowlishaw is aware of.
+ */
+static char *skip_list[] = {
+    "pwsx805", "powx4302", "powx4303", "powx4342", "powx4343", "lnx116",
+    "lnx732", NULL
+};
+
+static bool is_in_skip_list(const char *id)
+{
+    char **p;
+
+    for (p = skip_list; *p; ++p) {
+        if (strcmp(id, *p) == 0) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
 
 static void context_print(const decContext *context)
 {
@@ -338,6 +364,7 @@ static s_or_f testfile_init(testfile_t *testfile, const char* filename)
     testfile->fp = fopen(filename, "r");
 
     decContextDefault(&testfile->context, DEC_INIT_BASE);
+    testfile->context.traps = 0;
 #if DECSUBSET
     testfile->context.extended = 0;
 #else
@@ -365,11 +392,21 @@ static int count_coefficient_digit(const char *s)
     int count;
 
     count = 0;
-    for (p = s; *p; ++p) {
+    p = s;
+    if (*p == '-' || *p == '+') {
+        ++p;
+    }
+    if (strncasecmp(p, "nan", sizeof("nan") - 1) == 0) {
+        p += sizeof("nan") - 1;
+    } else if (strncasecmp(p, "snan", sizeof("snan") - 1) == 0) {
+        p += sizeof("snan") - 1;
+    }
+    for (; *p; ++p) {
         if (isdigit(*p)) {
             ++count;
-        }
-        if (*p == 'e' || *p == 'E') {
+        } else if (*p == '.') {
+            continue;
+        } else if (*p == 'e' || *p == 'E') {
             break;
         }
     }
@@ -568,9 +605,8 @@ static s_or_f parse_hex(int bytes, uint8_t buf[], const char *s)
 }
 
 static s_or_f parse_decimal32_hex(const char *s, decNumber **number,
-    decContext *ctx, bool is_using_directive_precision)
+    decContext *ctx)
 {
-    int32_t digits;
     decimal32 dec32;
 
     if (!parse_hex(DECIMAL32_Bytes, dec32.bytes, s)) {
@@ -578,19 +614,19 @@ static s_or_f parse_decimal32_hex(const char *s, decNumber **number,
         return FAILURE;
     }
 
-    digits = is_using_directive_precision ? ctx->digits : DECIMAL32_Pmax;
-    *number = alloc_number(digits);
+    *number = alloc_number(DECIMAL32_Pmax);
     if (!*number) {
         return FAILURE;
     }
+    decimal32ToNumber(&dec32, *number);
+    decimal32FromNumber(&dec32, *number, ctx);
     decimal32ToNumber(&dec32, *number);
     return SUCCESS;
 }
 
 static s_or_f parse_decimal64_hex(const char *s, decNumber **number,
-    decContext *ctx, bool is_using_directive_precision)
+    decContext *ctx)
 {
-    int32_t digits;
     decimal64 dec64;
 
     if (!parse_hex(DECIMAL64_Bytes, dec64.bytes, s)) {
@@ -598,19 +634,19 @@ static s_or_f parse_decimal64_hex(const char *s, decNumber **number,
         return FAILURE;
     }
 
-    digits = is_using_directive_precision ? ctx->digits : DECIMAL64_Pmax;
-    *number = alloc_number(digits);
+    *number = alloc_number(DECIMAL64_Pmax);
     if (!*number) {
         return FAILURE;
     }
+    decimal64ToNumber(&dec64, *number);
+    decimal64FromNumber(&dec64, *number, ctx);
     decimal64ToNumber(&dec64, *number);
     return SUCCESS;
 }
 
 static s_or_f parse_decimal128_hex(const char *s, decNumber **number,
-    decContext *ctx, bool is_using_directive_precision)
+    decContext *ctx)
 {
-    int32_t digits;
     decimal128 dec128;
 
     if (!parse_hex(DECIMAL128_Bytes, dec128.bytes, s)) {
@@ -618,17 +654,18 @@ static s_or_f parse_decimal128_hex(const char *s, decNumber **number,
         return FAILURE;
     }
 
-    digits = is_using_directive_precision ? ctx->digits : DECIMAL128_Pmax;
-    *number = alloc_number(digits);
+    *number = alloc_number(DECIMAL128_Pmax);
     if (!*number) {
         return FAILURE;
     }
+    decimal128ToNumber(&dec128, *number);
+    decimal128FromNumber(&dec128, *number, ctx);
     decimal128ToNumber(&dec128, *number);
     return SUCCESS;
 }
 
 static s_or_f parse_hex_notation(const char *s, decNumber **number,
-    decContext *ctx, bool is_using_directive_precision)
+    decContext *ctx)
 {
     int len;
 
@@ -636,23 +673,17 @@ static s_or_f parse_hex_notation(const char *s, decNumber **number,
     if (len == 0) {
         *number = NULL;
     } else if (len == 8) {
-        if (!parse_decimal32_hex(s + 1, number, ctx,
-            is_using_directive_precision)
-        ) {
+        if (!parse_decimal32_hex(s + 1, number, ctx)) {
             DBGPRINTF("parse_decimal32_hex failed [%s]\n", s);
             return FAILURE;
         }
     } else if (len == 16) {
-        if (!parse_decimal64_hex(s + 1, number, ctx,
-            is_using_directive_precision)
-        ) {
+        if (!parse_decimal64_hex(s + 1, number, ctx)) {
             DBGPRINTF("parse_decimal32_hex failed [%s]\n", s);
             return FAILURE;
         }
     } else if (len == 32) {
-        if (!parse_decimal128_hex(s + 1, number, ctx,
-            is_using_directive_precision)
-        ) {
+        if (!parse_decimal128_hex(s + 1, number, ctx)) {
             DBGPRINTF("parse_decimal32_hex failed [%s]\n", s);
             return FAILURE;
         }
@@ -750,20 +781,12 @@ static s_or_f parse_hex_notation_canonical(const char *s, decNumber **number)
 }
 
 static s_or_f parse_format_dependent_decimal32(const char *s,
-    decNumber **number, decContext *ctx, bool is_using_directive_precision)
+    decNumber **number, decContext *ctx)
 {
     int32_t digits;
     decimal32 dec32;
     decNumber *tmp;
 
-    if (!is_using_directive_precision) {
-        digits = count_coefficient_digit(s);
-        if (digits > ctx->digits) {
-            ctx->digits = digits;
-        }
-        ctx->emax = DEC_MAX_EMAX;
-        ctx->emin = DEC_MIN_EMIN;
-    }
     tmp = alloc_number(ctx->digits);
     if (!tmp) {
         return FAILURE;
@@ -783,20 +806,12 @@ static s_or_f parse_format_dependent_decimal32(const char *s,
 }
 
 static s_or_f parse_format_dependent_decimal64(const char *s,
-    decNumber **number, decContext *ctx, bool is_using_directive_precision)
+    decNumber **number, decContext *ctx)
 {
     int32_t digits;
     decimal64 dec64;
     decNumber *tmp;
 
-    if (!is_using_directive_precision) {
-        digits = count_coefficient_digit(s);
-        if (digits > ctx->digits) {
-            ctx->digits = digits;
-        }
-        ctx->emax = DEC_MAX_EMAX;
-        ctx->emin = DEC_MIN_EMIN;
-    }
     tmp = alloc_number(ctx->digits);
     if (!tmp) {
         return FAILURE;
@@ -816,20 +831,12 @@ static s_or_f parse_format_dependent_decimal64(const char *s,
 }
 
 static s_or_f parse_format_dependent_decimal128(const char *s,
-    decNumber **number, decContext *ctx, bool is_using_directive_precision)
+    decNumber **number, decContext *ctx)
 {
     int32_t digits;
     decimal128 dec128;
     decNumber *tmp;
 
-    if (!is_using_directive_precision) {
-        digits = count_coefficient_digit(s);
-        if (digits > ctx->digits) {
-            ctx->digits = digits;
-        }
-        ctx->emax = DEC_MAX_EMAX;
-        ctx->emin = DEC_MIN_EMIN;
-    }
     tmp = alloc_number(ctx->digits);
     if (!tmp) {
         return FAILURE;
@@ -849,25 +856,25 @@ static s_or_f parse_format_dependent_decimal128(const char *s,
 }
 
 static s_or_f parse_format_dependent_decimal(const char *s, decNumber **number,
-    decContext *ctx, bool is_using_directive_precision)
+    decContext *ctx)
 {
     if (strncmp(s, "32#", sizeof("32#") - 1) == 0) {
         if (!parse_format_dependent_decimal32(s + sizeof("32#") - 1, number,
-            ctx, is_using_directive_precision)
+            ctx)
         ) {
             DBGPRINTF("parse_format_dependent_decimal32 failed [%s]\n", s);
             return FAILURE;
         }
     } else if (strncmp(s, "64#", sizeof("64#") - 1) == 0) {
         if (!parse_format_dependent_decimal64(s + sizeof("64#") - 1, number,
-            ctx, is_using_directive_precision)
+            ctx)
         ) {
             DBGPRINTF("parse_format_dependent_decimal64 failed [%s]\n", s);
             return FAILURE;
         }
     } else if (strncmp(s, "128#", sizeof("128#") - 1) == 0) {
         if (!parse_format_dependent_decimal128(s + sizeof("128#") - 1, number,
-            ctx, is_using_directive_precision)
+            ctx)
         ) {
             DBGPRINTF("parse_format_dependent_decimal128 failed [%s]\n", s);
             return FAILURE;
@@ -879,8 +886,7 @@ static s_or_f parse_format_dependent_decimal(const char *s, decNumber **number,
     return SUCCESS;
 }
 
-static void print_operand(testcase_t *testcase, int arg_pos,
-    const decContext *ctx)
+static void print_operand(testcase_t *testcase, int arg_pos)
 {
     decNumber *n;
     char *s;
@@ -902,21 +908,67 @@ static void print_operand(testcase_t *testcase, int arg_pos,
         }
         printf("%x", n->lsu[j]);
     }
-    printf(" ");
-    context_print(ctx);
+    printf(", is_using_directive_precision=%d",
+        testcase->is_using_directive_precision);
+
+    if (strcmp(testcase->operator, "canonical") == 0) {
+        printf("\n");
+    } else {
+        printf(", ");
+        context_print(&testcase->operand_contexts[arg_pos]);
+    }
+}
+
+static void print_expected(testcase_t *testcase)
+{
+    decNumber *n;
+    char *s;
+    int unit_count;
+    int j;
+
+    n = testcase->expected_number;
+    if (n == NULL) {
+        return;
+    }
+
+    s = convert_number_to_string(n);
+    printf("%s [expected] %s -> %s digits=%d, exp=%d, bits=0x%x", testcase->id,
+        testcase->expected_string, s, n->digits, n->exponent, n->bits);
+    free(s);
+
+    unit_count = D2U(n->digits);
+    printf(", lsu=");
+    for (j = 0; j < unit_count; ++j) {
+        if (j > 0) {
+            printf(" ");
+        }
+        printf("%x", n->lsu[j]);
+    }
+
+    printf(", ");
+    context_print(&testcase->expected_context);
 }
 
 static s_or_f testcase_convert_operand_to_number(testcase_t *testcase,
-    int arg_pos, bool is_using_directive_precision)
+    int arg_pos)
 {
-    decContext ctx;
+    decContext *ctx;
     char *s;
     int32_t digits;
     char *p_sharp;
 
-    ctx = *testcase->context;
-
+    testcase->operand_contexts[arg_pos] = *testcase->context;
+    ctx = &testcase->operand_contexts[arg_pos];
     s = testcase->operands[arg_pos];
+
+    if (!testcase->is_using_directive_precision) {
+        digits = count_coefficient_digit(s);
+        ctx->digits = digits;
+        ctx->emax = INT32_MAX - digits;
+        ctx->emin = INT32_MIN + digits;
+        ctx->clamp = 0;
+    }
+
     p_sharp = strchr(s, '#');
     if (p_sharp != NULL) {
         if (p_sharp == s) {
@@ -929,7 +981,7 @@ static s_or_f testcase_convert_operand_to_number(testcase_t *testcase,
                 }
             } else {
                 if (!parse_hex_notation(s, &testcase->operand_numbers[arg_pos],
-                    &ctx, is_using_directive_precision)
+                    ctx)
                 ) {
                     DBGPRINTF("parse_hex_notation failed for operand %d. [%s]\n", arg_pos, s);
                     return FAILURE;
@@ -937,33 +989,22 @@ static s_or_f testcase_convert_operand_to_number(testcase_t *testcase,
             }
         } else {
             if (!parse_format_dependent_decimal(s,
-                &testcase->operand_numbers[arg_pos], &ctx,
-                is_using_directive_precision)
+                &testcase->operand_numbers[arg_pos], ctx)
             ) {
                 DBGPRINTF("parse_format_dependent_decimal failed for operand %d. [%s]\n", arg_pos, s);
                 return FAILURE;
             }
         }
     } else {
-        if (!is_using_directive_precision) {
-            digits = count_coefficient_digit(s);
-            if (digits > ctx.digits) {
-                ctx.digits = digits;
-            }
-            ctx.emax = DEC_MAX_EMAX;
-            ctx.emin = DEC_MIN_EMIN;
-        }
-        testcase->operand_numbers[arg_pos] = alloc_number(ctx.digits);
+        testcase->operand_numbers[arg_pos] = alloc_number(ctx->digits);
         if (!testcase->operand_numbers[arg_pos]) {
             return FAILURE;
         }
-        decNumberFromString(testcase->operand_numbers[arg_pos], s, &ctx);
-        if (ctx.status != 0) {
-            print_operand(testcase, arg_pos, &ctx);
-        }
+        decNumberFromString(testcase->operand_numbers[arg_pos], s, ctx);
     }
-    if (is_using_directive_precision) {
-        testcase->context->status |= ctx.status;
+
+    if (testcase->is_using_directive_precision) {
+        testcase->context->status |= ctx->status;
     }
 
     return SUCCESS;
@@ -972,14 +1013,9 @@ static s_or_f testcase_convert_operand_to_number(testcase_t *testcase,
 static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
 {
     char *op;
-    bool is_using_directive_precision;
     int i;
 
     op = testcase->operator;
-    is_using_directive_precision = (strcasecmp(op, "apply") == 0
-        || strcasecmp(op, "tosci") == 0 || strcasecmp(op, "toeng") == 0);
-    testcase->context->traps = 0;
-    testcase->context->status = 0;
 
     testcase->operand_numbers = (decNumber **)calloc(testcase->operand_count,
         sizeof(decNumber *));
@@ -987,11 +1023,15 @@ static s_or_f testcase_convert_operands_to_numbers(testcase_t *testcase)
         DBGPRINT("out of memory in testcase_convert_operands_to_numbers\n");
         return FAILURE;
     }
+    testcase->operand_contexts = (decContext *)calloc(testcase->operand_count,
+        sizeof(decContext));
+    if (!testcase->operand_contexts) {
+        DBGPRINT("out of memory in testcase_convert_operands_to_numbers\n");
+        return FAILURE;
+    }
 
     for (i = 0; i < testcase->operand_count; ++i) {
-        if (!testcase_convert_operand_to_number(testcase, i,
-            is_using_directive_precision)
-        ) {
+        if (!testcase_convert_operand_to_number(testcase, i)) {
             return FAILURE;
         }
     }
@@ -1003,39 +1043,45 @@ static s_or_f testcase_convert_result_to_number(testcase_t *testcase)
 {
     char *s;
     char *p_sharp;
-    decContext ctx;
     int32_t digits;
+    decContext *ctx;
 
     s = testcase->expected_string;
-    ctx = *testcase->context;
+    testcase->expected_context = *testcase->context;
+    ctx = &testcase->expected_context;
+    digits = count_coefficient_digit(s);
+    ctx->digits = digits;
+    ctx->emax = INT32_MAX - digits;
+    ctx->emin = INT32_MIN + digits;
+    ctx->clamp = 0;
+
     p_sharp = strchr(s, '#');
     if (p_sharp != NULL) {
         if (p_sharp == s) {
-            if (!parse_hex_notation(s, &testcase->expected_number, &ctx,
-                FALSE)
-            ) {
+            if (!parse_hex_notation(s, &testcase->expected_number, ctx)) {
                 DBGPRINTF("parse_hex_notation failed for result. [%s]\n", s);
                 return FAILURE;
             }
         } else {
             if (!parse_format_dependent_decimal(s, &testcase->expected_number,
-                &ctx, FALSE)
+                ctx)
             ) {
                 DBGPRINTF("parse_format_dependent_decimal failed for result. [%s]\n", s);
                 return FAILURE;
             }
         }
     } else {
-        digits = count_coefficient_digit(s);
-        if (digits > ctx.digits) {
-            ctx.digits = digits;
-        }
-        testcase->expected_number = alloc_number(ctx.digits);
+        testcase->expected_number = alloc_number(ctx->digits);
         if (!testcase->expected_number) {
             return FAILURE;
         }
-        decNumberFromString(testcase->expected_number, s, &ctx);
+        decNumberFromString(testcase->expected_number, s, ctx);
     }
+
+//    if (ctx->status != 0) {
+//        testcase->context->status |= ctx->status;
+//    }
+
     return SUCCESS;
 }
 
@@ -1043,11 +1089,16 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     tokens_t *tokens)
 {
     int i;
+    char *op;
 
     testcase->id = tokens->tokens[0];
-    testcase->operator = tokens->tokens[1];
+    op = testcase->operator = tokens->tokens[1];
+    testcase->is_using_directive_precision = (strcasecmp(op, "apply") == 0
+        || strcasecmp(op, "tosci") == 0 || strcasecmp(op, "toeng") == 0);
     testcase->operand_count = tokens_count_operands(tokens);
     testcase->context = &testfile->context;
+    testcase->context->traps = 0;
+    testcase->context->status = 0;
     testcase->actual_status = 0;
     testcase->actual_string = NULL;
     testcase->actual_number = NULL;
@@ -1059,6 +1110,7 @@ static s_or_f testcase_init(testcase_t *testcase, testfile_t *testfile,
     }
 
     testcase->operand_numbers = NULL;
+    testcase->operand_contexts = NULL;
     testcase->operands = (char **)calloc(testcase->operand_count,
         sizeof(char *));
     if (!testcase->operands) {
@@ -1390,28 +1442,17 @@ static void testcase_print(testcase_t *testcase)
     }
     printf(" -> ");
     printf("%s", testcase->expected_string);
-    printf(" expected_status=0x%x\n", testcase->expected_status);
+    printf(" expected_status=[");
+    status_print(testcase->expected_status);
+    printf("]\n");
 
     if (testcase->operand_numbers) {
         printf("operand_numbers:\n");
         for (i = 0; i < testcase->operand_count; ++i) {
-            n = testcase->operand_numbers[i];
-            s = convert_number_to_string(n);
-            printf("[%d] %s digits=%d, exp=%d, bits=0x%x", i, s, n->digits,
-                n->exponent, n->bits);
-            free(s);
-
-            unit_count = D2U(n->digits);
-            printf(", lsu=");
-            for (j = 0; j < unit_count; ++j) {
-                if (j > 0) {
-                    printf(" ");
-                }
-                printf("%x", n->lsu[j]);
-            }
-            printf("\n");
+            print_operand(testcase, i);
         }
     }
+    print_expected(testcase);
 
     fflush(stdout);
 }
@@ -1424,7 +1465,9 @@ static bool testcase_check(testcase_t *testcase)
     char *expected_string;
     decNumber compare_result;
 
-    if (testcase->actual_string != NULL) {
+    if (strcmp(testcase->expected_string, WHATEVER_RESULT) == 0) {
+        value_matched = TRUE;
+    } else if (testcase->actual_string != NULL) {
         value_matched = (strcmp(testcase->actual_string,
             testcase->expected_string) == 0);
     } else {
@@ -1457,10 +1500,10 @@ static bool testcase_check(testcase_t *testcase)
     }
 
     printf("status %s\n", (status_matched ? "matched" : "unmatched"));
-    printf("    actual_status=%x [", testcase->actual_status);
+    printf("    actual_status=[");
     status_print(testcase->actual_status);
     printf("]\n");
-    printf("  expected_status=%x [", testcase->expected_status);
+    printf("  expected_status=[");
     status_print(testcase->expected_status);
     printf("]\n");
     context_print(testcase->context);
@@ -1482,6 +1525,9 @@ static int testcase_dtor(testcase_t *testcase)
             }
         }
         free(testcase->operand_numbers);
+    }
+    if (testcase->operand_contexts) {
+        free(testcase->operand_contexts);
     }
 
     if (testcase->actual_string) {
@@ -1512,7 +1558,8 @@ static s_or_f testfile_process_test(testfile_t *testfile, tokens_t *tokens)
         DBGPRINT("testcase_init failed.\n");
         return FAILURE;
     }
-    if (testcase_has_null_operand(&testcase)) {
+
+    if (testcase_has_null_operand(&testcase) || is_in_skip_list(testcase.id)) {
         ++testfile->skip_count;
     } else {
         if (!testcase_run(&testcase)) {
