@@ -9,8 +9,14 @@
 /* The default number of digits that can be held. */
 #undef DECNUMDIGITS
 
+/* Define to 1 to allow printf calls; 0=no printf. */
+#undef DECPRINT
+
 /* Define to 1 to enable subset arithmetic. */
 #undef DECSUBSET
+
+/* Define to 1 to trace certain internals, etc. */
+#undef DECTRACE
 
 /* Define to 1 if you don't have `vprintf' but do have `_doprnt.' */
 #undef HAVE_DOPRNT

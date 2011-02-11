@@ -83,18 +83,20 @@ typedef struct _testcase_t {
 } testcase_t;
 
 static s_or_f process_file(char *filename, testfile_t *parent);
+static void status_print(uint32_t status);
 
 static void context_print(const decContext *context)
 {
+    printf("context prec=%d, round=%d, emax=%d, emin=%d, status=[",
+        context->digits, context->round, context->emax, context->emin);
+    status_print(context->status);
+    printf("], traps=[");
+    status_print(context->traps);
 #if DECSUBSET
-    printf("context prec=%d, round=%d, emax=%d, emin=%d, status=%x, traps=%x, clamp=%d, extented=%d\n",
-        context->digits, context->round, context->emax, context->emin,
-        context->status, context->traps, context->clamp, context->extended);
+    printf("], clamp=%d, extended=%d\n", context->clamp, context->extended);
 #else
-    printf("context prec=%d, round=%d, emax=%d, emin=%d, status=%x, traps=%x, clamp=%d\n",
-        context->digits, context->round, context->emax, context->emin,
-        context->status, context->traps, context->clamp);
-#endif /* DECSUBSET */
+    printf("], clamp=%d\n", context->clamp);
+#endif
 }
 
 static char *convert_number_to_string(const decNumber *dn)
@@ -877,6 +879,33 @@ static s_or_f parse_format_dependent_decimal(const char *s, decNumber **number,
     return SUCCESS;
 }
 
+static void print_operand(testcase_t *testcase, int arg_pos,
+    const decContext *ctx)
+{
+    decNumber *n;
+    char *s;
+    int unit_count;
+    int j;
+
+    n = testcase->operand_numbers[arg_pos];
+    s = convert_number_to_string(n);
+    printf("%s [%d] %s -> %s digits=%d, exp=%d, bits=0x%x", testcase->id,
+        arg_pos, testcase->operands[arg_pos], s, n->digits, n->exponent,
+        n->bits);
+    free(s);
+
+    unit_count = D2U(n->digits);
+    printf(", lsu=");
+    for (j = 0; j < unit_count; ++j) {
+        if (j > 0) {
+            printf(" ");
+        }
+        printf("%x", n->lsu[j]);
+    }
+    printf(" ");
+    context_print(ctx);
+}
+
 static s_or_f testcase_convert_operand_to_number(testcase_t *testcase,
     int arg_pos, bool is_using_directive_precision)
 {
@@ -929,6 +958,9 @@ static s_or_f testcase_convert_operand_to_number(testcase_t *testcase,
             return FAILURE;
         }
         decNumberFromString(testcase->operand_numbers[arg_pos], s, &ctx);
+        if (ctx.status != 0) {
+            print_operand(testcase, arg_pos, &ctx);
+        }
     }
     if (is_using_directive_precision) {
         testcase->context->status |= ctx.status;
