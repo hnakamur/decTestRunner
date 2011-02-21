@@ -1057,6 +1057,10 @@ static s_or_f testcase_convert_result_to_number(testcase_t *testcase)
 
     p_sharp = strchr(s, '#');
     if (p_sharp != NULL) {
+        // The clamp=1 is only implied when the result is a format-dependent
+        // representation (with a # in it).
+        ctx->clamp = 1;
+
         if (p_sharp == s) {
             if (!parse_hex_notation(s, &testcase->expected_number, ctx)) {
                 DBGPRINTF("parse_hex_notation failed for result. [%s]\n", s);
@@ -1070,6 +1074,10 @@ static s_or_f testcase_convert_result_to_number(testcase_t *testcase)
                 return FAILURE;
             }
         }
+
+        if (ctx->status != 0) {
+            testcase->context->status |= ctx->status;
+        }
     } else {
         testcase->expected_number = alloc_number(ctx->digits);
         if (!testcase->expected_number) {
@@ -1078,9 +1086,6 @@ static s_or_f testcase_convert_result_to_number(testcase_t *testcase)
         decNumberFromString(testcase->expected_number, s, ctx);
     }
 
-//    if (ctx->status != 0) {
-//        testcase->context->status |= ctx->status;
-//    }
 
     return SUCCESS;
 }

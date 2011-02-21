@@ -34,7 +34,19 @@
 == testcases/dectest/plus.decTest: tests=122, success=121, failure=0, skip=1
 == testcases/dectest/power.decTest: tests=1207, success=1201, failure=0, skip=6
 == testcases/dectest/powersqrt.decTest: tests=2856, success=2854, failure=0, skip=2
-== testcases/dectest/quantize.decTest: tests=775, success=773, failure=0, skip=2
+id=quax1026  quantize 64#8.666666666666000E+384 128#1E+384 -> 64#9E+384 expected_status=[Inexact Clamped Rounded]
+operand_numbers:
+quax1026 [0] 64#8.666666666666000E+384 -> 8.666666666666000E+384 digits=16, exp=369, bits=0x0, lsu=0 29a 29a 29a 29a 8, is_using_directive_precision=0, context prec=18, round=2, emax=2147483629, emin=-2147483630, status=[Clamped], traps=[], clamp=0, extended=1
+quax1026 [1] 128#1E+384 -> 1E+384 digits=1, exp=384, bits=0x0, lsu=1, is_using_directive_precision=0, context prec=4, round=2, emax=2147483643, emin=-2147483644, status=[Clamped], traps=[], clamp=0, extended=1
+quax1026 [expected] 64#9E+384 -> 9.000000000000000E+384 digits=16, exp=369, bits=0x0, lsu=0 0 0 0 0 9, context prec=3, round=2, emax=2147483644, emin=-2147483645, status=[Clamped], traps=[], clamp=1, extended=1
+value unmatched
+   actual_value=[9E+384]
+ expected_value=[9.000000000000000E+384]
+status matched
+    actual_status=[Inexact Clamped Rounded]
+  expected_status=[Inexact Clamped Rounded]
+context prec=16, round=2, emax=384, emin=-383, status=[Inexact Clamped Rounded], traps=[], clamp=0, extended=1
+== testcases/dectest/quantize.decTest: tests=775, success=772, failure=1, skip=2
 == testcases/dectest/randoms.decTest: tests=4000, success=4000, failure=0, skip=0
 == testcases/dectest/reduce.decTest: tests=168, success=167, failure=0, skip=1
 == testcases/dectest/remainder.decTest: tests=517, success=515, failure=0, skip=2
@@ -97,7 +109,7 @@
 id=ddintx074  tointegralx 1.23E+384 -> #47fd300000000000 expected_status=[Clamped]
 operand_numbers:
 ddintx074 [0] 1.23E+384 -> 1.23E+384 digits=3, exp=382, bits=0x0, lsu=7b, is_using_directive_precision=0, context prec=3, round=3, emax=2147483644, emin=-2147483645, status=[], traps=[], clamp=0, extended=1
-ddintx074 [expected] #47fd300000000000 -> 1.230000000000000E+384 digits=16, exp=369, bits=0x0, lsu=0 0 0 0 e6 1, context prec=14, round=3, emax=2147483633, emin=-2147483634, status=[], traps=[], clamp=0, extended=1
+ddintx074 [expected] #47fd300000000000 -> 1.230000000000000E+384 digits=16, exp=369, bits=0x0, lsu=0 0 0 0 e6 1, context prec=14, round=3, emax=2147483633, emin=-2147483634, status=[], traps=[], clamp=1, extended=1
 value unmatched
    actual_value=[1.23E+384]
  expected_value=[1.230000000000000E+384]
@@ -108,7 +120,7 @@ context prec=16, round=3, emax=384, emin=-383, status=[], traps=[], clamp=1, ext
 id=ddintx094  tointegralx -1.23E+384 -> #c7fd300000000000 expected_status=[Clamped]
 operand_numbers:
 ddintx094 [0] -1.23E+384 -> -1.23E+384 digits=3, exp=382, bits=0x80, lsu=7b, is_using_directive_precision=0, context prec=3, round=3, emax=2147483644, emin=-2147483645, status=[], traps=[], clamp=0, extended=1
-ddintx094 [expected] #c7fd300000000000 -> -1.230000000000000E+384 digits=16, exp=369, bits=0x80, lsu=0 0 0 0 e6 1, context prec=13, round=3, emax=2147483634, emin=-2147483635, status=[], traps=[], clamp=0, extended=1
+ddintx094 [expected] #c7fd300000000000 -> -1.230000000000000E+384 digits=16, exp=369, bits=0x80, lsu=0 0 0 0 e6 1, context prec=13, round=3, emax=2147483634, emin=-2147483635, status=[], traps=[], clamp=1, extended=1
 value unmatched
    actual_value=[-1.23E+384]
  expected_value=[-1.230000000000000E+384]
@@ -162,7 +174,7 @@ context prec=16, round=3, emax=384, emin=-383, status=[], traps=[], clamp=1, ext
 id=dqintx074  tointegralx 1.23E+6144 -> #47ffd300000000000000000000000000 expected_status=[Clamped]
 operand_numbers:
 dqintx074 [0] 1.23E+6144 -> 1.23E+6144 digits=3, exp=6142, bits=0x0, lsu=7b, is_using_directive_precision=0, context prec=3, round=3, emax=2147483644, emin=-2147483645, status=[], traps=[], clamp=0, extended=1
-dqintx074 [expected] #47ffd300000000000000000000000000 -> 1.230000000000000000000000000000000E+6144 digits=34, exp=6111, bits=0x0, lsu=0 0 0 0 0 0 0 0 0 0 e6 1, context prec=29, round=3, emax=2147483618, emin=-2147483619, status=[], traps=[], clamp=0, extended=1
+dqintx074 [expected] #47ffd300000000000000000000000000 -> 1.230000000000000000000000000000000E+6144 digits=34, exp=6111, bits=0x0, lsu=0 0 0 0 0 0 0 0 0 0 e6 1, context prec=29, round=3, emax=2147483618, emin=-2147483619, status=[], traps=[], clamp=1, extended=1
 value unmatched
    actual_value=[1.23E+6144]
  expected_value=[1.230000000000000000000000000000000E+6144]
@@ -173,7 +185,7 @@ context prec=34, round=3, emax=6144, emin=-6143, status=[], traps=[], clamp=1, e
 id=dqintx094  tointegralx -1.23E+6144 -> #c7ffd300000000000000000000000000 expected_status=[Clamped]
 operand_numbers:
 dqintx094 [0] -1.23E+6144 -> -1.23E+6144 digits=3, exp=6142, bits=0x80, lsu=7b, is_using_directive_precision=0, context prec=3, round=3, emax=2147483644, emin=-2147483645, status=[], traps=[], clamp=0, extended=1
-dqintx094 [expected] #c7ffd300000000000000000000000000 -> -1.230000000000000000000000000000000E+6144 digits=34, exp=6111, bits=0x80, lsu=0 0 0 0 0 0 0 0 0 0 e6 1, context prec=28, round=3, emax=2147483619, emin=-2147483620, status=[], traps=[], clamp=0, extended=1
+dqintx094 [expected] #c7ffd300000000000000000000000000 -> -1.230000000000000000000000000000000E+6144 digits=34, exp=6111, bits=0x80, lsu=0 0 0 0 0 0 0 0 0 0 e6 1, context prec=28, round=3, emax=2147483619, emin=-2147483620, status=[], traps=[], clamp=1, extended=1
 value unmatched
    actual_value=[-1.23E+6144]
  expected_value=[-1.230000000000000000000000000000000E+6144]
@@ -185,4 +197,4 @@ context prec=34, round=3, emax=6144, emin=-6143, status=[], traps=[], clamp=1, e
 == testcases/dectest/dqXor.decTest: tests=348, success=348, failure=0, skip=0
 == testcases/dectest/decQuad.decTest: tests=14800, success=14755, failure=2, skip=43
 == testcases/dectest/randombound32.decTest: tests=2400, success=2400, failure=0, skip=0
-== testcases/dectest/testall.decTest: tests=65127, success=64975, failure=4, skip=148
+== testcases/dectest/testall.decTest: tests=65127, success=64974, failure=5, skip=148
